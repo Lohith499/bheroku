@@ -1,0 +1,43 @@
+
+{{#ifvalue message value="Not Found"}}
+    <a href="/"><img src="/public/images/error404.gif" alt="404" style="height: 100%;width: 100%"></a>
+{{else}}
+
+    <div style="background: white">
+        <p style="text-align: center;background: white"> <a href="/"><img src="/public/images/glitch.gif" alt="GLITCH" style="height: 60px; width: 100%"></a>
+        </p>
+        <h3 style="text-align: center ;font-size: 60px"><a href="/"> Go Back to Home Page    <img src="/public/images/home.png" alt="home"  style="height: 60px;width:auto" ></a></h3>
+        <div class="container">
+            <!-- Example row of columns -->
+            <div class="row">
+                <div class="col-md-10" style="background: lightgreen;text-align: center;border-radius: 25px;padding: 10px">
+                    <h2>Error Message</h2>
+                    <p style="text-align: justify;"><h1>{{message}}</h1></p>
+                <!--<p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>-->
+                </div>
+                <div class="col-md-10" style="background: azure;text-align: center;border-radius: 25px;padding: 10px">
+                    <h2>Error Status</h2>
+                    <p style="text-align: justify;"><h2>{{error.status}}</h2></p>
+                    <!--<p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>-->
+                </div>
+                <div class="col-md-10" style="word-wrap: break-word;background: lightblue;text-align: left; border-radius: 25px;padding: 10px">
+                    <h2>Error Log</h2>
+                    <p><pre>{{error.stack}}</pre></p>
+                    <!--<p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>-->
+                </div>
+            </div>
+
+            <hr>
+
+        </div> <!-- /container -->
+    </div>
+
+{{/ifvalue}}
+
+<style>
+    body {
+        margin: 0px;
+    }
+
+</style>
+

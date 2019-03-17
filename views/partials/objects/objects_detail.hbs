@@ -1,0 +1,95 @@
+<div class="Maintitle" style="margin : 5px;border-bottom: black;border-bottom-width: 5px">
+    <table style="background: antiquewhite;border-radius: 5px">
+        <tr>
+            {{{imgicon title}}}
+            <td><h4 style="text-decoration: underline;font-weight: bold">{{title}}</h4></td>
+        </tr>
+    </table>
+</div>
+<div>
+    <div style="margin:0px;height: 5px;width: 100%;background:black"></div>
+
+    <form>
+        {{#if error}}
+            <div class="alert alert-danger" role="alert">
+                <strong style="text-transform: uppercase;">Error : </strong> {{error.sqlMessage}}
+            </div>
+        {{/if}}
+        <div style="text-align: center">
+            <button id="new_bUsers" class="form_button" formmethod="get" formaction="/setup/objects/new"
+                    style="position: center;background: green">New</button>
+
+            <button id="edit_bUsers" style="background: orangered;" class="form_button" type=submit formmethod="post" formaction="/setup/objects/edit?id={{uresult.[0].id}}&action=view">Edit</button>
+        </div>
+        <div style="margin:0px;height: 5px;width: 100%;background:black"></div>
+        <!-- Main Section Data-->
+        <dl class="row">
+
+            <dt class="col-sm-3">ID</dt>
+            <dd class="col-sm-9">{{uresult.[0].id}}</dd>
+
+            <dt class="col-sm-3">Object Name</dt>
+            <dd class="col-sm-9">{{uresult.[0].name}}</dd>
+
+            <dt class="col-sm-3">Table Name</dt>
+            <dd class="col-sm-9">{{uresult.[0].table_name}}</dd>
+
+            <dt class="col-sm-3">Type</dt>
+            <dd class="col-sm-9">{{uresult.[0].type}}</dd>
+        </dl>
+
+        <h6>Information History</h6>
+
+        <style>
+            #histoy > ul {
+                width: 100%;
+                display: table;
+                table-layout: fixed; /* optional, for equal spacing */
+                border-collapse: collapse;
+            }
+            #histoy > ul > li {
+                display: table-cell;
+                text-align: left;
+                vertical-align: middle;
+            }
+        </style>
+        <div id="histoy">
+        <ul>
+            <li style="border-radius: 5px;background: #6895fa;">Created Date</li>
+            <li style="border-radius: 5px;background: #c2d4fd;">{{uresult.[0].created_Date}}</li>
+            <li style="border-radius: 5px;background: #6895fa;">Created By</li>
+            <li style="border-radius: 5px;background: #c2d4fd;">{{uresult.[0].created_By}}</li>
+        </ul>
+        <ul>
+            <li style="border-radius: 5px;background: #6895fa;">LastModified Date</li>
+            <li style="border-radius: 5px;background: #c2d4fd;">{{uresult.[0].lastModified_Date}}</li>
+            <li style="border-radius: 5px;background: #6895fa;">LastModified By</li>
+            <li style="border-radius: 5px;background: #c2d4fd;">{{uresult.[0].lastModified_By}}</li>
+        </ul>
+        </div>
+
+
+        <div style="height: 5px;width: 100%;background:black"></div>
+       <!-- <div style="text-align: center">
+            <button id="new_bUsers" class="form_button" formmethod="get" formaction="/setup/objects/new"
+                    style="position: center;background: green">New</button>
+            <button id="edit_bUsers" class="form_button" style="background: orangered;"  type=submit formmethod="post" formaction="/setup/objects/edit?id={{uresult.[0].id}}&action=view">Edit</button>
+        </div> -->
+    </form>
+    <div id="ObjectFieldsSection">
+
+        <h4 style="padding: 10px;text-decoration: underline"> {{uresult.[0].name}} Fields</h4>
+        <div id="ObjectFieldsList">
+            {{{tablegen subresults 'Y'}}}
+        </div>
+        <form>
+        <button id="new_objectFields" type="submit" class="form_button" formmethod="post" formaction="/setup/objects/objectfields/new?id={{uresult.[0].id}}&action=view&object={{uresult.[0].name}}&type={{uresult.[0].type}}"
+                style="position: center;background: green">Add New Fields</button>
+            <button id="new_objectFields" type="submit" class="form_button" formmethod="post" formaction="/setup/objects/customscripts/new?id={{uresult.[0].id}}&action=view&object={{uresult.[0].name}}&type={{uresult.[0].type}}"
+                    style="position: center;background: green">Add Custom Script</button>
+        </form>
+    </div>
+
+</div>
+
+

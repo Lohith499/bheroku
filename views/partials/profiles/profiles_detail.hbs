@@ -1,0 +1,64 @@
+<div class="Maintitle" style="margin : 10px;border-bottom: black;border-bottom-width: 5px">
+    <table>
+        <tr>
+            {{{imgicon title}}}
+            <td><h4>{{title}}</h4></td></tr></td>
+    </table>
+
+</div>
+<div>
+
+    <div style="margin:5px;height: 5px;width: 100%;background:black"></div>
+
+    <form>
+        {{#if error}}
+            <div class="alert alert-danger" role="alert">
+                <strong style="text-transform: uppercase;">Error : </strong> {{error.sqlMessage}}
+            </div>
+        {{/if}}
+        <div style="text-align: center">
+            <button id="new_bUsers" class="form_button" formmethod="get" formaction="/setup/profiles/new"
+                    style="position: center;background: green">New</button>
+
+            <button id="edit_bUsers" style="background: orangered;" class="form_button" type=submit formmethod="post" formaction="/setup/profiles/edit?id={{uresult.[0].id}}&action=view">Edit</button>
+        </div>
+        <div style="height: 5px;width: 100%;margin:5px;background:black"></div>
+        <!-- Main Section Data-->
+        <dl class="row">
+
+            <dt class="col-sm-3">ID</dt>
+            <dd class="col-sm-9">{{uresult.[0].id}}</dd>
+
+            <dt class="col-sm-3">Profile Name</dt>
+            <dd class="col-sm-9">{{uresult.[0].name}}</dd>
+
+            <dt class="col-sm-3">Type</dt>
+            <dd class="col-sm-9">{{uresult.[0].type}}</dd>
+        </dl>
+
+        <h6>Information History</h6>
+        <dl class="row">
+
+            <dt class="col-sm-3">Created Date` </dt>
+            <dd class="col-sm-9">{{uresult.[0].created_Date}}</dd>
+
+            <dt class="col-sm-3">Created By</dt>
+            <dd class="col-sm-9">{{uresult.[0].created_By}}</dd>
+
+            <dt class="col-sm-3">LastModified Date</dt>
+            <dd class="col-sm-9">{{uresult.[0].lastModified_Date}}</dd>
+
+            <dt class="col-sm-3">LastModified By</dt>
+            <dd class="col-sm-9">{{uresult.[0].lastModified_By}}</dd>
+
+        </dl>
+        <div style="height: 5px;width: 100%;background:black"></div>
+        <div style="text-align: center">
+            <button id="new_bUsers" class="form_button" formmethod="get" formaction="/setup/profiles/new"
+                    style="position: center;background: green">New</button>
+            <button id="edit_bUsers" class="form_button" style="background: orangered;"  type=submit formmethod="post" formaction="/setup/profiles/edit?id={{uresult.[0].id}}&action=view">Edit</button>
+        </div>
+
+
+    </form>
+</div>

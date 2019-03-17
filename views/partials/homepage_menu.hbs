@@ -1,0 +1,53 @@
+    <div>
+    <!--<div style="width: 100%;height:56px;padding-top: 0px;top: 55px; opacity: 1.4;">-->
+     <nav class="navbar navbar-expand-lg navbar-dark "  style="background:#6895fa;padding-top: 60px;border: 5px white;">
+            <img src="/public/images/standard.png" width="130" height="30">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navsubbarsExampleDefault1" aria-controls="navsubbarsExampleDefault1" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navsubbarsExampleDefault1" >
+            <ul class="navbar-nav mr-auto" style="font-size: 20px;border:white 2px;">
+
+
+                    {{#each standard_menu}}
+                        {{#ifCond @index '==' 0 }}
+                        <li class="nav-item active"  style="border-right: 3px solid white;border-left: 3px solid white;">
+                            <a class="nav-link" href="/s/{{this}}/list">{{this}} <span class="sr-only">(current)</span></a>
+                        </li>
+                        {{else}}
+                            {{#ifCond @index '<' 3 }}
+                            <li class="nav-item" style="border-right: 3px solid white;">
+                                <a class="nav-link" href="/s/{{this}}/list">{{this}}</a>
+                            </li>
+                            {{/ifCond}}
+                        {{/ifCond}}
+                    {{/each}}
+                    {{!--  <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Disabled</a>
+                    </li>--}}
+                    {{#ifCond standard_menu.length '>=' 3 }}
+                    <li class="nav-item dropdown" onmouseleave="this.children[0].click();" >
+                        <a class="nav-link dropdown-toggle active" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  onmouseover="this.click();"> More Standard</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            {{#each standard_menu}}
+                                {{#ifCond @index '>=' 3 }}
+                                    <a class="dropdown-item" href="/s/{{this}}/list">{{this}}</a>
+                                {{/ifCond}}
+                            {{/each}}
+                        </div>
+                    </li>
+                    {{/ifCond}}
+                    <li class="nav-item dropdown" >
+                        <a class="nav-link dropdown-toggle"  id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onmouseover="this.click();"> <img src="/public/images/customMenu.png" width="100" height="30"></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown02">
+                            {{#each custom_menu}}
+                                    <a class="dropdown-item" href="/s/{{this}}/list">{{this}}</a>
+                            {{/each}}
+                        </div>
+                    </li>
+            </ul>
+            </div>
+        </nav>
+    <!--</div>-->
+    </div>

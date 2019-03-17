@@ -1,0 +1,144 @@
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+    function myFunction() {
+        var table = document.getElementById("myTable");
+        var x=table.rows.length;
+        var row = table.insertRow(x);
+        row.innerHTML='<td id="c_'+x+'1"><div class="form-group"><input id="textinput" name="textinput" type="text" placeholder="Field Name" class="form-control input-md" required=""><span class="help-block">Field Name cannot have spaces</span></div></td>' +
+                '<td id="c_'+x+'2"><div class="form-group"><input id="textinput" name="textinput" type="text" placeholder="Field Label" class="form-control input-md" required=""><span class="help-block">Enter the Label for the Field</span></div></td>' +
+                '<td id="c_'+x+'3"><div class="form-group"><select id="selectbasic" onchange="enumselect(event)" name="selectbasic" class="form-control"><option value="BIGINT">Number</option><option value="DOUBLE">Decimal</option><option value="VARCHAR(50)">SmallTextBox</option><option value="TEXT">Textbox</option><option value="LONGTEXT">TextArea</option><option value="DATE">Date</option><option value="DATETIME">DateTime</option><option value="DATETIMESTAMP">DateTimeStamp</option><option value="ENUM">ENUM</option></select><span class="help-block">Select the type of field</span></div></td>' +
+                '<td id="c_13"><div class="form-group"><select id="selectlist"name="selectlist" class="form-control"><option value="Y">Yes</option><option value="N">No</option></select><span class="help-block">Select if this has to be shown in list</span></div></td>';
+    }
+    function enumselect(event){
+        let d = event.target;;
+        let selectvalue= d.value;
+        if($(d).next().is($('#enumdiv'))) {
+            $(d).next().remove();
+        }
+        if(selectvalue=='ENUM'){
+
+            $(d).after('<div class="form-group" id="enumdiv">\n' +
+                    '<input id="enum" name="enum" type="text" placeholder="Enter ENUM values in \'V1\',\'V2\' format" class="form-control input-md" required=""></div>');
+        }
+    }
+</script>
+<div class="Maintitle" style="margin : 10px;border-bottom: black;border-bottom-width: 5px">
+    <table style="background: antiquewhite;border-radius: 5px">
+        <tr>
+            {{{imgicon title}}}
+            <td><h4 style="text-decoration: underline;font-weight: bold">Object Fields</h4></td></tr></td>
+    </table>
+
+</div>
+{{#if errors}}
+    {{#each errors}}
+        <div class="alert alert-danger" role="alert">
+            <strong style="text-transform: uppercase;">{{this.param}}</strong> {{this.msg}}
+        </div>
+    {{/each}}
+{{/if}}
+{{#if error}}
+    <div class="alert alert-danger" role="alert">
+        <strong style="text-transform: uppercase;">Error : </strong> {{error.sqlMessage}}
+    </div>
+{{/if}}
+
+<table>
+    <tr>
+        <td><h5>Object Name: </h5></td>
+        <td><h5>{{object}}</h5></td>
+    </tr>
+    <tr>
+        <td><h5 name="tablename">Table Name :</h5></td>
+        <td><h5>{{tablename}}</h5></td>
+    </tr>
+</table>
+<form method="post" action="/setup/objects/objectfields/new?id={{id}}&action=save&object={{object}}&type={{type}}">
+    <div class="form-group">
+        <table id="myTable" name="myTable" style="width:100%;">
+            <thead style="background: dodgerblue;text-align: center">
+            <th style="height: 45px;border: 2px solid black">Name</th>
+            <th style="height: 45px;border: 2px solid black">Field_Name</th>
+            <th style="height: 45px;border: 2px solid black">Field Type</th>
+            <th style="height: 45px;border: 2px solid black">Display on List</th>
+            </thead>
+            <tr id="r_1" >
+                <td id="c_11">
+                    <div class="form-group">
+
+                        <input id="textinput" name="textinput" type="text" placeholder="Field Name" class="form-control input-md" required="">
+                        <span class="help-block">Field Name cannot have spaces</span>
+
+                    </div>
+                </td>
+                <td id="c_12">
+                    <div class="form-group">
+
+                        <input id="textinput" name="textinput" type="text" placeholder="Field Label" class="form-control input-md" required="">
+                        <span class="help-block">Enter the Label for the Field</span>
+
+                    </div>
+                </td>
+                <td id="c_13">
+                    <div class="form-group">
+
+                        <select id="selectbasic" onchange="enumselect(event)" name="selectbasic" class="form-control">
+                            <option value="BIGINT">Number</option>
+                            <option value="DOUBLE">Decimal</option>
+                            <option value="VARCHAR(50)">SmallTextBox</option>
+                            <option value="TEXT">Textbox</option>
+                            <option value="LONGTEXT">TextArea</option>
+                            <option value="DATE">Date</option>
+                            <option value="DATETIME">DateTime</option>
+                            <option value="DATETIMESTAMP">DateTimeStamp</option>
+                            <option value="ENUM">ENUM</option>
+                        </select>
+                        <span class="help-block">Select the type of field</span>
+                    </div>
+                </td>
+
+                <td id="c_13">
+                    <div class="form-group">
+                        <select id="selectlist"  name="selectlist" class="form-control">
+                            <option value="Y">Yes</option>
+                            <option value="N">No</option>
+                        </select>
+                        <span class="help-block">Select if this has to be shown in list</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <br>
+
+        <button onclick="myFunction()" class="btn btn-success">Add New Field</button>
+
+    </div>
+    <div style="margin: 10px;text-align: center">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-danger">Reset</button>
+        <button type="button" class="btn btn-danger" onclick="history.go(-1);">Cancel</button>
+    </div>
+</form>
+<style>
+    #myTable tr {
+         border-bottom: 2px solid black;
+         border-right: 1px solid black;
+         border-left: 1px solid black;
+     }
+    #myTable td {
+        border-right: 1px solid black;
+        border-left: 1px solid black;
+    }
+    #myTable span {
+        color:red;
+        font-family: Calibri;
+        font-size: 14px;
+        font-style: italic;
+    }
+</style>
+
+

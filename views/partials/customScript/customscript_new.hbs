@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<div class="Maintitle" style="margin : 10px;border-bottom: black;border-bottom-width: 5px">
+    <table style="background: antiquewhite;border-radius: 5px">
+        <tr>
+            {{{imgicon title}}}
+            <td><h4 style="text-decoration: underline;font-weight: bold">Custom Script</h4></td></tr></td>
+    </table>
+
+</div>
+{{#if errors}}
+    {{#each errors}}
+        <div class="alert alert-danger" role="alert">
+            <strong style="text-transform: uppercase;">{{this.param}}</strong> {{this.msg}}
+        </div>
+    {{/each}}
+{{/if}}
+{{#if error}}
+    <div class="alert alert-danger" role="alert">
+        <strong style="text-transform: uppercase;">Error : </strong> {{error.sqlMessage}}
+    </div>
+{{/if}}
+
+<table>
+    <tr>
+        <td style="border-radius: 20px;background:#F0FFFF"><h5 style="font-weight: bold;text-decoration: underline;color: blue">Object Name: </h5></td>
+        <td  style="border-radius: 20px;background:white"><h5 style="margin-left: 20px;margin-right: 20px;">{{object}}</h5></td>
+    </tr>
+    <tr>
+        <td style="border-radius: 20px;background:#F0FFFF"><h5 style="font-weight: bold;text-decoration: underline;color: blue">Table Name :</h5></td>
+        <td  style="border-radius: 20px;background: white"><h5 style="margin-left: 20px;margin-right: 20px;">{{tablename}}</h5></td>
+    </tr>
+</table>
+<h4>Enter the Custom Script for saving the {{object}} record</h4>
+<form method="post" action="/setup/objects/customscripts/new?id={{id}}&action=save&object={{object}}&type={{type}}">
+    <div class="form-group">
+       <div class="form-group"><label for="CustomSave" class="fb-textarea-label">Save Code<span class="fb-required">*</span></label><textarea type="textarea" class="form-control" name="CustomSave" rows="10" placeholder="Enter Your Custom Save Code here" id="CustomSave" required="required" aria-required="true" value={{value}}></textarea></div>
+    </div>
+    <div style="margin: 10px;text-align: center">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-danger">Reset</button>
+        <button type="button" class="btn btn-danger" onclick="history.go(-1);">Cancel</button>
+    </div>
+</form>
+
+

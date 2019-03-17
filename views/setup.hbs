@@ -1,0 +1,105 @@
+{{>header}}
+
+<main role="main">
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron" style="padding-bottom: 5px;padding-left: 5px;margin-bottom: 0px;">
+        <div class="container" style="padding: 0px;margin: 0px;">
+            <h2>Setup Page</h2>
+        </div>
+    </div>
+    <div class="maincontent" style="padding: 0px;margin: 0px;">
+        <div   class="row" style="
+         padding-top: 0px;
+         padding-bottom: 0px;
+         border-bottom-style: solid;
+         border-bottom-width: 5px;
+         border-color: lightslategrey;
+         width: 100%;
+         margin-left: 0px;
+         margin-right: 0px;
+         ">
+            <div id="sidemenu" class="col-md-2" style="
+            border-right-style: solid;
+            border-right-width: 5px;
+            border-color: lightslategrey;
+            padding-left: 0px;
+            padding-right: 2px;
+            ">
+                <ul style="padding-top: 10px;list-style-type:none;padding-left: 0px;               ">
+                    <li> <button type="button"  id="bi_bUsers" class="btn btn-primary" name="bUsers" style="width:100%;padding-botton: 2px;margin-bottom: 5px;">
+                    <a href="/setup/bUsers" style="color: white;"> Users </a></button>
+                    </li>
+                    <li><button type="button"  id="bi_bProfiles" class="btn btn-primary" name="bProfiles" style="width:100%;padding-botton: 2px;margin-bottom: 5px;">
+                        <a href="/setup/profiles" style="color: white;">Profiles </a> </button>
+                    </li>
+                    <li><button type="button" id="bi_bObjects" class="btn btn-primary" name="bObjects" style="width:100%;padding-botton: 2px;margin-bottom: 5px;">
+                        <a href="/setup/objects" style="color: white;">Objects </a></button>
+                    </li>
+                    <li><button type="button" id="bi_bObject_fields" class="btn btn-primary" name="bi_bObject_fields" style="width:100%;padding-botton: 2px;margin-bottom: 5px;">
+                        <a href="/setup/customscripts" style="color: white;">Custom Scripts</a></button>
+                    </li>
+                </ul>
+            </div>
+            <div id="content_beside_sidemenu" class="col-md-10" name="content" style="padding-left: 2px;padding-right: 2px;">
+                <!-- Users Layout -->
+                <div>
+                    {{#ifvalue title value="Users List"}}
+                        {{> busers_list}}
+                    {{/ifvalue}}
+                    {{#ifvalue title value="Users Edit"}}
+                        {{>busers_edit}}
+                    {{/ifvalue}}
+                    {{#ifvalue title value="Users New"}}
+                        {{> busers_new}}
+                    {{/ifvalue}}
+                    {{#ifvalue title value="Users Detail"}}
+                        {{>busers_detail}}
+                    {{/ifvalue}}
+
+                    {{#ifvalue title value="Profiles List"}}
+                        {{> profiles_list}}
+                    {{/ifvalue}}
+                    {{#ifvalue title value="Profiles Edit"}}
+                        {{>profiles_edit}}
+                    {{/ifvalue}}
+                    {{#ifvalue title value="Profiles New"}}
+                        {{> profiles_new}}
+                    {{/ifvalue}}
+                    {{#ifvalue title value="Profiles Detail"}}
+                        {{>profiles_detail}}
+                    {{/ifvalue}}
+
+                    {{#ifvalue title value="Objects List"}}
+                        {{> objects_list}}
+                    {{/ifvalue}}
+                    {{#ifvalue title value="Objects Edit"}}
+                        {{>objects_edit}}
+                    {{/ifvalue}}
+                    {{#ifvalue title value="Objects New"}}
+                        {{> objects_new}}
+                    {{/ifvalue}}
+                    {{#ifvalue title value="Objects Detail"}}
+                        {{>objects_detail}}
+                    {{/ifvalue}}
+                    {{#ifvalue title value="ObjectFields"}}
+                        {{> objectfields_new}}
+                    {{/ifvalue}}
+                    {{#ifvalue title value="Customscripts"}}
+                        {{> customscript_new}}
+                    {{/ifvalue}}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+<script src="/public/js/setup.js"></script>
+<link rel="stylesheet" type="text/css" href="/public/css/style.css"/>

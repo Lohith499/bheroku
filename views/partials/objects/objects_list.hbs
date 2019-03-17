@@ -1,0 +1,48 @@
+<div class="Maintitle" style="margin : 10px;border-bottom: black;border-bottom-width: 5px">
+    <table style="background: antiquewhite;border-radius: 5px">
+        <tr>
+            {{{imgicon title}}}
+            <td><h4 style="text-decoration: underline;font-weight: bold">{{title}}</h4></td></tr></td>
+    </table>
+
+</div>
+
+{{#if error}}
+    <div class="alert alert-danger" role="alert">
+        <strong style="text-transform: uppercase;">Error : </strong> {{error.sqlMessage}}
+    </div>
+{{/if}}
+
+<div class="Maintitle">
+    <div style="text-align: center">
+        <button id="new_bUsers" class="form_button" onclick="window.location.pathname = 'setup/objects/new'"
+                style="position: center;background:green;">New</button>
+    </div>
+
+    <table id="objectlist" class="example table cell-border table-bordered hover" style="width:100%">
+        <thead>
+            <th>ID</th>
+            <th>Object Name</th>
+            <th>Table Name</th>
+            <th>Type</th>
+            <th>Orgnaisation_ID</th>
+        </thead>
+       {{#each uresult}}
+           <tr>
+               <td> <a href="/setup/objects/details?id={{this.id}}">{{this.id}}</td>
+               <td> {{this.name}}</td>
+               <td> {{this.table_name}}</td>
+               <td> {{this.type}}</td>
+               <td> {{this.organisationId}}</td>
+           </tr>
+       {{/each}}
+
+        <tfoot>
+            <th>ID</th>
+            <th>Object Name</th>
+            <th>Table Name</th>
+            <th>Type</th>
+            <th>Orgnaisation_ID</th>
+        </tfoot>
+    </table>
+</div>

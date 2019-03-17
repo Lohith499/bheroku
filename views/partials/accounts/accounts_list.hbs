@@ -1,0 +1,24 @@
+<div class="Maintitle" style="margin : 10px;border-bottom: black;border-bottom-width: 5px">
+    <table>
+        <tr>
+            {{{imgicon title}}}
+            <td><h4>{{objectname}} List</h4></td></tr></td>
+    </table>
+
+</div>
+
+{{#if error}}
+    <div class="alert alert-danger" role="alert">
+        <strong style="text-transform: uppercase;">Error : </strong> {{error.sqlMessage}}
+    </div>
+{{/if}}
+
+<div class="Maintitle" style="width: 100%;background: #F0FFFF">
+    <div style="text-align: center">
+        <button id="new_bUsers" class="form_button" onclick="window.location.pathname = '/s/{{objectname}}/new'"
+                style="position: center;background:green;">New</button>
+    </div>
+    <div style="padding-right: 20px;padding-left: 20px;">
+        {{{tablegen uresult 'Y' }}}
+    </div>
+</div>

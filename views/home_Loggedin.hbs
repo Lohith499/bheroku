@@ -1,0 +1,135 @@
+{{> header }}
+
+{{> homepage_menu}}
+
+
+
+
+
+<div class="below_menu">
+    <main class="Homecontent" style="padding-top: 20px;border: black 5px;">
+
+        {{#ifvalue title value="Home_LoggedIn"}}
+            <div class="jumbotron" style="background: aqua">
+                <div class="container" style="background: #F0FFFF;border-radius: 25px;">
+                    <h1 class="display-3" >Welcome to Opensource CRM</h1>
+                    <p style="text-align: justify;padding: 10px;">
+                        An opensource CRM which will straight away gives you a predefined CRM application to your Organisation with certain standard CRM business process already established in it.
+                    </p>
+                    <p style="text-align: justify;padding: 10px;">Some CRM entities which are common irrespective of type of domain of industry, these entities will be pre-defined and as stored in a common table for different Organization, but each organization will be able to see only their own records and Our customer can create more entities and customize the predefined as well as customer defined entities.</p>
+                    <!--   <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p> -->
+                </div>
+            </div>
+            <div style="background: aqua">
+                <h2>Features</h2>
+                <div class="container">
+                    <!-- Example row of columns -->
+                    <div class="row">
+                        <div class="col-md-4" style="background: #c2d4fd;border-radius: 25px;">
+                            <h2>*</h2>
+                            <p style="text-align: justify;">Customer will also be able to establish the business rules on each of these entities. Most demanding business in the CRM is case management and task management which will let user to define some rules on these entities to automate the CRM service in their application using java script functions defined and tied to respective entity</p>
+                            <!--<p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>-->
+                        </div>
+                        <div class="col-md-4" style="background: azure;border-radius: 25px;">
+                            <h2>**</h2>
+                            <p style="text-align: justify;">Users of particular organization will be created and its business customization will be managed by User whose profile is Admin and they can create additional profiles which will help them in customize the user access rights on each entity and their fields</p>
+                            <!--<p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>-->
+                        </div>
+                        <div class="col-md-4" style="background: lightblue;border-radius: 25px;">
+                            <h2>***</h2>
+                            <p style="text-align: justify;">All the records will be saved in our own MySQL Database so customer don’t need to maintain any webserver or database server to maintain their application ,business logic and their records</p>
+                            <!--<p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>-->
+                        </div>
+                    </div>
+
+                    <hr>
+
+                </div> <!-- /container -->
+            </div> <!-- /container -->
+
+        {{else}}
+
+            {{#ifvalue title value="Accounts List"}}
+                {{> accounts_list}}
+            {{/ifvalue}}
+
+            {{#ifvalue title value="Accounts New"}}
+                {{> accounts_new}}
+            {{/ifvalue}}
+
+            {{#ifvalue title value="Accounts Details"}}
+                {{> accounts_detail}}
+            {{/ifvalue}}
+            {{#ifvalue title value="Custom List"}}
+                {{> co_list}}
+            {{/ifvalue}}
+
+            {{#ifvalue title value="Custom New"}}
+                {{> co_new}}
+            {{/ifvalue}}
+
+            {{#ifvalue title value="Custom Details"}}
+                {{> co_detail}}
+            {{/ifvalue}}
+        {{/ifvalue}}
+
+    </main>
+</div>
+
+
+{{> footer }}
+
+</body>
+
+<script>
+    jQuery($ => {
+        $('.build-wrap').formBuilder()
+    })
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+
+
+
+<!-- Bootstrap Date-Picker Plugin -->
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+<script>
+    $(document).ready(
+            function() {
+
+                var date_input = $('input[name="date"]'); //our date input has the name "date"
+                var container = $('.bootstrap-iso form').length > 0 ? $(
+                        '.bootstrap-iso form').parent() : "body";
+                date_input.datepicker({
+                    format : 'yyyy-mm-dd',
+                    container : container,
+                    todayHighlight : true,
+                    autoclose : true,
+                });
+
+                $("#datepicker").datepicker({ maxDate: new Date, minDate: new Date(1950, 1, 12) });
+                $(".chosen").chosen();
+            });
+    $(function(){
+        $('#fdatepicker').datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true
+        });
+    });
+</script>
+<!-- Bootstrap Date-Picker Plugin -->
+
+
+<script src="/public/js/setup.js"></script>
+<link rel="stylesheet" type="text/css" href="/public/css/style.css"/>
+
+</html>
+
