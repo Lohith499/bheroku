@@ -1,3 +1,14 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    function myFunction() {
+        let validationstatus=false;
+        {{{customscript}}}
+        if(validationstatus==true){
+        document.getElementById("submitform").submit();
+        }
+    }
+</script>
+
 <div class="Maintitle" style="margin : 10px;border-bottom: black;border-bottom-width: 5px">
     <table>
         <tr>
@@ -18,14 +29,15 @@
         <strong style="text-transform: uppercase;">Error : </strong> {{error.sqlMessage}}
     </div>
 {{/if}}
-
-<form method="post" action="/s/{{objectname}}/new">
+<spam name="formerror" value="Error" style="display: none">Error</spam>
+<form id="submitform" method="post" action="/s/{{objectname}}/new">
     {{#ifCond standardFields.length '>=' 1 }}
     <h3 style="text-decoration-line: underline;text-align: center"> Standard Fields </h3>
-    {{/ifCond}}
+
     <table id="accounts_form" style="width: 100%" >
             {{{inputgen standardFields}}}
     </table>
+    {{/ifCond}}
     {{#ifCond standardFields.length '>' 0 }}
        {{#ifCond customFields.length '>=' 1 }}
             <h3 style="padding-top:20px;text-decoration-line: underline;text-align: center"> Custom Fields </h3>
@@ -38,19 +50,19 @@
         </table>
    {{/ifCond}}
     <div style="margin: 10px;text-align: center">
+    <button type="button" onclick="myFunction()" class="btn btn-success">Save</button>
 
-
-    <button type="submit" class="btn btn-primary">Submit</button>
     <button type="reset" class="btn btn-danger">Reset</button>
     <button type="button" class="btn btn-danger" onclick="history.go(-1);">Cancel</button>
     </div>
 </form>
-
-<p>custom script</p>
+{{#ifCond customscript.length '>' 0 }}
+<p>custom script on this page</p>
 <p> {{customscript}}</p>
-<script>
-    {{customscript}}
-</script>
+{{else}}
+    <p><b>Note:</b>No custom script on this page</p>
+{{/ifCond}}
+
 <style>
     #accounts_form td{
         padding-left: 10px;

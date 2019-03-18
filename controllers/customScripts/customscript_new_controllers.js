@@ -11,8 +11,9 @@ function pushresults(req,res) {
     }
     //var noticia = req.body;
     let CustomSave=req.body.CustomSave;
-    req.user.organisation_Id
-    req.user.user_id
+    console.log(JSON.stringify(CustomSave));
+    CustomSave=CustomSave.replace(/\'/gi, '\\\'');
+    console.log(CustomSave);
     const  db=require('../../db.js');
     let sql= 'select id from customscripts where object_id='+object_id+' AND (organisationId=\''+req.user.organisation_Id+'\' or organisationId=\'\' or organisationId IS NULL)';
 
@@ -32,6 +33,7 @@ function pushresults(req,res) {
             if(results.length===0){
                 let values='('+object_id+',\''+CustomSave+'\','+req.user.user_id+',\''+req.user.organisation_Id+'\')';
                 let sqli="Insert into customscripts (object_id,scriptcode,created_By,organisationId) values "+values+";";
+                console.log(sqli);
                 db.query(sqli,function (err,iresults) {
                    if(err){
                        console.log('error:'+ err.sqlMessage);
