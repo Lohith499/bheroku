@@ -8,6 +8,7 @@ function pushresults(req,res) {
     console.log('Accounts New Controller');
     let standardFields=[];
     let customFields=[];
+    let customscript='';
    // let customSection="Hi Lohith";
   //  res.render('home_Loggedin', {title : 'Accounts New' , CustomSection : customSection ,standard_menu: req.user.standard_menu, custom_menu:req.user.custom_menu});
     //return;
@@ -72,31 +73,36 @@ function pushresults(req,res) {
                 }
             });
             //Getting custom script
-            let customscript='';
-            let cssql='SELECT ob.NAME,css.scriptcode FROM customscripts css INNER JOIN objects ob ON ob.id=css.object_id WHERE\n' +
-                'ob.NAME=\''+ourl[2]+'\';';
-            db.query(cssql,function (errs,cssresults) {
-                if(errs){
-                    console.log('error:'+ errs.sqlMessage);
-                    res.render('error', { title: 'ObjectFields' , message : "Error while fetching to see if there is record from Customscript table fo this object", id : req.query.id, error : errs});
-                    return;
-                }
-
-            })
             standardFields=[];
             standardFields=filtered;
             console.log(JSON.stringify(filtered));
             console.log(JSON.stringify(customFields));
-            res.render('home_Loggedin', {
-                title : 'Custom New' ,
-                standard_menu: req.user.standard_menu,
-                custom_menu:req.user.custom_menu,
-                standardFields : standardFields,
-                customFields : customFields,
-                tablename : tablename,
-                objectname : objectname
+            let cssql='SELECT ob.NAME,css.scriptcode FROM customscripts css INNER JOIN objects ob ON ob.id=css.object_id WHERE ' +
+                'ob.NAME=\''+ourl[2]+'\';';
+            console.log('customscript sql='+cssql);
+            db.query(cssql,function (errs,csresults,fields) {
+                if(errs){
+                    console.log('error:'+ errs.sqlMessage);
+                    res.render('error', { title: 'ObjectFields' , message : "Error while fetching to see if there is record from Customscript table fo this object", id : req.query.id, error : errs});
+                    return;
+                }else if(csresults.length>0) {
+                    for(let i=0;i<csresults.length;i++){
+                        customscript=csresults[i].scriptcode;
+                    }
+                }
+                console.log("retunring to home");
+                res.render('home_Loggedin', {
+                    title : 'Custom New' ,
+                    standard_menu: req.user.standard_menu,
+                    custom_menu:req.user.custom_menu,
+                    standardFields : standardFields,
+                    customFields : customFields,
+                    customscript : customscript,
+                    tablename : tablename,
+                    objectname : objectname
+                });
+                return;
             });
-            return;
         });
 }
 
