@@ -62,6 +62,7 @@ function pushresults(req,res) {
                     pagetitle: '',
                     objectname : objectname,
                     logresult:logresult,
+                    baby:"Shravya",
                     title: "Accounts Details"
                 });
             return;

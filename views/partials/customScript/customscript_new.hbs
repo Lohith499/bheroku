@@ -36,7 +36,7 @@
 <h4>Enter the Custom Script for saving the {{object}} record</h4>
 <form method="post" action="/setup/objects/customscripts/new?id={{id}}&action=save&object={{object}}&type={{type}}">
     <div class="form-group">
-       <div class="form-group"><label for="CustomSave" class="fb-textarea-label">Save Code<span class="fb-required">*</span></label><textarea type="textarea" class="form-control" name="CustomSave" rows="10" placeholder="Enter Your Custom Save Code here" id="CustomSave" required="required" aria-required="true" value={{value}}></textarea></div>
+       <div class="form-group"><label for="CustomSave" class="fb-textarea-label">Save Code<span class="fb-required">*</span></label><textarea type="textarea" class="form-control" name="CustomSave" rows="10" placeholder="Enter Your Custom Save Code here" id="CustomSave" required="required" aria-required="true" >{{{value}}}</textarea></div>
     </div>
     <div style="margin: 10px;text-align: center">
         <button type="submit" class="btn btn-primary">Submit</button>
@@ -44,5 +44,21 @@
         <button type="button" class="btn btn-danger" onclick="history.go(-1);">Cancel</button>
     </div>
 </form>
-
-
+    {{#ifCond logavailable '==' 'Yes'}}
+    <div id="loginfo" style="border: 3px solid black;margin-top: 20px;">
+        {{{logsection logresult}}}
+    </div>
+    {{/ifCond}}
+<style>
+    #histoy > ul {
+        width: 100%;
+        display: table;
+        table-layout: fixed; /* optional, for equal spacing */
+        border-collapse: collapse;
+    }
+    #histoy > ul > li {
+        display: table-cell;
+        text-align: left;
+        vertical-align: middle;
+    }
+</style>
