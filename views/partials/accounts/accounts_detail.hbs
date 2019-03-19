@@ -8,41 +8,50 @@
 </div>
 <div>
     <div style="margin-top: 20px;margin-bottom: 15px;">
-    <p style="color: blue;text-decoration: underline;"><a href="/s/{{objectname}}">Back to List results</a></p>
+        <p style="color: blue;text-decoration: underline;"><a href="/s/{{objectname}}">Back to List results</a></p>
     </div>
     <div style="margin:0px;height: 5px;width: 100%;background:black"></div>
-<p>{{baby}}</p>
+
     <form>
         {{#if error}}
             <div class="alert alert-danger" role="alert">
                 <strong style="text-transform: uppercase;">Error : </strong> {{error.sqlMessage}}
             </div>
         {{/if}}
-
         <div style="background: white;width: 100%;text-align: center;">
             <div style="margin-left:40%;text-align: center;background: blue;width: fit-content">
                 <button id="new_bUsers" class="form_button" formmethod="get" formaction="/s/{{objectname}}/new"
                         style="position: center;background: orangered">New</button>
 
-                <button id="edit_bUsers" style="margin-left:10px;background: green;" class="form_button" type=submit formmethod="post" formaction="/setup/objects/edit?id={{uresult.[0].id}}&action=view">Edit</button>
+                <button id="edit_bUsers" style="margin-left:10px;background: green;" class="form_button" type=submit formmethod="post" formaction="/setup/objects/edit?id={{id}}&action=view">Edit</button>
             </div>
         </div>
         <div style="margin:0px;height: 5px;width: 100%;background:black"></div>
-
-
         {{{contentgen uresult}}}
-
-
         <!-- Main Section Data-->
         <div id="loginfo" style="border: 3px solid black;margin-top: 20px;">
-            {{{logsection logresult}}}
+            <h5 style="text-decoration: underline;padding-top: 10px;padding-bottom: 5px;">Information History</h5>
+            <div id="histoy">
+                <ul>
+                    <li style="border-radius: 5px;background: #6895fa;">Created By</li>
+                    <li style="border-radius: 5px;background: #c2d4fd;">{{logresult.created_By}}</li>
+                    <li style="border-radius: 5px;background: #6895fa;">Created Date</li>
+                    <li style="border-radius: 5px;background: #c2d4fd;">{{logresult.created_Date}}</li>
+                </ul>
+                <ul>
+                    <li style="border-radius: 5px;background: #6895fa;">LastModified By</li>
+                    <li style="border-radius: 5px;background: #c2d4fd;">{{logresult.lastModified_By}}</li>
+                    <li style="border-radius: 5px;background: #6895fa;">LastModified Date</li>
+                    <li style="border-radius: 5px;background: #c2d4fd;">{{logresult.lastModified_Date}}</li>
+                </ul>
+            </div>
         </div>
         <div style="height: 5px;width: 100%;background:black"></div>
         <div style="background: white;width: 100%;text-align: center;">
             <div style="margin-left:40%;text-align: center;background: blue;width: fit-content">
                 <button id="new_bUsers" class="form_button" formmethod="get" formaction="/s/{{objectname}}/new"
                         style="position: center;background: orangered">New</button>
-                <button id="edit_bUsers" style="margin-left:10px;background: green;" class="form_button" type=submit formmethod="post" formaction="/setup/objects/edit?id={{uresult.[0].id}}&action=view">Edit</button>
+                <button id="edit_bUsers" style="margin-left:10px;background: green;" class="form_button" type=submit formmethod="post" formaction="/setup/objects/edit?id={{uresult.[0].[1]}}&action=view">Edit</button>
             </div>
         </div>
         <div style="height: 5px;width: 100%;background:black"></div>
@@ -66,11 +75,11 @@
         padding-top: 10px;
     }
     #detail_form  td:nth-child(odd){
-          width: 10%;
+        width: 10%;
         font-weight: bold;
         color: blue;
         text-decoration: underline;
-      }
+    }
 
     #detail_form  td:nth-child(even){
         width: calc(70%/3);

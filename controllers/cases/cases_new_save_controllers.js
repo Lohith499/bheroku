@@ -1,6 +1,6 @@
 var someVar = [];
 function pushresults(req,res) {
-    console.log("***********Custom new view controller*******");
+
     var noticia = req.body;
     console.log(JSON.stringify(noticia));
     let okeys="created_By,organisationId";
@@ -10,6 +10,7 @@ function pushresults(req,res) {
        okeys=okeys+","+key;
         ovlaues.push(req.body[key]);
         pvalues=pvalues+',?';
+
     }
     let ourl=req.originalUrl.split('/');
     let objectname=ourl[2];

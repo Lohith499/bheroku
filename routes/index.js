@@ -83,9 +83,16 @@ router.get(/\/s\/.*\/new/, authenticationMiddleware(),function(req, res, next) {
     console.log('Accounts New');
     let s1 = require('../controllers/homepage/homepage_menus');
     s1.popresults(req, res,function(){
-        let s2 = require('../controllers/customobject/co_new_view_controllers');
-        s2.pushresults(req, res);
-        return;
+        let ourl=req.originalUrl.split('/');
+        if(ourl[2].toUpperCase()==='ACCOUNTS'){
+            let s2 = require('../controllers/accounts/accounts_new_view_controllers');
+            s2.pushresults(req, res);
+            return;
+        }else {
+            let s2 = require('../controllers/customobject/co_new_view_controllers');
+            s2.pushresults(req, res);
+            return;
+        }
     });
 });
 
@@ -95,11 +102,11 @@ router.get(/\/s\/.*\/details.*/, authenticationMiddleware(),function(req, res, n
     let s1 = require('../controllers/homepage/homepage_menus');
     s1.popresults(req, res,function(){
         let ourl=req.originalUrl.split('/');
-        if(ourl[2].toUpperCase()==='ACCOUNTS'){
+        if(ourl[2].toUpperCase()==='ACCOUNTS') {
             let s2 = require('../controllers/accounts/accounts_detail_controllers');
             s2.pushresults(req, res);
             return;
-        }else {
+        } else {
             let s2 = require('../controllers/customobject/co_detail_controllers');
             s2.pushresults(req, res);
             return;
@@ -128,9 +135,17 @@ router.post(/\/s\/.*\/new/, authenticationMiddleware(),function(req, res, next) 
     console.log('Accounts New');
     let s1 = require('../controllers/homepage/homepage_menus');
     s1.popresults(req, res,function(){
-        let s2 = require('../controllers/accounts/accounts_new_save_controllers');
-        s2.pushresults(req, res);
-        return;
+        let ourl=req.originalUrl.split('/');
+        if(ourl[2].toUpperCase()==='ACCOUNTS') {
+            let s2 = require('../controllers/accounts/accounts_new_save_controllers');
+            s2.pushresults(req, res);
+            return;
+        } else {
+            let s2 = require('../controllers/customobject/co_new_save_controllers');
+            s2.pushresults(req, res);
+            return;
+        }
+
     });
 });
 

@@ -41,7 +41,6 @@ function pushresults(req,res) {
                     }
                     results[i].COLUMN_TYPE=v;
                 }
-                results[i].value='';
             }
             for(let i=0; i<results.length;i++) {
                   if(results[i].type==='Standard'){

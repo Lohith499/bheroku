@@ -1,6 +1,6 @@
 var someVar = [];
 function pushresults(req,res) {
-
+    console.log("***********Account new view controller*******");
     var noticia = req.body;
     console.log(JSON.stringify(noticia));
     let okeys="created_By,organisationId";

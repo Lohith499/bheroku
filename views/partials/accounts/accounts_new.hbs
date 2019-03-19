@@ -1,3 +1,14 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    function myFunction() {
+        let validationstatus=true;
+        {{{customscript}}}
+        if(validationstatus==true){
+            document.getElementById("submitform").submit();
+        }
+    }
+</script>
+
 <div class="Maintitle" style="margin : 10px;border-bottom: black;border-bottom-width: 5px">
     <table>
         <tr>
@@ -18,33 +29,40 @@
         <strong style="text-transform: uppercase;">Error : </strong> {{error.sqlMessage}}
     </div>
 {{/if}}
-
-<form method="post" action="/s/{{objectname}}/new">
+<p>Accounts hbs</p>
+<spam name="formerror" value="Error" style="display: none">Error</spam>
+<form id="submitform" method="post" action="/s/{{objectname}}/new">
     {{#ifCond standardFields.length '>=' 1 }}
-    <h3 style="text-decoration-line: underline;text-align: center"> Standard Fields </h3>
-    {{/ifCond}}
-    <table id="accounts_form" style="width: 100%" >
+        <h3 style="text-decoration-line: underline;text-align: center"> Standard Fields </h3>
+
+        <table id="accounts_form" style="width: 100%" >
             {{{inputgen standardFields}}}
-    </table>
+        </table>
+    {{/ifCond}}
     {{#ifCond standardFields.length '>' 0 }}
-       {{#ifCond customFields.length '>=' 1 }}
+        {{#ifCond customFields.length '>=' 1 }}
             <h3 style="padding-top:20px;text-decoration-line: underline;text-align: center"> Custom Fields </h3>
-       {{/ifCond}}
+        {{/ifCond}}
     {{/ifCond}}
 
-       {{#ifCond customFields.length '>=' 1 }}
+    {{#ifCond customFields.length '>=' 1 }}
         <table id="accounts_form" style="width: 100%">
             {{{inputgen customFields}}}
         </table>
-   {{/ifCond}}
+    {{/ifCond}}
     <div style="margin: 10px;text-align: center">
+        <button type="button" onclick="myFunction()" class="btn btn-success">Save</button>
 
-
-    <button type="submit" class="btn btn-primary">Submit</button>
-    <button type="reset" class="btn btn-danger">Reset</button>
-    <button type="button" class="btn btn-danger" onclick="history.go(-1);">Cancel</button>
+        <button type="reset" class="btn btn-danger">Reset</button>
+        <button type="button" class="btn btn-danger" onclick="history.go(-1);">Cancel</button>
     </div>
 </form>
+{{#ifCond customscript.length '>' 0 }}
+    <p>custom script on this page</p>
+    <p> {{customscript}}</p>
+{{else}}
+    <p><b>Note:</b>No custom script on this page</p>
+{{/ifCond}}
 
 <style>
     #accounts_form td{

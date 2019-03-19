@@ -2,7 +2,7 @@ var  dbu=require('../../db.js');
 var someVar = [];
 var list_of_results="";
 function pushresults(req,res) {
-
+console.log('*******Account Detail Controller*******');
     let ovlaues=[req.user.user_id,req.user.organisation_Id];
     let ourl=req.originalUrl.split('/');
     let objectname=ourl[2];
@@ -33,6 +33,7 @@ function pushresults(req,res) {
                 return;
 
             }
+
             if(results.length===0){
                 let message="No record found with this ID in this object";
                 res.render('setup',{title:'Objects New', error : error , message : message});
@@ -60,10 +61,11 @@ function pushresults(req,res) {
                     custom_menu:req.user.custom_menu,
                     uresult: fresults,
                     pagetitle: '',
+                    id:req.query.id,
                     objectname : objectname,
                     logresult:logresult,
-                    baby:"Shravya",
-                    title: "Accounts Details"
+                    everify : "custom controller",
+                    title: "Custom Details"
                 });
             return;
         });
