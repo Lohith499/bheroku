@@ -271,7 +271,14 @@ hbs.registerHelper('tablegen', function (results, header) {
             if(key==="id"){
            let url = '<p style="font-weight: bold;text-align: center;font-size: 15px;"><a href="/s/'+element['tablename']+'/details?id='+element[key]+'">'+element[key]+'</a></p>';
                 content=content+"<td>"+url+"</td>";
-            } else if(key==="tablename"){
+            }else if(key==="target"){
+                let url = '<p style="font-weight: bold;text-align: center;font-size: 15px;"><button type="button"  value="'+element['target']+'"onclick="post_value(event)">'+element[key]+'</button></p>';
+                content=content+"<td>"+url+"</td>";
+            }
+            else if(key==="tablename"){
+
+            }
+            else if(key==="source"){
 
             }
             else {

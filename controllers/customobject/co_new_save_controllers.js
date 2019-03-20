@@ -18,9 +18,18 @@ function pushresults(req,res) {
 
     const  db=require('../../db.js');
     db.query(gettablname,function (error1,results1,fields1){
-        if(error1 || results1.length===0) {
+        if(error1) {
             db.rollback(function() {
-                res.render('error', { title: 'No Table Found' , object : req.query.object, id : req.query.id, error : error});
+                res.render('error', { title: 'No Table Found' , object : req.query.object, id : req.query.id, error : error1});
+                return;
+
+            });
+        }
+        if(results1.length===0) {
+            db.rollback(function() {
+                let error={};
+                error.message ='No Object has been found with this name';
+                res.render('error', { title: 'No Table Found' , object : req.query.object, id : req.query.id, error : error });
                 return;
 
             });

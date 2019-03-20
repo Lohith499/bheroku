@@ -4,10 +4,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script>
     function myCheck(event) {
-        var checkBox = event.target;
-        var t = checkBox.parentElement.nextElementSibling;
-        var text = document.getElementById("text");
-
+        let checkBox = event.target;
+        let t = checkBox.parentElement.nextElementSibling;
         if (checkBox.checked == true){
             checkBox.value=t.getAttribute("value");
 

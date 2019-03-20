@@ -2,19 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d34a7c99-b8e7-4100-8a37-37d4a1cb63a4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/controllers/object_lookups/objlookup_edit_controllers.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/object_lookups/objlookup_edit_view_controllers.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/object_lookups/objlookup_new_controllers.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/object_lookups/objlookup_new_view_controllers.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/partials/objlookups/objlookup_detail.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/partials/objlookups/objlookup_edit.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/partials/objlookups/objlookup_list.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/partials/objlookups/objlookup_new.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/customobject/co_new_save_controllers.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/customobject/co_new_save_controllers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/lookups/lookups_list_controllers.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/lookups/lookups_list_controllers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/lookups/lookups_search_controllers.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/lookups/lookups_search_controllers.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/partials/objects/objects_detail.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/objects/objects_detail.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/partials/objedt_fields/objectfields_new.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/object_fields/objectfields_new.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/setup.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/setup.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/lookups_list.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/lookups_list.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/lookups_search.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/lookups_search.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/cases/cases_new.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/cases/cases_new.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/object_fields/objectfields_new.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/object_fields/objectfields_new.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/objlookups/objlookup_new.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/objlookups/objlookup_new.hbs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -42,51 +39,26 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="31" column="52" selection-start-line="31" selection-start-column="45" selection-end-line="31" selection-end-column="52" />
+            <state relative-caret-position="-94">
+              <caret line="88" selection-start-line="88" selection-end-line="88" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="objlookup_new_view_controllers.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/object_lookups/objlookup_new_view_controllers.js">
+      <file leaf-file-name="lookups_search_controllers.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/lookups/lookups_search_controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-153">
-              <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+            <state relative-caret-position="187">
+              <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="objlookup_new.hbs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/partials/objlookups/objlookup_new.hbs">
+      <file leaf-file-name="lookups_list_controllers.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/controllers/lookups/lookups_list_controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="65" column="113" selection-start-line="65" selection-start-column="101" selection-end-line="65" selection-end-column="113" />
-              <folding>
-                <element signature="n#style#0;n#table#0;n#div#0;n#form#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#thead#0;n#table#0;n#div#0;n#form#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#tr#0;n#table#0;n#div#0;n#form#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#0;n#form#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#div#0;n#form#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="objlookup_new_controllers.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/controllers/object_lookups/objlookup_new_controllers.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="16" selection-start-line="16" selection-end-line="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="objectfields_new.hbs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/partials/object_fields/objectfields_new.hbs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="53" selection-start-line="8" selection-start-column="53" selection-end-line="8" selection-end-column="53" />
+            <state relative-caret-position="-215">
+              <caret line="71" column="73" selection-start-line="71" selection-start-column="73" selection-end-line="71" selection-end-column="73" />
             </state>
           </provider>
         </entry>
@@ -103,8 +75,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>hbs</find>
-      <find>id</find>
       <find>saltRound</find>
       <find>bcrypt</find>
       <find>hash</find>
@@ -133,6 +103,8 @@
       <find>throw</find>
       <find>Custom Script ==</find>
       <find>contentgen</find>
+      <find>lookupset</find>
+      <find>custom_menu:req.user.custom_menu,</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -157,7 +129,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/controllers/objects/objects_list_controllers.js" />
         <option value="$PROJECT_DIR$/views/partials/objects/objects_edit.hbs" />
         <option value="$PROJECT_DIR$/views/partials/objects/objects_list.hbs" />
         <option value="$PROJECT_DIR$/views/partials/objects/objects_new.hbs" />
@@ -185,29 +156,30 @@
         <option value="$PROJECT_DIR$/views/partials/customobject/co_new.hbs" />
         <option value="$PROJECT_DIR$/views/partials/accounts/accounts_new.hbs" />
         <option value="$PROJECT_DIR$/controllers/accounts/accounts_new_save_controllers.js" />
-        <option value="$PROJECT_DIR$/controllers/customobject/co_new_save_controllers.js" />
         <option value="$PROJECT_DIR$/controllers/customobject/co_detail_controllers.js" />
         <option value="$PROJECT_DIR$/controllers/accounts/accounts_detail_controllers.js" />
         <option value="$PROJECT_DIR$/controllers/cases/cases_detail_controllers.js" />
         <option value="$PROJECT_DIR$/views/partials/customobject/co_detail.hbs" />
         <option value="$PROJECT_DIR$/views/partials/accounts/accounts_detail.hbs" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/views/partials/customobject/co_edit.hbs" />
         <option value="$PROJECT_DIR$/controllers/customobject/co_edit_controllers.js" />
         <option value="$PROJECT_DIR$/controllers/customobject/co_edit_view_controllers.js" />
         <option value="$PROJECT_DIR$/controllers/customobject/co_new_view_controllers.js" />
         <option value="$PROJECT_DIR$/views/home_Loggedin.hbs" />
-        <option value="$PROJECT_DIR$/views/lookups_list.hbs" />
-        <option value="$PROJECT_DIR$/views/partials/cases/cases_new.hbs" />
-        <option value="$PROJECT_DIR$/controllers/lookups/lookups_search_controllers.js" />
-        <option value="$PROJECT_DIR$/controllers/lookups/lookups_list_controllers.js" />
-        <option value="$PROJECT_DIR$/views/lookups_search.hbs" />
         <option value="$PROJECT_DIR$/views/partials/objects/objects_detail.hbs" />
-        <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/views/setup.hbs" />
         <option value="$PROJECT_DIR$/controllers/object_lookups/objlookup_new_view_controllers.js" />
-        <option value="$PROJECT_DIR$/views/partials/objlookups/objlookup_new.hbs" />
         <option value="$PROJECT_DIR$/controllers/object_lookups/objlookup_new_controllers.js" />
+        <option value="$PROJECT_DIR$/controllers/customobject/co_new_save_controllers.js" />
+        <option value="$PROJECT_DIR$/routes/index.js" />
+        <option value="$PROJECT_DIR$/controllers/lookups/lookups_search_controllers.js" />
+        <option value="$PROJECT_DIR$/controllers/lookups/lookups_list_controllers.js" />
+        <option value="$PROJECT_DIR$/views/partials/objlookups/objlookup_new.hbs" />
+        <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/views/lookups_list.hbs" />
+        <option value="$PROJECT_DIR$/views/partials/cases/cases_new.hbs" />
+        <option value="$PROJECT_DIR$/views/lookups_search.hbs" />
+        <option value="$PROJECT_DIR$/views/partials/object_fields/objectfields_new.hbs" />
       </list>
     </option>
   </component>
@@ -248,22 +220,6 @@
             <path>
               <item name="OS_NEM_CRM" type="b2602c69:ProjectViewProjectNode" />
               <item name="OS_NEM_CRM" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OS_NEM_CRM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OS_NEM_CRM" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-              <item name="object_lookups" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OS_NEM_CRM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OS_NEM_CRM" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OS_NEM_CRM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OS_NEM_CRM" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -271,20 +227,6 @@
               <item name="OS_NEM_CRM" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="partials" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OS_NEM_CRM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OS_NEM_CRM" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="partials" type="462c0819:PsiDirectoryNode" />
-              <item name="object_fields" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OS_NEM_CRM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OS_NEM_CRM" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="partials" type="462c0819:PsiDirectoryNode" />
-              <item name="objlookups" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -385,12 +327,12 @@
       <workItem from="1552907917078" duration="1196000" />
       <workItem from="1552913419234" duration="1288000" />
       <workItem from="1552949794328" duration="14620000" />
-      <workItem from="1553037897764" duration="18910000" />
+      <workItem from="1553037897764" duration="26617000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="412624000" />
+    <option name="totallyTimeSpent" value="420331000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -403,7 +345,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49963742" weight="0.32817337" />
@@ -414,11 +355,11 @@
       <window_info anchor="right" id="Maven Projects" order="9" />
       <window_info anchor="bottom" id="Database Changes" order="9" weight="0.32972136" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49798658" weight="0.32817337" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4978038" visible="true" weight="0.33436534" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4978038" weight="0.33436534" />
       <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4978038" weight="0.4365325" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49166667" visible="true" weight="0.29198185" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49166667" visible="true" weight="0.29198185" />
       <window_info anchor="right" id="Database" order="4" weight="0.32994923" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info id="Structure" order="1" sideWeight="0.5083333" side_tool="true" weight="0.27449664" />
@@ -426,7 +367,7 @@
       <window_info id="UI Designer" order="4" />
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4977307" weight="0.39473686" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4977307" visible="true" weight="0.39473686" />
       <window_info anchor="bottom" id="Messages" order="12" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -551,12 +492,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/routes/index.js</url>
-          <line>186</line>
+          <line>178</line>
           <option name="timeStamp" value="68" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/routes/index.js</url>
-          <line>190</line>
+          <line>182</line>
           <option name="timeStamp" value="70" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -581,7 +522,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/routes/index.js</url>
-          <line>132</line>
+          <line>124</line>
           <option name="timeStamp" value="76" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -623,7 +564,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="84" />
+      <option name="time" value="85" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="NodeJSConfigurationType">
@@ -642,13 +583,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/views/error.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="54" selection-start-line="8" selection-start-column="54" selection-end-line="8" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -750,35 +684,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="414" column="303" selection-start-line="414" selection-start-column="289" selection-end-line="414" selection-end-column="303" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#td#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#td#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#td#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#td#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#td#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#td#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#thead#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tfoot#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h5#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/customobject/co_detail_controllers.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -828,13 +733,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/customobject/co_new_view_controllers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="89" column="19" selection-start-line="89" selection-start-column="19" selection-end-line="89" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/partials/lookups/lookups_list.hbs">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -880,34 +778,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/partials/cases/cases_new.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="71" column="56" selection-start-line="71" selection-start-column="56" selection-end-line="71" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/customobject/co_new_save_controllers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="15" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/lookups_search.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="17" column="238" selection-start-line="17" selection-start-column="238" selection-end-line="17" selection-end-column="238" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/lookups_list.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/customobject/co_list_controllers.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -919,20 +789,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="575">
           <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/lookups/lookups_search_controllers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/lookups/lookups_list_controllers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
@@ -968,38 +824,120 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/partials/objlookups/objlookup_new.hbs">
+    <entry file="file://$PROJECT_DIR$/controllers/object_fields/objectfields_edit_controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="65" column="113" selection-start-line="65" selection-start-column="101" selection-end-line="65" selection-end-column="113" />
-          <folding>
-            <element signature="n#style#0;n#table#0;n#div#0;n#form#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#thead#0;n#table#0;n#div#0;n#form#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tr#0;n#table#0;n#div#0;n#form#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#0;n#form#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#div#0;n#form#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="68">
+          <caret line="25" column="37" lean-forward="true" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
+    <entry file="file://$PROJECT_DIR$/controllers/customobject/co_new_view_controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="31" column="52" selection-start-line="31" selection-start-column="45" selection-end-line="31" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/partials/object_fields/objectfields_new.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="53" selection-start-line="8" selection-start-column="53" selection-end-line="8" selection-end-column="53" />
+        <state relative-caret-position="1258">
+          <caret line="89" column="19" selection-start-line="89" selection-start-column="19" selection-end-line="89" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/object_lookups/objlookup_new_controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        <state relative-caret-position="136">
+          <caret line="35" column="23" lean-forward="true" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/customobject/co_new_save_controllers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="35" column="9" lean-forward="true" selection-start-line="20" selection-start-column="7" selection-end-line="35" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/lookups/lookups_search_controllers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-94">
+          <caret line="88" selection-start-line="88" selection-end-line="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/partials/objlookups/objlookup_new.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="5" lean-forward="true" selection-start-line="5" selection-start-column="3" selection-end-line="14" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4658">
+          <caret line="274" column="112" selection-start-line="274" selection-start-column="112" selection-end-line="274" selection-end-column="112" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#thead#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tfoot#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h5#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/partials/cases/cases_new.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="70" column="53" selection-start-line="70" selection-start-column="53" selection-end-line="70" selection-end-column="53" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#div#3;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/lookups_search.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="3" column="31" lean-forward="true" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/partials/object_fields/objectfields_new.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="37" lean-forward="true" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/lookups_list.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="60" selection-start-line="3" selection-start-column="60" selection-end-line="3" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/lookups/lookups_list_controllers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-215">
+          <caret line="71" column="73" selection-start-line="71" selection-start-column="73" selection-end-line="71" selection-end-column="73" />
         </state>
       </provider>
     </entry>

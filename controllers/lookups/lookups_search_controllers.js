@@ -7,8 +7,6 @@ function popresults(req,res) {
 
     res.render('lookups_search',
     {
-        standard_menu: req.user.standard_menu,
-        custom_menu:req.user.custom_menu,
         objectname : objectname,
         returnTo: req.query.returnTo,
         title: "Lookups Search",

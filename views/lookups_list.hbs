@@ -1,3 +1,12 @@
+<script langauge="javascript">
+    function post_value(event) {
+        let checkBox = event.target;
+        let t = window.parent.opener.document.getElementById('source');
+        t.setAttribute('value',checkBox.getAttribute('value'));
+       self.close();
+    }
+</script>
+
 <div class="Maintitle" style="margin : 10px;border-bottom: black;border-bottom-width: 5px">
     <table>
         <tr>
@@ -14,9 +23,16 @@
 
 <div class="Maintitle" style="width: 100%;background: #F0FFFF">
     <div style="text-align: center">
-        <button id="new_bUsers" class="form_button" onclick="window.location.pathname = '/s/{{objectname}}/new'"
-                style="position: center;background:green;">New</button>
+        <form id="submitform" method="post" action="/s/{{objectname}}/lookup?returnTo={{returnTo}}">
+            <div class="form-group"><label for="searchbox" class="fb-text-label">Search<span class="fb-required">*</span></label><input type="text" class="form-control" name="searchbox" id="searchbox" required="required" value="{{values}}" aria-required="true"></div>
+            <button id="new_bUsers" class="form_button" type="submit"
+                    style="position: center;background:green;">Search</button>
+        </form>
     </div>
+</div>
+
+
+<div class="Maintitle" style="width: 100%;background: #F0FFFF">
     <div style="padding-right: 20px;padding-left: 20px;">
         {{{tablegen uresult 'Y' }}}
     </div>
