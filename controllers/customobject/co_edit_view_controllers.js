@@ -73,12 +73,12 @@ function pushresults(req,res) {
                     for(let j=0;j<results.length;j++){
 
                         if(results[j].field_name===columns[i]){
-                            if(results[j].field_type==='DATE'){
+                            if(results[j].field_type.toUpperCase()==='DATE'){
                                 console.log(columnValues[i]);
                                 columnValues[i]=JSON.stringify(columnValues[i]).substring(1,11);
                                 console.log(columnValues[i]);
                             }
-                            if(results[j].field_type==='DATETIMESTAMP'){
+                            if(results[j].field_type.toUpperCase()==='DATETIMESTAMP' || results[j].field_type.toUpperCase()==='TIMESTAMP' || results[j].field_type.toUpperCase()==='DATETIME'){
                                 console.log( columnValues[i]);
                                 columnValues[i]=JSON.stringify(columnValues[i]).substring(1,17);
                             }

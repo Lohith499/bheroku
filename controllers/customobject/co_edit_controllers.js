@@ -45,7 +45,7 @@ function pushresults(req,res) {
                 if(error.sqlMessage.includes("Duplicate")){
                     error.sqlMessage="There is already a Object with this name in your Organisation"
                 }
-                res.render('setup',{title:'Objects New', error : error});
+                res.render('error', { title: 'Error Updating record' , object : req.query.object, id : req.query.id, error : error});
                 return;
 
             }
