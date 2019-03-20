@@ -391,12 +391,10 @@ router.post('/setup/objects/edit', authenticationMiddleware(),function(req, res,
 router.post('/setup/objects/objectfields/:actionperform', authenticationMiddleware(),function(req, res, next) {
     console.log("Object fields Index");
    if(req.params.actionperform==='new' && req.query.action==="view"){
-        let tablename=req.query.object;
-        if(req.query.type==='Custom'){
-            tablename=tablename+req.user.organisation_Id;
-        }
-        res.render('setup', { title: 'ObjectFields' , type: req.query.type,object : req.query.object, id : req.query.id, tablename : tablename});
-        return;
+
+       let s1 = require('../controllers/object_fields/objectfields_new_view_controllers');
+       s1.pushresults(req,res);
+
     } else if(req.params.actionperform==='new' && req.query.action==="save"){
        let s1 = require('../controllers/object_fields/objectfields_new_controllers');
        s1.pushresults(req,res);

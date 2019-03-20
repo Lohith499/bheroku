@@ -25,7 +25,13 @@
             $(d).after('<div class="form-group" id="enumdiv">\n' +
                     '<input id="enum" name="enum" type="text" placeholder="Enter ENUM values in \'V1\',\'V2\' format" class="form-control input-md" required=""></div>');
         }
+        if(selectvalue=='LOOKUP'){
+
+            let s='<div class="form-group"><label for="lookupselect" class="fb-select-label"><span class="fb-required">*</span></label><select class="form-control" name="lookupselect" id="lookupselect" required="required" aria-required="true">{{{options}}}</select></div>';
+            $(d).after(s);
+        }
     }
+
 </script>
 <div class="Maintitle" style="margin : 10px;border-bottom: black;border-bottom-width: 5px">
     <table style="background: antiquewhite;border-radius: 5px">
