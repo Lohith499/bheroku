@@ -428,6 +428,18 @@ router.post('/setup/objects/customscripts/:actionperform', authenticationMiddlew
     }
 });
 
+router.post('/setup/objects/lookups/:actionperform', authenticationMiddleware(),function(req, res, next) {
+    console.log("Object fields Index");
+    if(req.params.actionperform==='new' && req.query.action==="view"){
+        let s1 = require('../controllers/object_lookups/objlookup_new_view_controllers');
+        s1.pushresults(req,res);
+    } else if(req.params.actionperform==='new' && req.query.action==="save"){
+        let s1 = require('../controllers/object_lookups/objlookup_new_controllers');
+        s1.pushresults(req,res);
+    }else {
+        res.render('setup', { title: 'Setup Post' });
+    }
+});
 
 
 
