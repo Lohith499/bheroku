@@ -4,7 +4,7 @@
         let validationstatus=true;
         {{{customscript}}}
         if(validationstatus==true){
-        document.getElementById("submitform").submit();
+            document.getElementById("submitform").submit();
         }
     }
 </script>
@@ -32,37 +32,45 @@
 <spam name="formerror" value="Error" style="display: none">Error</spam>
 <form id="submitform" method="post" action="/s/{{objectname}}/new">
     {{#ifCond standardFields.length '>=' 1 }}
-    <h3 style="text-decoration-line: underline;text-align: center"> Standard Fields </h3>
+        <h3 style="text-decoration-line: underline;text-align: center"> Standard Fields </h3>
 
-    <table id="accounts_form" style="width: 100%" >
+        <table id="accounts_form" style="width: 100%" >
             {{{inputgen standardFields}}}
-    </table>
+        </table>
     {{/ifCond}}
     {{#ifCond standardFields.length '>' 0 }}
-       {{#ifCond customFields.length '>=' 1 }}
+        {{#ifCond customFields.length '>=' 1 }}
             <h3 style="padding-top:20px;text-decoration-line: underline;text-align: center"> Custom Fields </h3>
-       {{/ifCond}}
+        {{/ifCond}}
     {{/ifCond}}
 
-       {{#ifCond customFields.length '>=' 1 }}
+    {{#ifCond customFields.length '>=' 1 }}
         <table id="accounts_form" style="width: 100%">
             {{{inputgen customFields}}}
         </table>
-   {{/ifCond}}
+    {{/ifCond}}
     <div style="margin: 10px;text-align: center">
-    <button type="button" onclick="myFunction()" class="btn btn-success">Save</button>
+        <button type="button" onclick="myFunction()" class="btn btn-success">Save</button>
 
-    <button type="reset" class="btn btn-danger">Reset</button>
-    <button type="button" class="btn btn-danger" onclick="history.go(-1);">Cancel</button>
+        <button type="reset" class="btn btn-danger">Reset</button>
+        <button type="button" class="btn btn-danger" onclick="history.go(-1);">Cancel</button>
     </div>
 </form>
 {{#ifCond customscript.length '>' 0 }}
-<p>custom script on this page</p>
-<p> {{customscript}}</p>
+    <p>custom script on this page</p>
+    <p> {{customscript}}</p>
 {{else}}
     <p><b>Note:</b>No custom script on this page</p>
 {{/ifCond}}
 
+
+<p>
+    Testing Lookup
+</p>
+<div>
+<input type="text" name="source" value =''><img src="/public/images/lookup.png" style="height: 20px;width:20px;"
+onclick='window.open("/s/accounts/lookup?returnTo=source","Ratting","width=700,height=400,left=150,top=200,toolbar=1,status=1,");'>
+</div>
 <style>
     #accounts_form td{
         padding-left: 10px;

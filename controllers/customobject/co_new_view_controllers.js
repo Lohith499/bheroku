@@ -79,8 +79,14 @@ function pushresults(req,res) {
                         customscript=csresults[i].scriptcode;
                     }
                 }
+                let title='';
+                if(tablename.toUpperCase()==='CASES'){
+                    title='Cases New';
+                }else {
+                    title='Custom New';
+                }
                 res.render('home_Loggedin', {
-                    title : 'Custom New' ,
+                    title : title ,
                     standard_menu: req.user.standard_menu,
                     custom_menu:req.user.custom_menu,
                     standardFields : standardFields,

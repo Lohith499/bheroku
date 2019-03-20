@@ -79,6 +79,33 @@ router.get(/\/s\/.*\/list/, authenticationMiddleware(),function(req, res, next) 
     });
 });
 
+router.get(/\/s\/.*\/lookup/, authenticationMiddleware(),function(req, res, next) {
+    console.log(req.user);
+    console.log(req.isAuthenticated());
+    res.header("organisation_id",req.user.organisation_Id);
+
+    let s1 = require('../controllers/homepage/homepage_menus');
+    s1.popresults(req, res,function(){
+        let s2 = require('../controllers/lookups/lookups_search_controllers');
+        s2.popresults(req, res);
+        return;
+    });
+});
+
+router.post(/\/s\/.*\/lookup/, authenticationMiddleware(),function(req, res, next) {
+    console.log(req.user);
+    console.log(req.isAuthenticated());
+    res.header("organisation_id",req.user.organisation_Id);
+
+    let s1 = require('../controllers/homepage/homepage_menus');
+    s1.popresults(req, res,function(){
+        let s2 = require('../controllers/lookups/lookups_list_controllers');
+        s2.popresults(req, res);
+        return;
+    });
+});
+
+
 router.get(/\/s\/.*\/new/, authenticationMiddleware(),function(req, res, next) {
     console.log('Accounts New');
     let s1 = require('../controllers/homepage/homepage_menus');
