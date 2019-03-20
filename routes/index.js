@@ -96,6 +96,26 @@ router.get(/\/s\/.*\/new/, authenticationMiddleware(),function(req, res, next) {
     });
 });
 
+
+router.post(/\/s\/.*\/edit/, authenticationMiddleware(),function(req, res, next) {
+    console.log('Accounts Edit');
+    let s1 = require('../controllers/homepage/homepage_menus');
+    s1.popresults(req, res,function(){
+            if(req.query.action==='view'){
+            let s2 = require('../controllers/customobject/co_edit_view_controllers');
+            s2.pushresults(req, res);
+            return;
+            } else if(req.query.action==='save'){
+                let s2 = require('../controllers/customobject/co_edit_controllers');
+                s2.pushresults(req, res);
+                return;
+
+            }else {
+                res.redirect("/");
+            }
+    });
+});
+
 router.get(/\/s\/.*\/details.*/, authenticationMiddleware(),function(req, res, next) {
     console.log('Accounts New');
     console.log(req.params.actionperform);

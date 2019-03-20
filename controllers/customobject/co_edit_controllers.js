@@ -1,54 +1,64 @@
-var  dbu=require('../../db.js');
 var someVar = [];
-var list_of_results="";
-function editresults(req,res) {
-
-
+function pushresults(req,res) {
+    console.log("***********Custom new edit save controller*******");
     var noticia = req.body;
-
-    console.log(noticia);
-
-    req.checkBody('objectname', 'Username field cannot be empty.').notEmpty();
-    req.checkBody('objectname', 'Username must be between 4-15 characters long.').len(4, 30);
-    req.checkBody('objectname', 'Username can only contain letters, numbers, or underscores.').matches(/^[A-Za-z0-9_-]+$/, 'i');
-
-    const errors= req.validationErrors();
-
-    if(errors){
-        console.log('errors:'+ JSON.stringify(errors));
-        res.render('setup',{title:'Objects Edit', errors : errors});
-        return;
+    console.log(JSON.stringify(noticia));
+    let okeys="lastModified_By,organisationId";
+    let ovlaues=[req.user.user_id,req.user.organisation_Id];
+    let pvalues="?,?";
+    for (const key of Object.keys(req.body)) {
+        okeys=okeys+","+key;
+        ovlaues.push(req.body[key]);
+        pvalues=pvalues+',?';
     }
+    let ourl=req.originalUrl.split('/');
+    let objectname=ourl[2];
+    let gettablname='SELECT ob.name,ob.TABLE_NAME FROM objects ob\n' +
+        'WHERE ob.NAME=\''+objectname+'\' AND (ob.organisationId=\''+req.user.organisation_Id+'\' or ob.organisationId=\'\' or ob.organisationId IS NULL)';
 
-
-    const objectname=req.body.objectname;
-    const id=req.query.id;
     const  db=require('../../db.js');
-    db.query('Update objects set name=?,lastModified_By=? where id=?',[objectname,req.user.user_id,id], function
-        (error,results,fields){
-        //if(error) throw error;
-        if(error){
+    db.query(gettablname,function (error1,results1,fields1){
+        if(error1 || results1.length===0) {
+            db.rollback(function() {
+                res.render('error', { title: 'No Table Found' , object : req.query.object, id : req.query.id, error : error});
+                return;
 
-            console.log('error:'+ error.sqlMessage);
-            req.query.id=id;
-            req.query.error=error;
-            let s1 = require('./objects_edit_view_controllers');
-            s1.edit_view_results(req, res);
-            //  res.render('setup',{title:'Users Detail', error : error});
-            return;
+            });
         }
-        let sql="";
-        db.query(sql, function (err) {
-            if(err) {
+        let append='';
+        okeys=okeys.split(',');
+        for (let i=0;i<okeys.length;i++){
+            append=append+"";
+            append=append+""+okeys[i]+"='"+ovlaues[i]+"'";
+            if(i<(okeys.length-1)){
+                append=append+",";
+            }
+        }
+        let sql='Update '+results1[0].TABLE_NAME+' set '+append+' where id='+req.query.id;
+        console.log("Update query="+sql);
+        db.query(sql,ovlaues, function
+            (error,results,fields){
+            if(error) {
+                console.log('error:'+ error.sqlMessage);
+                // let s1 = require('./objects_edit_view_controllers');
+                //  s1.edit_view_results(req, res);
+                if(error.sqlMessage.includes("Duplicate")){
+                    error.sqlMessage="There is already a Object with this name in your Organisation"
+                }
+                res.render('setup',{title:'Objects New', error : error});
+                return;
 
             }
-
+            console.log(JSON.stringify(results));
+            const user_id = results.insertId;
+            console.log(results.insertId);
+            res.redirect('/s/'+objectname+"/details?id="+req.query.id);
+            return;
         });
-        console.log(JSON.stringify(results));
-        res.redirect('/setup/objects');
     });
 }
-module.exports.editresults = editresults;
+
+module.exports.pushresults = pushresults;
 
 
 

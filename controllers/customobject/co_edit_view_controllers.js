@@ -5,10 +5,12 @@ var bcrypt=require('bcryptjs');
 const saltRound=10;
 
 function pushresults(req,res) {
-    console.log('Accounts New Controller');
+    console.log('Custom Edit View Controller');
     let standardFields=[];
     let customFields=[];
     let customscript='';
+    console.log(JSON.stringify(req.query));
+    let fid= req.query.id;
     let ourl=req.originalUrl.split('/');
     let tablename=ourl[2];
     let sql= 'SELECT obf.NAME,obf.field_name,obf.type,obf.field_type, obf.organisationId,ob.name,ob.table_name,ic.COLUMN_TYPE FROM objects_fields obf ' +
@@ -30,7 +32,6 @@ function pushresults(req,res) {
         }
         tablename=results[0].table_name;
         let objectname=results[0].name;
-
         for(let i=0; i<results.length;i++) {
             if(String(results[i].COLUMN_TYPE).includes('enum')) {
                 let s=results[i].COLUMN_TYPE;
@@ -42,6 +43,55 @@ function pushresults(req,res) {
                 results[i].COLUMN_TYPE=v;
             }
         }
+        let tablenamesql='select table_name from objects where name=\''+ourl[2]+'\'';
+        console.log(tablenamesql);
+        db.query(tablenamesql,function (err,resultst) {
+            if(error) {
+                console.log('error:'+ error.sqlMessage);
+                if(error.sqlMessage.includes("Duplicate")){
+                    error.sqlMessage="There is already a Object with this name in your Organisation"
+                }
+                res.render('error',{title:'Home_LoggedIn', error : error});
+                return;
+            }
+
+            let fetchrecordsql='Select * from '+resultst[0].table_name+' obf where obf.id='+fid+' AND (obf.organisationId=\''+req.user.organisation_Id+'\' or obf.organisationId=\'\' or obf.organisationId IS NULL);'
+           console.log(fetchrecordsql);
+            db.query(fetchrecordsql,function (err,resultsValues) {
+                if(error) {
+                    console.log('error:'+ error.sqlMessage);
+                    if(error.sqlMessage.includes("Duplicate")){
+                        error.sqlMessage="There is already a Object with this name in your Organisation"
+                    }
+                    res.render('error',{title:'Home_LoggedIn', error : error});
+                    return;
+                }
+                console.log(JSON.stringify(resultsValues));
+                let columns=Object.keys(resultsValues[0]);
+                let columnValues=Object.values(resultsValues[0]);
+                for (let i=0;i<columns.length;i++){
+                    for(let j=0;j<results.length;j++){
+
+                        if(results[j].field_name===columns[i]){
+                            if(results[j].field_type==='DATE'){
+                                console.log(columnValues[i]);
+                                columnValues[i]=JSON.stringify(columnValues[i]).substring(1,11);
+                                console.log(columnValues[i]);
+                            }
+                            if(results[j].field_type==='DATETIMESTAMP'){
+                                console.log( columnValues[i]);
+                                columnValues[i]=JSON.stringify(columnValues[i]).substring(1,17);
+                            }
+                            results[j].value=columnValues[i];
+                            console.log(results[j].field_name+'   '+results[j].field_type);
+                        }
+                    }
+                }
+            });
+        });
+
+
+
         for(let i=0; i<results.length;i++) {
             if(results[i].type==='Standard'){
                 standardFields.push(results[i]);
@@ -79,13 +129,14 @@ function pushresults(req,res) {
                 }
             }
             res.render('home_Loggedin', {
-                title : 'Custom New' ,
+                title : 'Custom Edit' ,
                 standard_menu: req.user.standard_menu,
                 custom_menu:req.user.custom_menu,
                 standardFields : standardFields,
                 customFields : customFields,
                 customscript : customscript,
                 tablename : tablename,
+                id:fid,
                 objectname : objectname
             });
             return;
