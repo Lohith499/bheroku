@@ -314,14 +314,33 @@ hbs.registerHelper('contentgen', function (results) {
     } */
     for(let i=0;i<results.length;i++){
         content=content+"<tr>";
-        content=content+"<td>"+results[i][0].toUpperCase()+"</td><td>"+results[i][1]+"</td>";
+        if(results[i]['lookup']){
+            if(results[i]['lookup'].length>0){
+                content=content+'<td>'+results[i]["name"].toUpperCase()+'</td><td><a href="/s/'+results[i]['lookup']+'/details?id='+results[i]["value"]+'">'+results[i]["value"] +'</a></td>';
+            }
+        }else{
+            content=content+"<td>"+results[i]['name'].toUpperCase()+"</td><td>"+results[i]['value']+"</td>";
+        }
+
         i=i+1;
         if(i<results.length){
-            content=content+"<td>"+results[i][0].toUpperCase()+"</td><td>"+results[i][1]+"</td>";
+            if(results[i]['lookup']){
+                if(results[i]['lookup'].length>0){
+                    content=content+'<td>'+results[i]["name"].toUpperCase()+'</td><td><a href="/s/'+results[i]['lookup']+'/details?id='+results[i]["value"]+'">'+results[i]["value"] +'</a></td>';
+                }
+            }else{
+                content=content+"<td>"+results[i]['name'].toUpperCase()+"</td><td>"+results[i]['value']+"</td>";
+            }
         }
         i=i+1;
         if(i<results.length){
-            content=content+"<td>"+results[i][0].toUpperCase()+"</td><td>"+results[i][1]+"</td>";
+            if(results[i]['lookup']){
+                if(results[i]['lookup'].length>0){
+                    content=content+'<td>'+results[i]["name"].toUpperCase()+'</td><td><a href="/s/'+results[i]['lookup']+'/details?id='+results[i]["value"]+'">'+results[i]["value"] +'</a></td>';
+                }
+            }else{
+                content=content+"<td>"+results[i]['name'].toUpperCase()+"</td><td>"+results[i]['value']+"</td>";
+            }
         }
         content=content+"</tr>";
     }
