@@ -11,7 +11,7 @@ function pushresults(req,res) {
     let customscript='';
     let ourl=req.originalUrl.split('/');
     let tablename=ourl[2];
-    let sql= 'SELECT obf.NAME,obf.field_name,obf.type,obf.field_type, obf.organisationId,ob.name,ob.table_name,ic.COLUMN_TYPE FROM objects_fields obf ' +
+    let sql= 'SELECT obf.NAME,obf.field_name,obf.type,obf.field_type, obf.organisationId,obf.lookup,ob.name,ob.table_name,ic.COLUMN_TYPE FROM objects_fields obf ' +
         'INNER JOIN objects ob ON obf.object_id=ob.id ' +
         'LEFT JOIN information_schema.`COLUMNS` ic ON ic.DATA_TYPE=\'enum\' AND ic.TABLE_NAME=ob.TABLE_NAME AND obf.field_name=ic.COLUMN_NAME ' +
         'WHERE ob.NAME=\''+ourl[2]+'\' AND ' +

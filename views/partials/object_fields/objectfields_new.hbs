@@ -20,6 +20,9 @@
         if($(d).next().is($('#enumdiv'))) {
             $(d).next().remove();
         }
+        if($(d).next().is($('#lookupselectdiv'))) {
+            $(d).next().remove();
+        }
         if(selectvalue=='ENUM'){
 
             $(d).after('<div class="form-group" id="enumdiv">\n' +
@@ -27,7 +30,7 @@
         }
         if(selectvalue=='LOOKUP'){
 
-            let s='<div class="form-group"><label for="lookupselect" class="fb-select-label"><span class="fb-required">*</span></label><select class="form-control" name="lookupselect" id="lookupselect" required="required" aria-required="true">{{{options}}}</select></div>';
+            let s='<div class="form-group" id="lookupselectdiv"><select class="form-control" name="lookupselect" id="lookupselect" required="required" aria-required="true">{{{options}}}</select></div>';
             $(d).after(s);
         }
     }

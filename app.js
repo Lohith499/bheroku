@@ -259,7 +259,7 @@ hbs.registerHelper('tablegen', function (results, header) {
     }
     content=tabletag+content;
     for (let key in results[0]) {
-        if(key==="tablename"){
+        if(key==="tablename" || key==='source'){
         }else {
             content=content+"<th>"+key+"</th>";
         }
@@ -289,7 +289,7 @@ hbs.registerHelper('tablegen', function (results, header) {
     });
     content=content+"</tbody><tfoot style='text-align: center'>";
     for (let key in results[0]) {
-        if(key==="tablename"){
+        if(key==="tablename" || key==='source'){
         }else {
             content=content+"<th>"+key+"</th>";
         }
@@ -384,6 +384,9 @@ hbs.registerHelper('inputgen', function (results) {
             } else if (results[i].field_type.toUpperCase() === 'DATETIME' || results[i].field_type.toUpperCase() === 'DATETIMESTAMP' || results[i].field_type.toUpperCase() ==='TIMESTAMP' ){
                  content1='<div class="form-group"><label ">'+results[i].NAME+'<span class="fb-required">*</span></label><span class="tooltips"><img src="/public/images/q1.png" height="15px" width="15px" alt=""><span class="tooltiptexts">Select Date and Time</span></span><input type="datetime-local" class="form-control" name="'+results[i].field_name+'" value="'+results[i].value+'" title="Select Date and Time" required="required" aria-required="true"></div>'
 
+            }  else if (results[i].field_type.toUpperCase() === 'LOOKUP'){
+                content1='<div class="form-group"><label ">'+results[i].NAME+'<span class="fb-required">*</span></label><span class="tooltips"><img src="/public/images/q1.png" height="15px" width="15px" alt=""><span class="tooltiptexts">Click Search To Pull Results</span></span>' +
+                    '<input type="text"  name="'+results[i].field_name+'" id="source'+results[i].field_name+'" value =""><img src="/public/images/lookup.png" style="height: 20px;width:20px;" onclick=\'window.open("/s/'+results[i].lookup+'/lookup?returnTo=source'+results[i].field_name+'","Ratting","width=700,height=400,left=150,top=200,toolbar=1,status=1,");\'></div>';
             } else if (results[i].field_type.toUpperCase() === 'ENUM'){
                  content1='<div class="form-group"><label>'+results[i].NAME+'<span class="fb-required">*</span></label><span class="tooltips"><img src="/public/images/q1.png" height="15px" width="15px" alt=""><span class="tooltiptexts">Select one value</span></span><select class="form-control" name="'+results[i].field_name+'" value="'+results[i].value+'" required="required" aria-required="true">';
                     for(let j=0;j<results[i].COLUMN_TYPE.length;j++){
@@ -421,7 +424,11 @@ hbs.registerHelper('inputgen', function (results) {
                 } else if (results[i].field_type.toUpperCase() === 'DATETIME' || results[i].field_type.toUpperCase() === 'DATETIMESTAMP' || results[i].field_type.toUpperCase() ==='TIMESTAMP' ){
                      content1='<div class="form-group"><label ">'+results[i].NAME+'<span class="fb-required">*</span></label><span class="tooltips"><img src="/public/images/q1.png" height="15px" width="15px" alt=""><span class="tooltiptexts">Select Date and Time</span></span><input type="datetime-local" class="form-control" name="'+results[i].field_name+'" title="Select Date and Time" value="'+results[i].value+'" required="required" aria-required="true"></div>'
 
-                } else if (results[i].field_type.toUpperCase() === 'ENUM'){
+                } else if (results[i].field_type.toUpperCase() === 'LOOKUP'){
+                    content1='<div class="form-group"><label ">'+results[i].NAME+'<span class="fb-required">*</span></label><span class="tooltips"><img src="/public/images/q1.png" height="15px" width="15px" alt=""><span class="tooltiptexts">Click Search To Pull Results</span></span>' +
+                        '<input type="text"  name="'+results[i].field_name+'" id="source'+results[i].field_name+'" value =""><img src="/public/images/lookup.png" style="height: 20px;width:20px;" onclick=\'window.open("/s/'+results[i].lookup+'/lookup?returnTo=source'+results[i].field_name+'","Ratting","width=700,height=400,left=150,top=200,toolbar=1,status=1,");\'></div>';
+                }
+                else if (results[i].field_type.toUpperCase() === 'ENUM'){
                     content1='<div class="form-group"><label>'+results[i].NAME+'<span class="fb-required">*</span></label><span class="tooltips"><img src="/public/images/q1.png" height="15px" width="15px" alt=""><span class="tooltiptexts">Select one Value</span></span><select class="form-control" name="'+results[i].field_name+'"  value="'+results[i].value+'" required="required" aria-required="true">';
                     for(let j=0;j<results[i].COLUMN_TYPE.length;j++){
                         content1=content1+'<option value="'+results[i].COLUMN_TYPE[j]+'">'+results[i].COLUMN_TYPE[j]+'</option>';

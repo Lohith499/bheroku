@@ -16,10 +16,12 @@ function pushresults(req,res) {
     let listnumber=selectbasic.length;
     let selectlist=req.body.selectlist;
     let enums=req.body.enum;
+    let lookupselect=req.body.lookupselect;
     if(typeof(req.body.selectbasic)==="string"){
         listnumber=1;
     }
     let j=0;
+    let k=0;//for lookup pickist
     for (let i = 0; i < listnumber; i++) {
        let item_row=[];
         item_row.push(req.query.id);
@@ -28,10 +30,22 @@ function pushresults(req,res) {
         if(typeof(req.body.selectbasic)==="string"){
             item_row.push(selectbasic);
             item_row.push(selectlist);
+            if(selectbasic==='LOOKUP'){
+                item_row.push(lookupselect);
+            }else{
+                item_row.push('');
+            }
         }else {
             item_row.push(selectbasic[i]);
             item_row.push(selectlist[i]);
+            if(selectbasic[i]==='LOOKUP'){
+                item_row.push(lookupselect[k]);
+                k=k+1;
+            }else{
+                item_row.push('');
+            }
         }
+
         item_row.push(req.user.organisation_Id);
         item_row.push(req.user.user_id);
         items.push(item_row);
@@ -40,7 +54,7 @@ function pushresults(req,res) {
 
     console.log(items);
     const  db=require('../../db.js');
-    db.query('INSERT INTO objects_fields(objects_fields.object_id,objects_fields.NAME,objects_fields.field_name,objects_fields.field_type,objects_fields.showinlist,objects_fields.organisationId,objects_fields.created_By) VALUES ?',
+    db.query('INSERT INTO objects_fields(objects_fields.object_id,objects_fields.NAME,objects_fields.field_name,objects_fields.field_type,objects_fields.showinlist,objects_fields.lookup,objects_fields.organisationId,objects_fields.created_By) VALUES ?',
         [items], function
         (error,results,fields){
         if(error) {
@@ -68,15 +82,17 @@ function pushresults(req,res) {
                 sql='Alter table '+tablename+' add column '+items[i][2]+' '+colname+' null DEFAULT CURRENT_TIMESTAMP';
             }else if(colname==="DATETIMESTAMP"){
                 sql='Alter table '+tablename+' add column '+items[i][2]+' TIMESTAMP null DEFAULT CURRENT_TIMESTAMP';
-            }
-            else if(colname==="ENUM"){
+            }else if(colname==="ENUM"){
                 if (typeof(enums)==='object'){
                 sql='Alter table '+tablename+' add column '+items[i][2]+' ENUM('+enums[j]+') null';
                 j++;
                 } else {
                     sql='Alter table '+tablename+' add column '+items[i][2]+' ENUM('+enums+') null';
                 }
+            }else if(colname==="LOOKUP"){
+                  sql='Alter table '+tablename+' add column '+items[i][2]+' INT(11) null';
             }
+
            db.query(sql,function (error1,results1,fields1){
                if(error1) {
                    db.rollback(function() {
