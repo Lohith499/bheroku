@@ -1,61 +1,97 @@
-<div class="Maintitle" style="margin : 5px;border-bottom: black;border-bottom-width: 5px">
-    <table style="background: antiquewhite;border-radius: 5px">
-        <tr>
-            {{{imgicon title}}}
-            <td><h4 style="text-decoration: underline;font-weight: bold">{{objectname}} Details</h4></td>
-        </tr>
-    </table>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+{{#ifCond subtabdisplay '!=' 'No'}}
+<script>
+    function openCity(cityName) {
+        var i;
+        var x = document.getElementsByClassName("city");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        document.getElementById(cityName).style.display = "block";
+    }
+    function func(event){
+        var x = document.getElementsByClassName("city");
+        let cid='c'+(x.length+1);
+        document.getElementById('parent').innerHTML+='<button class="w3-bar-item w3-button" onclick="openCity(\''+cid+'\')">'+event.target.getAttribute("tabname")+'</button>';
+        document.getElementById('parentcontent').innerHTML+='<div id="'+cid+'" class="w3-container city" style="display:none;height:100vh;width:100%"></div>';
+        document.getElementById(cid).innerHTML+='<iframe frameborder="0" style="overflow:hidden;height:100%;width:100%" height="100%" width="100%" src="'+event.target.getAttribute("value")+'"><p>Your browser does not support iframes.</p></iframe>';
+        openCity(cid);
+    }
+</script>
+{{/ifCond}}
+<div id="parent" class="w3-bar w3-black">
+    <button class="w3-bar-item w3-button" onclick="openCity('c1')">{{objectname}}</button>
 </div>
-<div>
-    <div style="margin-top: 20px;margin-bottom: 15px;">
-    <p style="color: blue;text-decoration: underline;"><a href="/s/{{objectname}}">Back to List results</a></p>
+
+
+<div id="parentcontent">
+    <div id="c1" class="w3-container city">
+        <div class="Maintitle" style="margin : 5px;border-bottom: black;border-bottom-width: 5px">
+            <table style="background: antiquewhite;border-radius: 5px">
+                <tr>
+                    {{{imgicon title}}}
+                    <td><h4 style="text-decoration: underline;font-weight: bold">{{objectname}} Details</h4></td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            {{#ifCond subtabdisplay '!=' 'No'}}
+            <div style="margin-top: 20px;margin-bottom: 15px;">
+            <p style="color: blue;text-decoration: underline;"><a href="/s/{{objectname}}">Back to List results</a></p>
+            </div>
+            <div style="margin:0px;height: 5px;width: 100%;background:black"></div>
+            {{/ifCond}}
+            <form>
+                {{#if error}}
+                    <div class="alert alert-danger" role="alert">
+                        <strong style="text-transform: uppercase;">Error : </strong> {{error.sqlMessage}}
+                    </div>
+                {{/if}}
+                {{#ifCond subtabdisplay '!=' 'No'}}
+                <div style="background: white;width: 100%;text-align: center;">
+                    <div style="margin-left:40%;text-align: center;background: blue;width: fit-content">
+                        <button id="new_bUsers" class="form_button" formmethod="get" formaction="/s/{{objectname}}/new"
+                                style="position: center;background: orangered">New</button>
+
+                        <button id="edit_bUsers" style="margin-left:10px;background: green;" class="form_button" type=submit formmethod="post" formaction="/s/{{objectname}}/edit?id={{id}}&action=view">Edit</button>
+                    </div>
+                </div>
+                {{/ifCond}}
+                <div style="margin:0px;height: 5px;width: 100%;background:black"></div>
+                {{{contentgen uresult}}}
+                <div style="margin:0px;height: 5px;width: 100%;background:black"></div>
+                <!-- Main Section Data-->
+                <div id="loginfo" style="border: 3px solid black;margin-top: 20px;">
+                     <h5 style="text-decoration: underline;padding-top: 10px;padding-bottom: 5px;">Information History</h5>
+                    <div id="histoy">
+                        <ul>
+                            <li style="border-radius: 5px;background: #6895fa;">Created By</li>
+                            <li style="border-radius: 5px;background: #c2d4fd;">{{logresult.created_By}}</li>
+                            <li style="border-radius: 5px;background: #6895fa;">Created Date</li>
+                            <li style="border-radius: 5px;background: #c2d4fd;">{{logresult.created_Date}}</li>
+                        </ul>
+                        <ul>
+                            <li style="border-radius: 5px;background: #6895fa;">LastModified By</li>
+                            <li style="border-radius: 5px;background: #c2d4fd;">{{logresult.lastModified_By}}</li>
+                            <li style="border-radius: 5px;background: #6895fa;">LastModified Date</li>
+                            <li style="border-radius: 5px;background: #c2d4fd;">{{logresult.lastModified_Date}}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="height: 5px;width: 100%;background:black"></div>
+                {{#ifCond subtabdisplay '!=' 'No'}}
+                <div style="background: white;width: 100%;text-align: center;">
+                    <div style="margin-left:40%;text-align: center;background: blue;width: fit-content">
+                        <button id="new_bUsers" class="form_button" formmethod="get" formaction="/s/{{objectname}}/new"
+                                style="position: center;background: orangered">New</button>
+                        <button id="edit_bUsers" style="margin-left:10px;background: green;" class="form_button" type=submit formmethod="post" formaction="/s/{{objectname}}/edit?id={{uresult.[0].[1]}}&action=view">Edit</button>
+                    </div>
+                </div>
+                <div style="height: 5px;width: 100%;background:black"></div>
+                {{/ifCond}}
+            </form>
+        </div>
     </div>
-    <div style="margin:0px;height: 5px;width: 100%;background:black"></div>
-
-    <form>
-        {{#if error}}
-            <div class="alert alert-danger" role="alert">
-                <strong style="text-transform: uppercase;">Error : </strong> {{error.sqlMessage}}
-            </div>
-        {{/if}}
-        <div style="background: white;width: 100%;text-align: center;">
-            <div style="margin-left:40%;text-align: center;background: blue;width: fit-content">
-                <button id="new_bUsers" class="form_button" formmethod="get" formaction="/s/{{objectname}}/new"
-                        style="position: center;background: orangered">New</button>
-
-                <button id="edit_bUsers" style="margin-left:10px;background: green;" class="form_button" type=submit formmethod="post" formaction="/s/{{objectname}}/edit?id={{id}}&action=view">Edit</button>
-            </div>
-        </div>
-        <div style="margin:0px;height: 5px;width: 100%;background:black"></div>
-        {{{contentgen uresult}}}
-        <!-- Main Section Data-->
-        <div id="loginfo" style="border: 3px solid black;margin-top: 20px;">
-             <h5 style="text-decoration: underline;padding-top: 10px;padding-bottom: 5px;">Information History</h5>
-            <div id="histoy">
-                <ul>
-                    <li style="border-radius: 5px;background: #6895fa;">Created By</li>
-                    <li style="border-radius: 5px;background: #c2d4fd;">{{logresult.created_By}}</li>
-                    <li style="border-radius: 5px;background: #6895fa;">Created Date</li>
-                    <li style="border-radius: 5px;background: #c2d4fd;">{{logresult.created_Date}}</li>
-                </ul>
-                <ul>
-                    <li style="border-radius: 5px;background: #6895fa;">LastModified By</li>
-                    <li style="border-radius: 5px;background: #c2d4fd;">{{logresult.lastModified_By}}</li>
-                    <li style="border-radius: 5px;background: #6895fa;">LastModified Date</li>
-                    <li style="border-radius: 5px;background: #c2d4fd;">{{logresult.lastModified_Date}}</li>
-                </ul>
-            </div>
-        </div>
-        <div style="height: 5px;width: 100%;background:black"></div>
-        <div style="background: white;width: 100%;text-align: center;">
-            <div style="margin-left:40%;text-align: center;background: blue;width: fit-content">
-                <button id="new_bUsers" class="form_button" formmethod="get" formaction="/s/{{objectname}}/new"
-                        style="position: center;background: orangered">New</button>
-                <button id="edit_bUsers" style="margin-left:10px;background: green;" class="form_button" type=submit formmethod="post" formaction="/s/{{objectname}}/edit?id={{uresult.[0].[1]}}&action=view">Edit</button>
-            </div>
-        </div>
-        <div style="height: 5px;width: 100%;background:black"></div>
-    </form>
 </div>
 <style>
     #histoy > ul {

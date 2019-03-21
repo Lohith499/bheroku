@@ -1,12 +1,13 @@
+{{#ifCond subtabdisplay '!=' 'No'}}
 {{> header }}
 
 {{> homepage_menu}}
+{{/ifCond}}
 
 
 
 
-
-<div class="below_menu">
+<div class="below_menu ">
     <main class="Homecontent" style="padding-top: 20px;border: black 5px;">
 
         {{#ifvalue title value="Home_LoggedIn"}}
@@ -82,9 +83,9 @@
     </main>
 </div>
 
-
+{{#ifCond subtabdisplay '!=' 'No'}}
 {{> footer }}
-
+{{/ifCond}}
 </body>
 
 <script>
@@ -132,8 +133,6 @@
     });
 </script>
 <!-- Bootstrap Date-Picker Plugin -->
-
-
 <script src="/public/js/setup.js"></script>
 <link rel="stylesheet" type="text/css" href="/public/css/style.css"/>
 

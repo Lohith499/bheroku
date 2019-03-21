@@ -74,7 +74,6 @@ app.use(passport.session());
 app.use(function (req,res,next) {
    res.locals.isAuthenticated=req.isAuthenticated();
    next();
-
 });
 
 
@@ -317,7 +316,9 @@ hbs.registerHelper('contentgen', function (results) {
         content=content+"<tr>";
         if(results[i]['lookup']){
             if(results[i]['lookup'].length>0){
-                content=content+'<td>'+results[i]["name"].toUpperCase()+'</td><td><a href="/s/'+results[i]['lookup']+'/details?id='+results[i]["value"]+'">'+results[i]["value"] +'</a></td>';
+               // content=content+'<td>'+results[i]["name"].toUpperCase()+'</td><td><p value="/s/'+results[i]['lookup']+'/details?id='+results[i]["value"]+'&menu=No" tabname="'+results[i]['lookup']+'" onclick="func(event)">'+results[i]["value"] +'</p></td>';
+                content=content+'<td>'+results[i]["name"].toUpperCase()+'</td><td><p value="/s/'+results[i]['lookup']+'/details?id='+results[i]["value"]+'&menu=No" tabname="'+results[i]['lookup']+'" onclick="func(event)">'+results[i]["value"] +'</p></td>';
+
             }
         }else{
             content=content+"<td>"+results[i]['name'].toUpperCase()+"</td><td>"+results[i]['value']+"</td>";
@@ -327,7 +328,7 @@ hbs.registerHelper('contentgen', function (results) {
         if(i<results.length){
             if(results[i]['lookup']){
                 if(results[i]['lookup'].length>0){
-                    content=content+'<td>'+results[i]["name"].toUpperCase()+'</td><td><a href="/s/'+results[i]['lookup']+'/details?id='+results[i]["value"]+'">'+results[i]["value"] +'</a></td>';
+                    content=content+'<td>'+results[i]["name"].toUpperCase()+'</td><td><p value="/s/'+results[i]['lookup']+'/details?id='+results[i]["value"]+'&menu=No" tabname="'+results[i]['lookup']+'" onclick="func(event)">'+results[i]["value"] +'</p></td>';
                 }
             }else{
                 content=content+"<td>"+results[i]['name'].toUpperCase()+"</td><td>"+results[i]['value']+"</td>";
@@ -337,7 +338,7 @@ hbs.registerHelper('contentgen', function (results) {
         if(i<results.length){
             if(results[i]['lookup']){
                 if(results[i]['lookup'].length>0){
-                    content=content+'<td>'+results[i]["name"].toUpperCase()+'</td><td><a href="/s/'+results[i]['lookup']+'/details?id='+results[i]["value"]+'">'+results[i]["value"] +'</a></td>';
+                    content=content+'<td>'+results[i]["name"].toUpperCase()+'</td><td><p value="/s/'+results[i]['lookup']+'/details?id='+results[i]["value"]+'&menu=No" tabname="'+results[i]['lookup']+'" onclick="func(event)">'+results[i]["value"] +'</p></td>';
                 }
             }else{
                 content=content+"<td>"+results[i]['name'].toUpperCase()+"</td><td>"+results[i]['value']+"</td>";

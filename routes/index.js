@@ -138,20 +138,26 @@ router.post(/\/s\/.*\/edit/, authenticationMiddleware(),function(req, res, next)
 router.get(/\/s\/.*\/details.*/, authenticationMiddleware(),function(req, res, next) {
     console.log('Accounts New');
     console.log(req.params.actionperform);
-    let s1 = require('../controllers/homepage/homepage_menus');
-    s1.popresults(req, res,function(){
-        let ourl=req.originalUrl.split('/');
-        if(ourl[2].toUpperCase()==='BACCOUNTS') {
-            let s2 = require('../controllers/accounts/accounts_detail_controllers');
-            s2.pushresults(req, res);
-            return;
-        } else {
-            let s2 = require('../controllers/customobject/co_detail_controllers');
-            s2.pushresults(req, res);
-            return;
-        }
+    if(req.query.menu==='false'){
+        let s2 = require('../controllers/customobject/co_detail_controllers');
+        s2.pushresults(req, res);
+        return;
+    }else {
+        let s1 = require('../controllers/homepage/homepage_menus');
+        s1.popresults(req, res, function () {
+            let ourl = req.originalUrl.split('/');
+            if (ourl[2].toUpperCase() === 'BACCOUNTS') {
+                let s2 = require('../controllers/accounts/accounts_detail_controllers');
+                s2.pushresults(req, res);
+                return;
+            } else {
+                let s2 = require('../controllers/customobject/co_detail_controllers');
+                s2.pushresults(req, res);
+                return;
+            }
 
-    });
+        });
+    }
 });
 
 

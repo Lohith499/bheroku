@@ -92,6 +92,7 @@ function pushresults(req,res) {
                     {
                         standard_menu: req.user.standard_menu,
                         custom_menu:req.user.custom_menu,
+                        subtabdisplay:req.query.menu,
                        // uresult: fresults,
                         uresult:contentresults,
                         pagetitle: '',
