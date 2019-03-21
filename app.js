@@ -305,7 +305,8 @@ hbs.registerHelper('tablegen', function (results, header) {
 });
 
 hbs.registerHelper('contentgen', function (results) {
-    let content='<table id="detail_form" style="width: 100%;">';
+    let content='<table id="detail_form" style="width: 100%;border-collapse:separate; \n' +
+        '                border-spacing:0 15px; ">';
    /*for (let key in results[0]) {
         if(key==="tablename"){
         }else {
