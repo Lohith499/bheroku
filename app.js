@@ -192,6 +192,10 @@ hbs.registerHelper('ifvalue', function (conditional, options) {
     }
 });
 
+hbs.registerHelper('JSONfetch', function (results) {
+    return JSON.stringify(results);
+});
+
 
 hbs.registerHelper('ifCond', function (v1, operator, v2, options) {
 
@@ -256,7 +260,12 @@ hbs.registerHelper('tablegen', function (results, header) {
 
     let content="<thead style='text-align: center'>";
     if(header==='Y'){
-        tabletag="<table id=\"list\" class=\" example table cell-border table-bordered hover\" style=\"width:100%\"> ";
+        if(results.length>0){
+            tabletag="<table id=\"list\" class=\" example table cell-border table-bordered hover\" style=\"width:100%\"> ";
+        } else {
+            tabletag="<table id=\"list\" class=\"table cell-border table-bordered hover\" style=\"width:100%\"> ";
+        }
+
     }
     content=tabletag+content;
     for (let key in results[0]) {
@@ -266,28 +275,33 @@ hbs.registerHelper('tablegen', function (results, header) {
         }
     }
     content=content+"</thead><tbody>";
-    results.forEach(function(element) {
-        content=content+"<tr>";
-        for (let key in element) {
-            if(key==="id"){
-           let url = '<p style="font-weight: bold;text-align: center;font-size: 15px;"><a href="/s/'+element['tablename']+'/details?id='+element[key]+'">'+element[key]+'</a></p>';
-                content=content+"<td>"+url+"</td>";
-            }else if(key==="target"){
-                let url = '<p style="font-weight: bold;text-align: center;font-size: 15px;"><button type="button"  value="'+element['target']+'"onclick="post_value(event)">'+element[key]+'</button></p>';
-                content=content+"<td>"+url+"</td>";
-            }
-            else if(key==="tablename"){
+    if(results.length>0){
+        results.forEach(function(element) {
+            content=content+"<tr>";
+            for (let key in element) {
+                if(key==="id"){
+                    let url = '<p style="font-weight: bold;text-align: center;font-size: 15px;"><a href="/s/'+element['tablename']+'/details?id='+element[key]+'">'+element[key]+'</a></p>';
+                    content=content+"<td>"+url+"</td>";
+                }else if(key==="target"){
+                    let url = '<p style="font-weight: bold;text-align: center;font-size: 15px;"><button type="button"  value="'+element['target']+'"onclick="post_value(event)">'+element[key]+'</button></p>';
+                    content=content+"<td>"+url+"</td>";
+                }
+                else if(key==="tablename"){
 
-            }
-            else if(key==="source"){
+                }
+                else if(key==="source"){
 
+                }
+                else {
+                    content=content+"<td>"+element[key]+"</td>";
+                }
             }
-            else {
-                content=content+"<td>"+element[key]+"</td>";
-            }
-        }
-        content=content+"</tr>";
-    });
+            content=content+"</tr>";
+        });
+    }else {
+        content=content+"<tr><td><h3 style='text-align: center'>No Records Available</h3></td></tr>";
+    }
+
     content=content+"</tbody><tfoot style='text-align: center'>";
     for (let key in results[0]) {
         if(key==="tablename" || key==='source'){
@@ -319,32 +333,24 @@ hbs.registerHelper('contentgen', function (results) {
         if(results[i]['lookup']){
             if(results[i]['lookup'].length>0){
                // content=content+'<td>'+results[i]["name"].toUpperCase()+'</td><td><p value="/s/'+results[i]['lookup']+'/details?id='+results[i]["value"]+'&menu=No" tabname="'+results[i]['lookup']+'" onclick="func(event)">'+results[i]["value"] +'</p></td>';
-                content=content+'<td>'+results[i]["name"].toUpperCase()+'</td><td><p value="/s/'+results[i]['lookup']+'/details?id='+results[i]["value"]+'&menu=No" tabname="'+results[i]['lookup']+'" onclick="func(event)">'+results[i]["value"] +'</p></td>';
+                content=content+'<td>'+results[i]["name"].toUpperCase()+'</td><td style="font-family:Arial,Helvetica,sans-serif;font-weight: bold;"><p style="margin:0px;color: blue;text-decoration: underline;font-weight: bold;" value="/s/'+results[i]['lookup']+'/details?id='+results[i]["value"]+'&menu=No" tabname="'+results[i]['lookup']+'" onclick="func(event)"> : '+results[i]["value"] +'</p></td>';
 
             }
         }else{
-            content=content+"<td>"+results[i]['name'].toUpperCase()+"</td><td>"+results[i]['value']+"</td>";
+            content=content+"<td>"+results[i]['name'].toUpperCase()+"</td><td style='font-family:Arial,Helvetica,sans-serif;font-weight: bold;'> : "+results[i]['value']+"</td>";
         }
 
         i=i+1;
         if(i<results.length){
             if(results[i]['lookup']){
                 if(results[i]['lookup'].length>0){
-                    content=content+'<td>'+results[i]["name"].toUpperCase()+'</td><td><p value="/s/'+results[i]['lookup']+'/details?id='+results[i]["value"]+'&menu=No" tabname="'+results[i]['lookup']+'" onclick="func(event)">'+results[i]["value"] +'</p></td>';
+                    content=content+'<td>'+results[i]["name"].toUpperCase()+'</td><td style="font-family:Arial,Helvetica,sans-serif;font-weight: bold;"><p style="margin:0px;color: blue;text-decoration: underline;font-weight: bold;" value="/s/'+results[i]['lookup']+'/details?id='+results[i]["value"]+'&menu=No" tabname="'+results[i]['lookup']+'" onclick="func(event)"> : '+results[i]["value"] +'</p></td>';
                 }
             }else{
-                content=content+"<td>"+results[i]['name'].toUpperCase()+"</td><td>"+results[i]['value']+"</td>";
+                content=content+"<td>"+results[i]['name'].toUpperCase()+"</td><td style='font-family:Arial,Helvetica,sans-serif;font-weight: bold;'> : "+results[i]['value']+"</td>";
             }
-        }
-        i=i+1;
-        if(i<results.length){
-            if(results[i]['lookup']){
-                if(results[i]['lookup'].length>0){
-                    content=content+'<td>'+results[i]["name"].toUpperCase()+'</td><td><p value="/s/'+results[i]['lookup']+'/details?id='+results[i]["value"]+'&menu=No" tabname="'+results[i]['lookup']+'" onclick="func(event)">'+results[i]["value"] +'</p></td>';
-                }
-            }else{
-                content=content+"<td>"+results[i]['name'].toUpperCase()+"</td><td>"+results[i]['value']+"</td>";
-            }
+        }else {
+            content=content+"<td></td><td></td>"
         }
         content=content+"</tr>";
     }
@@ -409,7 +415,7 @@ hbs.registerHelper('inputgen', function (results) {
 
             }  else if (results[i].field_type.toUpperCase() === 'LOOKUP'){
                 content1='<div class="form-group"><label ">'+results[i].NAME+'<span class="fb-required">*</span></label><span class="tooltips"><img src="/public/images/q1.png" height="15px" width="15px" alt=""><span class="tooltiptexts">Click Search To Pull Results</span></span>' +
-                    '<input type="text"  name="'+results[i].field_name+'" id="source'+results[i].field_name+'" value =""><img src="/public/images/lookup.png" style="height: 20px;width:20px;" onclick=\'window.open("/s/'+results[i].lookup+'/lookup?returnTo=source'+results[i].field_name+'","Ratting","width=700,height=400,left=150,top=200,toolbar=1,status=1,");\'></div>';
+                    '<p class="form-control"><input type="text"   style="width:calc(100% - 30px);border: none" name="'+results[i].field_name+'" id="source'+results[i].field_name+'" value="'+results[i].value+'"><img src="/public/images/lookup.png" style="height: 24px;width:24px;" onclick=\'window.open("/s/'+results[i].lookup+'/lookup?returnTo=source'+results[i].field_name+'","Ratting","width=700,height=400,left=150,top=200,toolbar=1,status=1,");\'></p></div>';
             } else if (results[i].field_type.toUpperCase() === 'ENUM'){
                  content1='<div class="form-group"><label>'+results[i].NAME+'<span class="fb-required">*</span></label><span class="tooltips"><img src="/public/images/q1.png" height="15px" width="15px" alt=""><span class="tooltiptexts">Select one value</span></span><select class="form-control" name="'+results[i].field_name+'" value="'+results[i].value+'" required="required" aria-required="true">';
                     for(let j=0;j<results[i].COLUMN_TYPE.length;j++){
@@ -449,7 +455,7 @@ hbs.registerHelper('inputgen', function (results) {
 
                 } else if (results[i].field_type.toUpperCase() === 'LOOKUP'){
                     content1='<div class="form-group"><label ">'+results[i].NAME+'<span class="fb-required">*</span></label><span class="tooltips"><img src="/public/images/q1.png" height="15px" width="15px" alt=""><span class="tooltiptexts">Click Search To Pull Results</span></span>' +
-                        '<input type="text"  name="'+results[i].field_name+'" id="source'+results[i].field_name+'" value =""><img src="/public/images/lookup.png" style="height: 20px;width:20px;" onclick=\'window.open("/s/'+results[i].lookup+'/lookup?returnTo=source'+results[i].field_name+'","Ratting","width=700,height=400,left=150,top=200,toolbar=1,status=1,");\'></div>';
+                        '<p class="form-control"><input type="text"   style="width:calc(100% - 30px);border: none" name="'+results[i].field_name+'" id="source'+results[i].field_name+'" value="'+results[i].value+'"><img src="/public/images/lookup.png" style="height: 24px;width:24px;" onclick=\'window.open("/s/'+results[i].lookup+'/lookup?returnTo=source'+results[i].field_name+'","Ratting","width=700,height=400,left=150,top=200,toolbar=1,status=1,");\'></p></div>';
                 }
                 else if (results[i].field_type.toUpperCase() === 'ENUM'){
                     content1='<div class="form-group"><label>'+results[i].NAME+'<span class="fb-required">*</span></label><span class="tooltips"><img src="/public/images/q1.png" height="15px" width="15px" alt=""><span class="tooltiptexts">Select one Value</span></span><select class="form-control" name="'+results[i].field_name+'"  value="'+results[i].value+'" required="required" aria-required="true">';

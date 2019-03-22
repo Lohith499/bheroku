@@ -3,7 +3,7 @@ var someVar = [];
 var list_of_results="";
 function popresults(req,res) {
 
-    dbu.query('SELECT id,name,type,table_name,organisationId FROM objects where organisationId=? or organisationId="" or organisationId is NULL',[req.user.organisation_Id], function(err, results){
+    dbu.query('SELECT id,name,type,table_name,organisationId FROM objects where type<>"Setup" and (organisationId=? or organisationId="" or organisationId is NULL);',[req.user.organisation_Id], function(err, results){
         if(err) {
             throw err;
         } else {

@@ -2,42 +2,60 @@
 {{#ifCond subtabdisplay '!=' 'No'}}
 <script>
     function openCity(cityName) {
-        var i;
-        var x = document.getElementsByClassName("city");
+        let i;
+        let x = document.getElementsByClassName("city");
         for (i = 0; i < x.length; i++) {
             x[i].style.display = "none";
         }
         document.getElementById(cityName).style.display = "block";
     }
+    function closeSubTab(event) {
+        var i;
+        let v=event.target.getAttribute('value');
+        let x = document.getElementsByClassName("city");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        document.getElementById("c1").style.display = "block";
+        document.getElementById(v).style.display = "none";
+    }
+
     function func(event){
-        var x = document.getElementsByClassName("city");
+        let x = document.getElementsByClassName("city");
         let cid='c'+(x.length+1);
-        document.getElementById('parent').innerHTML+='<button class="w3-bar-item w3-button" onclick="openCity(\''+cid+'\')">'+event.target.getAttribute("tabname")+'</button>';
+        document.getElementById('parent').innerHTML+='<div id="bd'+cid+'"><button class="w3-bar-item w3-button"  id="b'+cid+'"   onclick="openCity(\''+cid+'\')">'+event.target.getAttribute("tabname")+'</button><img onclick="closeSubTab(event)" class="w3-bar-item w3-button" src="/public/images/close.png" alt="" value="bd'+cid+'" style="height:36px;width:30px;padding-left: 5px;padding-right: 5px;"></div>';
         document.getElementById('parentcontent').innerHTML+='<div id="'+cid+'" class="w3-container city" style="display:none;height:100vh;width:100%"></div>';
         document.getElementById(cid).innerHTML+='<iframe frameborder="0" style="overflow:hidden;height:100%;width:100%" height="100%" width="100%" src="'+event.target.getAttribute("value")+'"><p>Your browser does not support iframes.</p></iframe>';
         openCity(cid);
     }
 </script>
 {{/ifCond}}
+
+<div class="Maintitle" style="margin : 5px;border-bottom: black;border-bottom-width: 5px">
+    <table style="background: antiquewhite;border-radius: 5px">
+        <tr>
+            {{{imgicon title}}}
+            <td><h4 style="text-decoration: underline;font-weight: bold">{{objectname}} Details</h4></td>
+        </tr>
+    </table>
+</div>
+
+
 <div id="parent" class="w3-bar w3-black">
-    <button class="w3-bar-item w3-button" onclick="openCity('c1')">{{objectname}}</button>
+    <div id="bc1">
+    <button class="w3-bar-item w3-button" id="bc1" onclick="openCity('c1')">{{objectname}}</button>
+    </div>
 </div>
 
 
 <div id="parentcontent">
-    <div id="c1" class="w3-container city">
-        <div class="Maintitle" style="margin : 5px;border-bottom: black;border-bottom-width: 5px">
-            <table style="background: antiquewhite;border-radius: 5px">
-                <tr>
-                    {{{imgicon title}}}
-                    <td><h4 style="text-decoration: underline;font-weight: bold">{{objectname}} Details</h4></td>
-                </tr>
-            </table>
-        </div>
+    <div id="c1" class="w3-container city" style="margin: 0px;padding: 0px;">
+
+
         <div>
             {{#ifCond subtabdisplay '!=' 'No'}}
             <div style="margin-top: 20px;margin-bottom: 15px;">
-            <p style="color: blue;text-decoration: underline;"><a href="/s/{{objectname}}">Back to List results</a></p>
+            <p style="color: blue;text-decoration: underline;font-weight: bold"><a href="/s/{{objectname}}"><img src="/public/images/back.png" style="height:20px;width:20px;" alt="">Back to List results</a></p>
             </div>
             <div style="margin:0px;height: 5px;width: 100%;background:black"></div>
             {{/ifCond}}
@@ -61,33 +79,32 @@
                 {{{contentgen uresult}}}
                 <div style="margin:0px;height: 5px;width: 100%;background:black"></div>
                 <!-- Main Section Data-->
-                <div id="loginfo" style="border: 3px solid black;margin-top: 20px;">
-                     <h5 style="text-decoration: underline;padding-top: 10px;padding-bottom: 5px;">Information History</h5>
+                <div id="loginfo" style="border: 2px solid tan;margin-top: 20px;margin-left: 10px;margin-right: 10px;">
+                     <h5 style="text-decoration: underline;padding-top: 10px;padding-bottom: 5px;">Record Log Information</h5>
                     <div id="histoy">
                         <ul>
-                            <li style="border-radius: 5px;background: #6895fa;">Created By</li>
-                            <li style="border-radius: 5px;background: #c2d4fd;">{{logresult.created_By}}</li>
-                            <li style="border-radius: 5px;background: #6895fa;">Created Date</li>
-                            <li style="border-radius: 5px;background: #c2d4fd;">{{logresult.created_Date}}</li>
+                            <li style="font-weight:bold;text-align:right;border-radius: 5px;background: #6895fa;padding-right: 5px;">Created By</li>
+                            <li style="padding-left: 5px;text-align:left;border-radius: 5px;background: #c2d4fd;">{{logresult.created_By}}</li>
+                            <li style="font-weight:bold;text-align:right;border-radius: 5px;background: #6895fa;padding-right: 5px;">Created Date</li>
+                            <li style="padding-left: 5px;text-align:left;border-radius: 5px;background: #c2d4fd;">{{logresult.created_Date}}</li>
                         </ul>
                         <ul>
-                            <li style="border-radius: 5px;background: #6895fa;">LastModified By</li>
-                            <li style="border-radius: 5px;background: #c2d4fd;">{{logresult.lastModified_By}}</li>
-                            <li style="border-radius: 5px;background: #6895fa;">LastModified Date</li>
-                            <li style="border-radius: 5px;background: #c2d4fd;">{{logresult.lastModified_Date}}</li>
+                            <li style="font-weight:bold;text-align:right;border-radius: 5px;background: #6895fa;padding-right: 5px;">LastModified By</li>
+                            <li style="padding-left: 5px;text-align:left;border-radius: 5px;background: #c2d4fd;">{{logresult.lastModified_By}}</li>
+                            <li style="font-weight:bold;text-align:right;border-radius: 5px;background: #6895fa;padding-right: 5px;">LastModified Date</li>
+                            <li style="padding-left: 5px;text-align:left;border-radius: 5px;background: #c2d4fd;">{{logresult.lastModified_Date}}</li>
                         </ul>
                     </div>
                 </div>
-                <div style="height: 5px;width: 100%;background:black"></div>
+                <div style="height: 5px;width: 100%;margin-top:5px;background:black"></div>
                 {{#ifCond subtabdisplay '!=' 'No'}}
                 <div style="background: white;width: 100%;text-align: center;">
                     <div style="margin-left:40%;text-align: center;background: blue;width: fit-content">
                         <button id="new_bUsers" class="form_button" formmethod="get" formaction="/s/{{objectname}}/new"
                                 style="position: center;background: orangered">New</button>
-                        <button id="edit_bUsers" style="margin-left:10px;background: green;" class="form_button" type=submit formmethod="post" formaction="/s/{{objectname}}/edit?id={{uresult.[0].[1]}}&action=view">Edit</button>
+                        <button id="edit_bUsers" style="margin-left:10px;background: green;" class="form_button" type=submit formmethod="post" formaction="/s/{{objectname}}/edit?id={{id}}&action=view">Edit</button>
                     </div>
                 </div>
-                <div style="height: 5px;width: 100%;background:black"></div>
                 {{/ifCond}}
             </form>
         </div>
@@ -96,13 +113,9 @@
 
 <div style="height: 5px;width: 100%;background:black"></div>
 
-
-
-
-
 {{#each lookupresults}}
     <div style="height: 5px;width: 100%;background:blue;margin-top: 10px;"></div>
-    <h4 style="text-align: center"> {{@key}}</h4>
+    <h5 style="margin-top: 10px;text-align: center;font-family:Arial,Helvetica,sans-serif ;text-decoration: underline"> {{@key}}</h5>
     {{{tablegen this 'Y'}}}
     <div style="height: 5px;width: 100%;background:blue"></div>
 {{/each}}
@@ -118,31 +131,36 @@
         display: table-cell;
         text-align: left;
         vertical-align: middle;
+        margin: 0px;
+        padding-top: 0px;
+        padding-bottom: 0px;
     }
 
     #detail_form td {
-        padding-bottom: 10px;
-        padding-top: 10px;
-        margin-bottom: 15px;
+        padding-bottom: 0px;
+        padding-top: 5px;
+        margin-bottom: 5px;
+        border-bottom:1pt solid black
 
     }
     #detail_form  td:nth-child(odd){
-          width: 10%;
+        width: 25%;
         font-weight: bold;
-        color: blue;
         text-decoration: underline;
-        background: lightskyblue;
-        border-radius: 15px;
-        padding-left: 10px;
+        color: #4a4a56;
+        word-wrap: break-word;
+        text-align: right;
+        padding-left: 2px;
       }
 
     #detail_form  td:nth-child(even){
-        width: calc(70%/3);
-        padding-left: 10px;
-        background: antiquewhite;
-        border-radius: 15px;
+        width: 25%;
+        text-align: left;
+        word-wrap: break-word;
+        padding-left: 5px;
     }
     #detail_form tr{
+        border-bottom: 2px solid #555555;
     }
 </style>
 

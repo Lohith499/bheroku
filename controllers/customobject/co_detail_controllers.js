@@ -29,7 +29,7 @@ function pushresults(req,res) {
         }
         obj_id=results1[0].id;
         table_name=results1[0].TABLE_NAME;
-        let getfieldsql='select * from objects_fields obf where obf.object_id='+results1[0].id+' AND (obf.organisationId=\''+req.user.organisation_Id+'\' or obf.organisationId=\'\' or obf.organisationId IS NULL)';
+        let getfieldsql='select * from objects_fields obf where obf.object_id='+results1[0].id+' AND (obf.organisationId=\''+req.user.organisation_Id+'\' or obf.organisationId=\'\' or obf.organisationId IS NULL) ORDER BY id';
         db.query(getfieldsql,function (error,fieldresults) {
             if(error || fieldresults.length===0) {
                 db.rollback(function() {
@@ -83,7 +83,7 @@ function pushresults(req,res) {
                     }
                 }
                 //Lookup data
-                let lookupObfsql='SELECT ob.TABLE_NAME,obf.field_name AS lookupField,ob.NAME,obf1.field_name FROM objects_fields obf INNER JOIN objects ob ON ob.id=obf.object_id INNER JOIN objects_fields obf1 ON obf1.object_id=ob.id WHERE obf.lookup="'+objectname+'" AND obf.organisationId=\''+req.user.organisation_Id+'\' AND obf1.showinlist=\'Y\' ORDER BY ob.name,obf1.field_name;';
+                let lookupObfsql='SELECT ob.TABLE_NAME,obf.field_name AS lookupField,ob.NAME,obf1.field_name FROM objects_fields obf INNER JOIN objects ob ON ob.id=obf.object_id INNER JOIN objects_fields obf1 ON obf1.object_id=ob.id WHERE obf.lookup="'+objectname+'" AND obf.organisationId=\''+req.user.organisation_Id+'\' AND obf1.showinlist=\'Y\' ORDER BY ob.name,obf1.id;';
                 db.query(lookupObfsql,obj_id,function (error,lookupObfsql_results) {
                     if(error) {
                         console.log('error:'+ error.sqlMessage);
@@ -151,6 +151,9 @@ function pushresults(req,res) {
                                         }
                                         res.render('error',{title:'Objects New', error : error});
                                         return;
+                                    }
+                                    for(let l=0;l<lookeachresult.length;l++){
+                                        lookeachresult[l]['tablename']=lookupObjects[i];
                                     }
                                     lookupresults[lookupObjects[i]]=[];
                                     for(let k=0;k<lookeachresult.length;k++){

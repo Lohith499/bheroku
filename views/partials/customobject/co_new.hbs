@@ -2,9 +2,13 @@
 <script>
     function myFunction() {
         let validationstatus=true;
+        let message='Error';
         {{{customscript}}}
         if(validationstatus==true){
-        document.getElementById("submitform").submit();
+            document.getElementById("submitform").submit();
+        }else {
+            document.getElementById("formerror").innerHTML=message;
+            document.getElementById("formerror").style.display='block';
         }
     }
 </script>

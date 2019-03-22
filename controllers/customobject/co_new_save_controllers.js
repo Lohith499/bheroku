@@ -43,9 +43,9 @@ function pushresults(req,res) {
                // let s1 = require('./objects_edit_view_controllers');
               //  s1.edit_view_results(req, res);
                 if(error.sqlMessage.includes("Duplicate")){
-                    error.sqlMessage="There is already a Object with this name in your Organisation"
+                    error.sqlMessage="There is already a Object w`ith this name in your Organisation"
                 }
-                res.render('setup',{title:'Objects New', error : error});
+                res.render('error',{title:'Objects New', error : error});
                 return;
 
             }

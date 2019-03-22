@@ -23,7 +23,7 @@ function pushresults(req,res) {
             if(error) {
                 console.log('error:'+ error.sqlMessage);
                 if(error.sqlMessage.includes("Duplicate")){
-                    error.sqlMessage="There is already a Object with this name in your Organisation"
+                    error.sqlMessage="There is no Object with this name in your Organisation"
                 }
                 res.render('error',{title:'Home_LoggedIn', error : error});
                 return;
@@ -50,6 +50,8 @@ function pushresults(req,res) {
                       customFields.push(results[i]);
                   }
             }
+
+
             let filtered = standardFields.filter(function(value, index, arr){
                 if (value.field_name==='id'
                     || value.field_name==='created_Date'

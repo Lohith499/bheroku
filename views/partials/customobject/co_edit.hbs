@@ -1,10 +1,16 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-    function myFunction() {
+    function myFunction(){
+        let standardFields={{{JSONfetch standardFields}}};
+        console.log(JSON.stringify(standardFields));
         let validationstatus=true;
+        let message='';
         {{{customscript}}}
         if(validationstatus==true){
         document.getElementById("submitform").submit();
+        }else {
+            document.getElementById("formerror").innerHTML=message;
+            document.getElementById("formerror").style.display='block';
         }
     }
 </script>
@@ -29,7 +35,7 @@
         <strong style="text-transform: uppercase;">Error : </strong> {{error.sqlMessage}}
     </div>
 {{/if}}
-<spam name="formerror" value="Error" style="display: none">Error</spam>
+<spam name="formerror" id="formerror" value="Error" style="display: none">Error</spam>
 <form id="submitform" method="post" action="/s/{{objectname}}/edit?id={{id}}&action=save">
     {{#ifCond standardFields.length '>=' 1 }}
     <h3 style="text-decoration-line: underline;text-align: center"> Standard Fields </h3>

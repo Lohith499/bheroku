@@ -21,7 +21,7 @@ function popresults(req,res,callback) {
             for(let i=0; i<results.length; i++){
                 if(results[i].type==='Standard'){
                     standard_menu.push(results[i].name);
-                } else {
+                } else if(results[i].type==='Custom'){
                     custom_menu.push(results[i].name);
                 }
             }

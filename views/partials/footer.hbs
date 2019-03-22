@@ -1,13 +1,59 @@
-<div class="footer">
+<script>
+    window.onscroll = function() {scrollFunction()};
 
-<footer class="container" style="text-align: center;background: lightgreen;border-radius: 25px;">
+    function scrollFunction() {
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            document.getElementById("myBtn").style.display = "block";
+        } else {
+            document.getElementById("myBtn").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+<div class="footer" style="margin-top: 20px;width: 100%">
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Goto Top</button>
+<footer class="containerss" style="width:100%;padding:0px;margin-left: 0px;margin-right: 0px;text-align: center;background: lightgreen;border-radius: 25px;">
     <p>&copy; Licensed to
         <b class="ttip">Lohith Nimmala
             <span class="tttext">
                   <img src="/public/images/profile.JPG" width="100px" height="80px">
                 </span>
-        </b>,developed as part of GVSU MS in CIS Capstone Project , Allendale, Michigan 2018-2019
+        </b>,developed as part of GVSU MS in CIS Capstone Project , Allendale, Michigan 2018-2019 <img src="/public/images/down.png" style="height: 35px;width:35px;" id="imgViewmore" alt="view more" onclick="document.getElementById('moreFooter').style.display='block';document.getElementById('imgViewmore').style.display='none';">
+
     </p>
+     <div id="moreFooter" style="display: none;">
+    <p>For Any Queries Please contact me @ <b>nimmalal@mail.gvsu.edu</b></p>
+    <p>Project : <b>Opensource customizable cloud based CRM using NodeJS, Express and MySQL</b></p>
+    <p>About this Project and its Code Available at <b><a href="https://github.com/Lohith499/OS_NEM_CRM">HERE</a></b></p>
+    <img src="/public/images/up.png" style="text-align: center;height: 35px;width:35px;" alt="view less" onclick="document.getElementById('imgViewmore').style.display='inline-block';document.getElementById('moreFooter').style.display='none';">
+    </div>
+
 </footer>
+    <style>
+        #myBtn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: red;
+            color: white;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        #myBtn:hover {
+            background-color: #555;
+        }
+    </style>
 </div>
 <link rel="stylesheet" href="/public/css/style.css">

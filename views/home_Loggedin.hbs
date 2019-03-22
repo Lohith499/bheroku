@@ -88,11 +88,7 @@
 {{/ifCond}}
 </body>
 
-<script>
-    jQuery($ => {
-        $('.build-wrap').formBuilder()
-    })
-</script>
+
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
@@ -123,7 +119,7 @@
                 });
 
                 $("#datepicker").datepicker({ maxDate: new Date, minDate: new Date(1950, 1, 12) });
-                $(".chosen").chosen();
+               // $(".chosen").chosen();
             });
     $(function(){
         $('#fdatepicker').datepicker({
