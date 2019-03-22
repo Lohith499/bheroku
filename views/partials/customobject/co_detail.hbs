@@ -93,6 +93,20 @@
         </div>
     </div>
 </div>
+
+<div style="height: 5px;width: 100%;background:black"></div>
+
+
+
+
+
+{{#each lookupresults}}
+    <div style="height: 5px;width: 100%;background:blue;margin-top: 10px;"></div>
+    <h4 style="text-align: center"> {{@key}}</h4>
+    {{{tablegen this 'Y'}}}
+    <div style="height: 5px;width: 100%;background:blue"></div>
+{{/each}}
+
 <style>
     #histoy > ul {
         width: 100%;

@@ -13,10 +13,11 @@ function pushresults(req,res) {
     let logresult={};
     let fresults=[];
     let lookupObjects=[];
-    let lookupresults=[];
+    let lookupTables=[];
+    let lookupresults={};
+    let k1="pp";
     let gettablname='SELECT ob.id,ob.name,ob.TABLE_NAME FROM objects ob\n' +
         'WHERE ob.NAME=\''+objectname+'\' AND (ob.organisationId=\''+req.user.organisation_Id+'\' or ob.organisationId=\'\' or ob.organisationId IS NULL)';
-    console.log('id='+req.query.id);
     const  db=require('../../db.js');
     db.query(gettablname,function (error1,results1,fields1){
         if(error1 || results1.length===0) {
@@ -30,7 +31,7 @@ function pushresults(req,res) {
         table_name=results1[0].TABLE_NAME;
         let getfieldsql='select * from objects_fields obf where obf.object_id='+results1[0].id+' AND (obf.organisationId=\''+req.user.organisation_Id+'\' or obf.organisationId=\'\' or obf.organisationId IS NULL)';
         db.query(getfieldsql,function (error,fieldresults) {
-            if(error1 || results1.length===0) {
+            if(error || fieldresults.length===0) {
                 db.rollback(function() {
                     res.render('error', { title: 'No Fields Found for this Object' , object : req.query.object, id : req.query.id, error : error});
                     return;
@@ -81,83 +82,147 @@ function pushresults(req,res) {
                         }
                     }
                 }
-                console.log('content='+JSON.stringify(contentresults));
-                console.log('log info'+JSON.stringify(logresult));
-                console.log(JSON.stringify(results));
+                //Lookup data
+                let lookupObfsql='SELECT ob.TABLE_NAME,obf.field_name AS lookupField,ob.NAME,obf1.field_name FROM objects_fields obf INNER JOIN objects ob ON ob.id=obf.object_id INNER JOIN objects_fields obf1 ON obf1.object_id=ob.id WHERE obf.lookup="'+objectname+'" AND obf.organisationId=\''+req.user.organisation_Id+'\' AND obf1.showinlist=\'Y\' ORDER BY ob.name,obf1.field_name;';
+                db.query(lookupObfsql,obj_id,function (error,lookupObfsql_results) {
+                    if(error) {
+                        console.log('error:'+ error.sqlMessage);
+                        // let s1 = require('./objects_edit_view_controllers');
+                        //  s1.edit_view_results(req, res);
+                        if(error.sqlMessage.includes("Duplicate")){
+                            error.sqlMessage="There is already a Object with this name in your Organisation"
+                        }
+                        res.render('error',{title:'Objects New', error : error});
+                        return;
+                    } else if(lookupObfsql_results){
+                        if(lookupObfsql_results.length>0){
 
-
-            //Lookup data
-            let lookupObfsql='SELECT ob.TABLE_NAME,obf.lookup,obf1.field_name FROM objects_fields obf INNER JOIN objects ob ON ob.NAME=obf.lookup INNER JOIN objects_fields obf1 ON ob.id=obf1.object_id WHERE obf.object_id=? AND (obf.lookup IS NOT NULL or obf.lookup <> \' \') AND (obf.field_type=\'LOOKUP\') AND obf1.showinlist=\'Y\' ORDER BY ob.TABLE_NAME,obf1.field_name';
-            db.query(lookupObfsql,obj_id,function (error,lookupObfsql_results) {
-                if(error) {
-                    console.log('error:'+ error.sqlMessage);
-                    // let s1 = require('./objects_edit_view_controllers');
-                    //  s1.edit_view_results(req, res);
-                    if(error.sqlMessage.includes("Duplicate")){
-                        error.sqlMessage="There is already a Object with this name in your Organisation"
-                    }
-                    res.render('error',{title:'Objects New', error : error});
-                    return;
-                } else if(lookupObfsql_results){
-
-                    if(lookupObfsql_results.length>0){
-
-                        var arrays = {};
-
-// Loop over data
-                        lookupObfsql_results.forEach(function (str) {
-
-                            // Get id piece
-                            str_api =str.TABLE_NAME ;
-
-                            // check if existing property for this id, if not initialize new array
-                            if (!arrays[str_api]) {
-                                arrays[str_api] = [];
+                            var arrays1 = {};
+                            lookupObfsql_results.forEach(function (str) {
+                                // Get id piece
+                                let str_api =str.TABLE_NAME ;
+                                // check if existing property for this id, if not initialize new array
+                                if (!arrays1[str_api]) {
+                                    arrays1[str_api] = [];
+                                }
+                                // get value piece
+                                let str_id = str.lookupField;
+                                // add to that id's array
+                                if(!arrays1[str_api].includes(str_id)){
+                                    arrays1[str_api].push(str_id);
+                                    str_id = str.NAME;
+                                    arrays1[str_api].push(str_id);
+                                }
+                            });
+                            var arrays = {};
+                            lookupObfsql_results.forEach(function (str) {
+                                // Get id piece
+                                let str_api =str.TABLE_NAME ;
+                                // check if existing property for this id, if not initialize new array
+                                if (!arrays[str_api]) {
+                                    arrays[str_api] = [];
+                                }
+                                // get value piece
+                                let str_id = str.field_name;
+                                // add to that id's array
+                                arrays[str_api].push(str_id);
+                            });
+                            for(let i=0;i<Object.keys(arrays1).length;i++){
+                                lookupObjects.push(arrays1[Object.keys(arrays1)[i]][1]);
                             }
 
-                            // get value piece
-                            str_id = str.field_name;
-
-                            // add to that id's array
-                            arrays[str_api].push(str_id);
-
-                        });
-
-                        console.log(arrays);
-
-
-
-
-                        //*********************
-                        for(let i=0;i<lookupObfsql_results.length;i++){
-                            lookupObjects.push(lookupObfsql_results[i]);
+                            lookupTables=Object.keys(arrays);
+                            for(let i=0;i<lookupTables.length;i++){
+                                let sql='Select ';
+                                for(let j=0;j<arrays[lookupTables[i]].length;j++){
+                                    sql+=arrays[lookupTables[i]][j];
+                                    if(j<(arrays[lookupTables[i]].length-1)){
+                                        sql+=',';
+                                    }
+                                }
+                                sql+=' from '+lookupTables[i]+' where '+arrays1[lookupTables[i]][0]+'='+req.query.id+';';
+                                db.query(sql,function (error,lookeachresult) {
+                                    if(error) {
+                                        console.log('error:'+ error.sqlMessage);
+                                        // let s1 = require('./objects_edit_view_controllers');
+                                        //  s1.edit_view_results(req, res);
+                                        if(error.sqlMessage.includes("Duplicate")){
+                                            error.sqlMessage="There is already a Object with this name in your Organisation"
+                                        }
+                                        res.render('error',{title:'Objects New', error : error});
+                                        return;
+                                    }
+                                    lookupresults[lookupObjects[i]]=[];
+                                    for(let k=0;k<lookeachresult.length;k++){
+                                        lookupresults[lookupObjects[i]].push(lookeachresult[k]);
+                                    }
+                                    k1="Hi";
+                                    console.log('************************');
+                                    console.log(JSON.stringify(lookupresults));
+                                    console.log('************************');
+                                    if(i===(lookupTables.length-1)){
+                                        res.render('home_Loggedin',
+                                            {
+                                                standard_menu: req.user.standard_menu,
+                                                custom_menu:req.user.custom_menu,
+                                                subtabdisplay:req.query.menu,
+                                                // uresult: fresults,
+                                                lookupObjects:lookupObjects,
+                                                lookupresults:lookupresults,
+                                                uresult:contentresults,
+                                                pagetitle: '',
+                                                k:k1,
+                                                objectname : objectname,
+                                                id :req.query.id,
+                                                logresult:logresult,
+                                                everify : "custom controller",
+                                                title: "Custom Details"
+                                            });
+                                        return;
+                                    }
+                                });
+                            }
+                        }else {
+                            res.render('home_Loggedin',
+                                {
+                                    standard_menu: req.user.standard_menu,
+                                    custom_menu:req.user.custom_menu,
+                                    subtabdisplay:req.query.menu,
+                                    // uresult: fresults,
+                                    lookupObjects:lookupObjects,
+                                    lookupresults:lookupresults,
+                                    uresult:contentresults,
+                                    pagetitle: '',
+                                    k:k1,
+                                    objectname : objectname,
+                                    id :req.query.id,
+                                    logresult:logresult,
+                                    everify : "custom controller",
+                                    title: "Custom Details"
+                                });
+                            return;
                         }
+                    } else {
+                        res.render('home_Loggedin',
+                            {
+                                standard_menu: req.user.standard_menu,
+                                custom_menu:req.user.custom_menu,
+                                subtabdisplay:req.query.menu,
+                                // uresult: fresults,
+                                lookupObjects:lookupObjects,
+                                lookupresults:lookupresults,
+                                uresult:contentresults,
+                                pagetitle: '',
+                                k:k1,
+                                objectname : objectname,
+                                id :req.query.id,
+                                logresult:logresult,
+                                everify : "custom controller",
+                                title: "Custom Details"
+                            });
+                        return;
                     }
-
-
-                }
-
-
-
-
-                console.log(JSON.stringify(lookupObjects));
-                res.render('home_Loggedin',
-                    {
-                        standard_menu: req.user.standard_menu,
-                        custom_menu:req.user.custom_menu,
-                        subtabdisplay:req.query.menu,
-                        // uresult: fresults,
-                        lookupObjects:lookupObjects,
-                        uresult:contentresults,
-                        pagetitle: '',
-                        objectname : objectname,
-                        id :req.query.id,
-                        logresult:logresult,
-                        everify : "custom controller",
-                        title: "Custom Details"
-                    });
-                    return;
-                 });
+                });
             });
         });
     });

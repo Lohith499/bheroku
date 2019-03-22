@@ -252,6 +252,8 @@ hbs.registerHelper('imgicon', function (titleicon) {
 
 hbs.registerHelper('tablegen', function (results, header) {
     let tabletag='';
+
+
     let content="<thead style='text-align: center'>";
     if(header==='Y'){
         tabletag="<table id=\"list\" class=\" example table cell-border table-bordered hover\" style=\"width:100%\"> ";
