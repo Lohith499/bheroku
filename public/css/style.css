@@ -41,6 +41,30 @@ a {
   min-width:100px;
 }
 
+#new_bUsers{
+  margin-left: 5px;
+}
+
+#edit_bUsers{
+  margin-right: 5px;
+}
+
+.dashdott{
+  border-top-style:dotted;
+  border-bottom-style:dashed;
+  border-left-style:dotted;
+  border-right-style:dashed;
+}
+
+.bigdott{
+  border-top-style:dotted;
+  border-bottom-style:dotted;
+  border-left-style:dotted;
+  border-right-style:dotted;
+  border-width:9px;
+  border-color:#9FB2C1;
+  padding:6px;
+}
 
 .ttip {
   position: relative;
@@ -117,6 +141,7 @@ a {
 .imgcontainer {
   position: relative;
   text-align: center;
+  margin-top:5px;
   color: white;
 }
 
@@ -131,4 +156,12 @@ a {
 
 .imgcentered a {
   color: black;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  background-color: white;
+  border-radius: 50%;
+  display: inline-block;
 }

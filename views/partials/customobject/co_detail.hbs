@@ -57,7 +57,7 @@
             <div style="margin-top: 20px;margin-bottom: 15px;">
             <p style="color: blue;text-decoration: underline;font-weight: bold"><a href="/s/{{objectname}}"><img src="/public/images/back.png" style="height:20px;width:20px;" alt="">Back to List results</a></p>
             </div>
-            <div style="margin:0px;height: 5px;width: 100%;background:black"></div>
+            <div style="border-bottom-style:dashed;width: 100%;background:white"></div>
             {{/ifCond}}
             <form>
                 {{#if error}}
@@ -70,16 +70,16 @@
                     <div style="margin-left:40%;text-align: center;background: blue;width: fit-content">
                         <button id="new_bUsers" class="form_button" formmethod="get" formaction="/s/{{objectname}}/new"
                                 style="position: center;background: orangered">New</button>
-
-                        <button id="edit_bUsers" style="margin-left:10px;background: green;" class="form_button" type=submit formmethod="post" formaction="/s/{{objectname}}/edit?id={{id}}&action=view">Edit</button>
+                        <span class="dot"></span>
+                        <button id="edit_bUsers" style="background: green;" class="form_button" type=submit formmethod="post" formaction="/s/{{objectname}}/edit?id={{id}}&action=view">Edit</button>
                     </div>
                 </div>
                 {{/ifCond}}
-                <div style="margin:0px;height: 5px;width: 100%;background:black"></div>
+                <div style="border-bottom-style:dashed;width: 100%;background:white"></div>
                 {{{contentgen uresult}}}
                 <div style="margin:0px;height: 5px;width: 100%;background:black"></div>
                 <!-- Main Section Data-->
-                <div id="loginfo" style="border: 2px solid tan;margin-top: 20px;margin-left: 10px;margin-right: 10px;">
+                <div id="loginfo" class="bigdott" style="margin-top: 20px;margin-left: 10px;margin-right: 10px;margin-bottom: 10px;">
                      <h5 style="text-decoration: underline;padding-top: 10px;padding-bottom: 5px;">Record Log Information</h5>
                     <div id="histoy">
                         <ul>
@@ -96,13 +96,14 @@
                         </ul>
                     </div>
                 </div>
-                <div style="height: 5px;width: 100%;margin-top:5px;background:black"></div>
+                <div style="border-bottom-style:dashed;width: 100%;background:white"></div>
                 {{#ifCond subtabdisplay '!=' 'No'}}
                 <div style="background: white;width: 100%;text-align: center;">
                     <div style="margin-left:40%;text-align: center;background: blue;width: fit-content">
                         <button id="new_bUsers" class="form_button" formmethod="get" formaction="/s/{{objectname}}/new"
                                 style="position: center;background: orangered">New</button>
-                        <button id="edit_bUsers" style="margin-left:10px;background: green;" class="form_button" type=submit formmethod="post" formaction="/s/{{objectname}}/edit?id={{id}}&action=view">Edit</button>
+                        <span class="dot"></span>
+                        <button id="edit_bUsers" style="background: green;" class="form_button" type=submit formmethod="post" formaction="/s/{{objectname}}/edit?id={{id}}&action=view">Edit</button>
                     </div>
                 </div>
                 {{/ifCond}}
@@ -111,17 +112,22 @@
     </div>
 </div>
 
-<div style="height: 5px;width: 100%;background:black"></div>
+<div style="border-bottom-style:dashed;width: 100%;background:white"></div>
+<div style="margin-left: 10px;margin-right: 10px;margin-bottom: 20px;">
 <!--Sub Results-->
 {{#each lookupresults}}
     {{#ifCond this.length '>' 0}}
-        <div style="height: 5px;width: 100%;background:blue;margin-top: 10px;"></div>
-        <h5 style="margin-top: 10px;text-align: center;font-family:Arial,Helvetica,sans-serif ;text-decoration: underline"> {{@key}}</h5>
+        <div class="imgcontainer">
+            <img src="/public/images/buttonbackground.svg" alt="Snow" style="height: 50px;width:250px;">
+            <div class="imgcentered">*   <a href="/s/{{@key}}">{{@key}}</a>  *</div>
+        </div>
+
+       <!-- <h5 style="margin-top: 10px;text-align: center;font-family:Arial,Helvetica,sans-serif ;text-decoration: underline"> {{@key}}</h5>-->
         {{{tablegen this 'Y'}}}
-        <div style="height: 5px;width: 100%;background:blue"></div>
+        <div style="width: 100%;border-bottom: 2px dashed blue;"></div>
     {{/ifCond}}
 {{/each}}
-
+</div>
 <style>
     #histoy > ul {
         width: 100%;

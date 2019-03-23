@@ -85,7 +85,7 @@ passport.use(new LocalStrategy(
         console.log(username);
         console.log(password);
         const db =require('./db');
-        db.query('SELECT id,password,organisationId FROM users where username=? ',[username],function (err,results,fields) {
+        db.query('SELECT id,password,organisationId, FROM users where username=? ',[username],function (err,results,fields) {
             if(err) {done(err)}
             if(results.length===0){
                 done(null,false);
