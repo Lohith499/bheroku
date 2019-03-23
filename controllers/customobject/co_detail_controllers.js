@@ -39,7 +39,7 @@ function pushresults(req,res) {
                 });
             }
 
-            let sql='select * from '+results1[0].TABLE_NAME+' where id='+req.query.id+';';
+            let sql='SELECT t3.*,u.username AS ccreated_By, u1.username AS llastModified_By FROM '+results1[0].TABLE_NAME+' t3 INNER JOIN users u on t3.created_By=u.id LEFT JOIN users u1 ON t3.lastModified_By=u1.username where t3.id='+req.query.id+';';
             db.query(sql,function
                 (error,results,fields){
                 if(error) {
@@ -59,9 +59,20 @@ function pushresults(req,res) {
                 }
                 for (let key in results[0]) {
 
-                    if(key==='created_Date' || key==='created_By' || key==='lastModified_Date' || key==='lastModified_By' || key==='organisationId'){
-                        logresult[key]=results[0][key];
-                        delete results[0][key];
+                    if(key==='ccreated_By' || key==='llastModified_By' || key==='created_Date' || key==='created_By' || key==='lastModified_Date' || key==='lastModified_By' || key==='organisationId'){
+                        if(key==='created_By' || key==='lastModified_By'){
+                            delete results[0][key];
+                        } else {
+                            if(key==='ccreated_By'){
+                                logresult['created_By']=results[0][key];
+                            } else if (key==='llastModified_By'){
+                                logresult['lastModified_By']=results[0][key];
+                            }else {
+                                logresult[key]=results[0][key];
+                            }
+                            delete results[0][key];
+                        }
+
                     }else {
                         fresults.push([key, results[0][key]]);
                     }

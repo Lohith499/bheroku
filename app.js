@@ -254,69 +254,79 @@ hbs.registerHelper('imgicon', function (titleicon) {
 });
 
 
+
 hbs.registerHelper('tablegen', function (results, header) {
     let tabletag='';
+    if(results) {
 
-
-    let content="<thead style='text-align: center'>";
-    if(header==='Y'){
-        if(results.length>0){
-            tabletag="<table id=\"list\" class=\" example table cell-border table-bordered hover\" style=\"width:100%\"> ";
-        } else {
-            tabletag="<table id=\"list\" class=\"table cell-border table-bordered hover\" style=\"width:100%\"> ";
-        }
-
-    }
-    content=tabletag+content;
-    for (let key in results[0]) {
-        if(key==="tablename" || key==='source'){
-        }else {
-            content=content+"<th>"+key+"</th>";
-        }
-    }
-    content=content+"</thead><tbody>";
-    if(results.length>0){
-        results.forEach(function(element) {
-            content=content+"<tr>";
-            for (let key in element) {
-                if(key==="id"){
-                    let url = '<p style="font-weight: bold;text-align: center;font-size: 15px;"><a href="/s/'+element['tablename']+'/details?id='+element[key]+'">'+element[key]+'</a></p>';
-                    content=content+"<td>"+url+"</td>";
-                }else if(key==="target"){
-                    let url = '<p style="font-weight: bold;text-align: center;font-size: 15px;"><button type="button"  value="'+element['target']+'"onclick="post_value(event)">'+element[key]+'</button></p>';
-                    content=content+"<td>"+url+"</td>";
+        let content = "<thead style='text-align: center'>";
+        if (header === 'Y') {
+            if (results) {
+                if (results.length > 0) {
+                    tabletag = "<table id=\"list\" class=\" example table cell-border table-bordered hover\" style=\"width:100%\"> ";
+                } else {
+                    tabletag = "<table id=\"list\" class=\"table cell-border table-bordered hover\" style=\"width:100%\"> ";
                 }
-                else if(key==="tablename"){
 
-                }
-                else if(key==="source"){
-
-                }
-                else {
-                    content=content+"<td>"+element[key]+"</td>";
+            }
+            content = tabletag + content;
+            for (let key in results[0]) {
+                if (key === "tablename" || key === 'source') {
+                } else {
+                    content = content + "<th>" + key + "</th>";
                 }
             }
-            content=content+"</tr>";
-        });
+            content = content + "</thead><tbody>";
+            if (results.length > 0) {
+                results.forEach(function (element) {
+                    content = content + "<tr>";
+                    for (let key in element) {
+                        if (key === "id") {
+                            if(Object.keys(results[0]).includes('target')){
+                                let url = '<p style="font-weight: bold;text-align: center;font-size: 15px;"><a target="_blank"  href="/s/' + element['tablename'] + '/details?id=' + element[key] + '">' + element[key] + '</a></p>';
+                                content = content + "<td>" + url + "</td>";
+                            }else {
+                                let url = '<p style="font-weight: bold;text-align: center;font-size: 15px;"><a href="/s/' + element['tablename'] + '/details?id=' + element[key] + '">' + element[key] + '</a></p>';
+                                content = content + "<td>" + url + "</td>";
+                            }
+
+                        } else if (key === "target") {
+                            let url = '<p style="font-weight: bold;text-align: center;font-size: 15px;"><button type="button"  value="' + element['target'] + '"onclick="post_value(event)">' + element[key] + '</button></p>';
+                            content = content + "<td>" + url + "</td>";
+                        } else if (key === "tablename") {
+
+                        } else if (key === "source") {
+
+                        } else {
+                            content = content + "<td>" + element[key] + "</td>";
+                        }
+                    }
+                    content = content + "</tr>";
+                });
+            } else {
+                content = content + "<tr><td><h3 style='text-align: center'>No Records Available</h3></td></tr>";
+            }
+
+            content = content + "</tbody><tfoot style='text-align: center'>";
+            for (let key in results[0]) {
+                if (key === "tablename" || key === 'source') {
+                } else {
+                    content = content + "<th>" + key + "</th>";
+                }
+            }
+            content = content + "</tfoot>";
+            if (header === 'Y') {
+                tabletag = '</table>';
+            } else {
+                tabletag = '';
+            }
+            content = content + tabletag;
+            return content;
+        }
     }else {
-        content=content+"<tr><td><h3 style='text-align: center'>No Records Available</h3></td></tr>";
+        return '<h5>No Records Available</h5>'
     }
 
-    content=content+"</tbody><tfoot style='text-align: center'>";
-    for (let key in results[0]) {
-        if(key==="tablename" || key==='source'){
-        }else {
-            content=content+"<th>"+key+"</th>";
-        }
-    }
-    content=content+"</tfoot>";
-    if(header==='Y'){
-        tabletag='</table>';
-    }else{
-        tabletag='';
-    }
-    content=content+tabletag;
-    return content;
 });
 
 hbs.registerHelper('contentgen', function (results) {
@@ -419,7 +429,12 @@ hbs.registerHelper('inputgen', function (results) {
             } else if (results[i].field_type.toUpperCase() === 'ENUM'){
                  content1='<div class="form-group"><label>'+results[i].NAME+'<span class="fb-required">*</span></label><span class="tooltips"><img src="/public/images/q1.png" height="15px" width="15px" alt=""><span class="tooltiptexts">Select one value</span></span><select class="form-control" name="'+results[i].field_name+'" value="'+results[i].value+'" required="required" aria-required="true">';
                     for(let j=0;j<results[i].COLUMN_TYPE.length;j++){
-                        content1=content1+'<option value="'+results[i].COLUMN_TYPE[j]+'">'+results[i].COLUMN_TYPE[j]+'</option>';
+                        if(results[i].value===results[i].COLUMN_TYPE[j]){
+                            content1=content1+'<option selected value="'+results[i].COLUMN_TYPE[j]+'">'+results[i].COLUMN_TYPE[j]+'</option>';
+                        }else {
+                            content1=content1+'<option value="'+results[i].COLUMN_TYPE[j]+'">'+results[i].COLUMN_TYPE[j]+'</option>';
+                        }
+
                     }
                 content1=content1+'</select></div>';
             }
@@ -460,7 +475,11 @@ hbs.registerHelper('inputgen', function (results) {
                 else if (results[i].field_type.toUpperCase() === 'ENUM'){
                     content1='<div class="form-group"><label>'+results[i].NAME+'<span class="fb-required">*</span></label><span class="tooltips"><img src="/public/images/q1.png" height="15px" width="15px" alt=""><span class="tooltiptexts">Select one Value</span></span><select class="form-control" name="'+results[i].field_name+'"  value="'+results[i].value+'" required="required" aria-required="true">';
                     for(let j=0;j<results[i].COLUMN_TYPE.length;j++){
-                        content1=content1+'<option value="'+results[i].COLUMN_TYPE[j]+'">'+results[i].COLUMN_TYPE[j]+'</option>';
+                        if(results[i].value===results[i].COLUMN_TYPE[j]){
+                            content1=content1+'<option selected value="'+results[i].COLUMN_TYPE[j]+'">'+results[i].COLUMN_TYPE[j]+'</option>';
+                        }else {
+                            content1=content1+'<option value="'+results[i].COLUMN_TYPE[j]+'">'+results[i].COLUMN_TYPE[j]+'</option>';
+                        }
                     }
                     content1=content1+'</select></div>';
                 }

@@ -112,3 +112,23 @@ a {
 .tooltips:hover .tooltiptexts {
   visibility: visible;
 }
+
+
+.imgcontainer {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.imgcentered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  font-size:22px; font-weight: bold;text-decoration: underline;
+}
+
+.imgcentered a {
+  color: black;
+}

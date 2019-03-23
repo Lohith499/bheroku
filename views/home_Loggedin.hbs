@@ -49,6 +49,9 @@
             </div> <!-- /container -->
 
         {{else}}
+            {{#ifvalue title value="Home Page"}}
+                {{> Cases_Tasks}}
+            {{/ifvalue}}
 
             {{#ifvalue title value="Accounts List"}}
                 {{> accounts_list}}

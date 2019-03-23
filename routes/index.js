@@ -34,12 +34,15 @@ router.get('/', function(req, res, next) {
         res.header("organisation_id",req.user.organisation_Id);
         let s1 = require('../controllers/homepage/homepage_menus');
         s1.popresults(req, res,function(){
-            res.render('home_Loggedin',
+            /*res.render('home_Loggedin',
                 {
                     standard_menu: req.user.standard_menu,
                     custom_menu:req.user.custom_menu,
                     title: "Home_LoggedIn"
                 });
+            return;*/
+            let s2 = require('../controllers/homepage/cases_tasks_list_controllers');
+            s2.popresults(req, res);
             return;
         });
 

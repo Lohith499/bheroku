@@ -19,6 +19,7 @@ function pushresults(req,res) {
             isqlData.push(c);
         }
     }
+    isqlData.push([req.query.id, req.user.user_id, req.user.organisation_Id, 'id']);
     console.log(isqlData);
     const  db=require('../../db.js');
     let delsql='DELETE FROM lookups WHERE lookups.object_id='+req.query.id+' AND lookups.organisationId=\''+req.user.organisation_Id+'\' ';

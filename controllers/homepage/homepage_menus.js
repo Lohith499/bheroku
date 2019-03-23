@@ -25,10 +25,6 @@ function popresults(req,res,callback) {
                     custom_menu.push(results[i].name);
                 }
             }
-            standard_menu.push('More1');
-            standard_menu.push('More2');
-            standard_menu.push('More3');
-            standard_menu.push('More4');
             req.user.standard_menu=standard_menu;
             req.user.custom_menu=custom_menu;
             return callback();
@@ -41,8 +37,6 @@ function setValue(value,callback) {
     console.log("somevar:"+someVar);
     callback();
 }
-
-
 
 module.exports.popresults = popresults;
 

@@ -55,7 +55,7 @@ function popresults(req,res) {
                         lookupset:lookupset,
                         returnTo: req.query.returnTo,
                         title: "Lookups Search",
-                        values: "Lohith"
+                        values: searchstring
                     });
                 return;
             }
@@ -81,6 +81,11 @@ function popresults(req,res) {
                     }
                     res.render('error', { title: 'ObjectFields' , messgae : "Error while fetching data from CustomScripts table", id : req.query.id, error : error});
                     return;
+                }
+                if(searchresults){
+                    for(let i=0;i<searchresults.length;i++){
+                        searchresults[i]['tablename']=objectname;
+                    }
                 }
                 console.log(JSON.stringify(searchresults));
                 res.render('lookups_list',

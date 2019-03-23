@@ -112,12 +112,14 @@
 </div>
 
 <div style="height: 5px;width: 100%;background:black"></div>
-
+<!--Sub Results-->
 {{#each lookupresults}}
-    <div style="height: 5px;width: 100%;background:blue;margin-top: 10px;"></div>
-    <h5 style="margin-top: 10px;text-align: center;font-family:Arial,Helvetica,sans-serif ;text-decoration: underline"> {{@key}}</h5>
-    {{{tablegen this 'Y'}}}
-    <div style="height: 5px;width: 100%;background:blue"></div>
+    {{#ifCond this.length '>' 0}}
+        <div style="height: 5px;width: 100%;background:blue;margin-top: 10px;"></div>
+        <h5 style="margin-top: 10px;text-align: center;font-family:Arial,Helvetica,sans-serif ;text-decoration: underline"> {{@key}}</h5>
+        {{{tablegen this 'Y'}}}
+        <div style="height: 5px;width: 100%;background:blue"></div>
+    {{/ifCond}}
 {{/each}}
 
 <style>
