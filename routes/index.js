@@ -563,7 +563,7 @@ router.post('/setup', authenticationMiddleware(),function(req, res, next) {
 
 router.get('/login', function(req, res, next) {
     res.render('login', { title: 'Login' });
-    return
+    return;
 });
 
 
@@ -574,7 +574,6 @@ router.post('/login' , passport.authenticate(
      successRedirect: '/',
      failureRedirect: '/login'
     })
-    return;
 );
 
 
