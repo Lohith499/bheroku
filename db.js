@@ -1,10 +1,10 @@
 var mysql = require('mysql')
 var connection = mysql.createConnection({
   host: 'db4free.net',
-  user: lohith499,
+  user: 'lohith499',
   port:3306,
-  password: lohith499,
-  database : express
+  password: 'lohith499',
+  database : 'express'
 })
 
 
