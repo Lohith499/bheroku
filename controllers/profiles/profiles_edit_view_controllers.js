@@ -3,7 +3,7 @@ var someVar = [];
 function edit_view_results(req,res) {
 
 
-    dbu.query('SELECT id,name FROM profiles where id =?;',[req.query.id], function(err, results){
+    dbu.query('SELECT id,Profile_Name FROM profiles where id =?;',[req.query.id], function(err, results){
         if(err) {
             throw err;
         } else {

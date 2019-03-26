@@ -29,9 +29,11 @@
                     </li>
 
                     {{#if isAuthenticated}}
+                        {{#if isAdmin}}
                     <li class="nav-item">
                         <a class="nav-link" href="/setup">Setup</a>
                     </li>
+                            {{/if}}
                     <li class="nav-item">
                         <a class="nav-link" href="/logout">Logout</a>
                     </li>

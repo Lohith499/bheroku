@@ -94,9 +94,9 @@ function pushresults(req,res) {
                     }
                 }
 
-                
+
                 //Lookup data
-                let lookupObfsql='SELECT ob.TABLE_NAME,obf.field_name AS lookupField,ob.NAME,obf1.field_name FROM objects_fields obf INNER JOIN objects ob ON ob.id=obf.object_id INNER JOIN objects_fields obf1 ON obf1.object_id=ob.id WHERE obf.lookup="'+objectname+'" AND obf.organisationId=\''+req.user.organisation_Id+'\' AND obf1.showinlist=\'Y\' ORDER BY ob.name,obf1.id;';
+                let lookupObfsql='SELECT ob.TABLE_NAME,obf.field_name AS lookupField,ob.NAME,obf1.field_name FROM objects_fields obf INNER JOIN objects ob ON ob.id=obf.object_id INNER JOIN objects_fields obf1 ON obf1.object_id=ob.id WHERE obf.lookup="'+objectname+'" AND (ob.organisationId=\''+req.user.organisation_Id+'\' or ob.organisationId=\'\' or ob.organisationId IS NULL) AND obf1.showinlist=\'Y\' ORDER BY ob.name,obf1.id;';
                 db.query(lookupObfsql,obj_id,function (error,lookupObfsql_results) {
                     if(error) {
                         console.log('error:'+ error.sqlMessage);

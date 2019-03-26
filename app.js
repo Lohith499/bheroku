@@ -73,6 +73,17 @@ app.use(passport.session());
 
 app.use(function (req,res,next) {
    res.locals.isAuthenticated=req.isAuthenticated();
+   if(req.hasOwnProperty('user')){
+       if(req.user.hasOwnProperty("is_Admin")) {
+           if(req.user.is_Admin===1)
+           res.locals.isAdmin = true;
+       }else {
+           res.locals.isAdmin=false;
+       }
+   }
+   else {
+       res.locals.isAdmin=false;
+   }
    next();
 });
 
@@ -85,7 +96,7 @@ passport.use(new LocalStrategy(
         console.log(username);
         console.log(password);
         const db =require('./db');
-        db.query('SELECT id,password,organisationId, FROM users where username=? ',[username],function (err,results,fields) {
+        db.query('SELECT id,password,organisationId,Profile_Name FROM users where username=? ',[username],function (err,results,fields) {
             if(err) {done(err)}
             if(results.length===0){
                 done(null,false);
@@ -96,7 +107,7 @@ passport.use(new LocalStrategy(
                 bcrypt.compare(password,hash,function (err,response) {
                     if(response===true){
                         console.log('hash pass');
-                        return done(null,{user_id: results[0].id, organisation_Id : results[0].organisationId});
+                        return done(null,{user_id: results[0].id, organisation_Id : results[0].organisationId, is_Admin : results[0].Profile_Name });
                     }else {
                         console.log('hash fail');
                         return done(null,false);

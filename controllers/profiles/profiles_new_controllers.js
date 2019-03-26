@@ -10,11 +10,11 @@ function pushresults(req,res) {
 
     console.log(noticia);
 
-    req.checkBody('profilename', 'Username field cannot be empty.').notEmpty();
-    req.checkBody('profilename', 'Username must be between 4-30 characters long.').len(4, 30);
+    req.checkBody('profile_Name', 'Username field cannot be empty.').notEmpty();
+    req.checkBody('profile_Name', 'Username must be between 4-30 characters long.').len(4, 30);
 
 // Additional validation to ensure username is alphanumeric with underscores and dashes
-    req.checkBody('profilename', 'Username can only contain letters, numbers, or underscores.').matches(/^[A-Za-z0-9_-]+$/, 'i');
+    req.checkBody('profile_Name', 'Username can only contain letters, numbers, or underscores.').matches(/^[A-Za-z0-9_-]+$/, 'i');
 
     const errors= req.validationErrors();
 
@@ -27,7 +27,7 @@ function pushresults(req,res) {
     const profilename=req.body.profilename;
     console.log('requet user id = '+req.user.user_id);
     const  db=require('../../db.js');
-        db.query('INSERT INTO profiles (name,organisationId,type,created_By) VALUES (?,?,"Custom",?)',[profilename,req.user.organisation_Id,req.user.user_id], function
+        db.query('INSERT INTO profiles (Profile_Name,organisationId,type,created_By) VALUES (?,?,"Custom",?)',[profilename,req.user.organisation_Id,req.user.user_id], function
             (error,results,fields){
             if(error) {
                 console.log('error:'+ error.sqlMessage);

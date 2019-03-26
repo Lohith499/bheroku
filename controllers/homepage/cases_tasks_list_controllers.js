@@ -5,7 +5,7 @@ function popresults(req,res) {
     let cases_results=[];
     let tasks_results=[];
     let ourl=req.originalUrl.split('/');
-    let objectname='Cases';
+    let objectname='cases';
     let sql='SELECT obf.field_name,ob.NAME, ob.table_name FROM objects_fields obf\n' +
         '      INNER JOIN objects ob ON obf.object_id=ob.id \n' +
         '      LEFT JOIN information_schema.`COLUMNS` ic  on ic.TABLE_NAME=ob.TABLE_NAME AND obf.field_name=ic.COLUMN_NAME \n' +
@@ -38,7 +38,7 @@ function popresults(req,res) {
                 return;
             }
              else {
-            let tablename=fresults[0].table_name;
+            let tablename=fresults[0].table_name.toLowerCase();
             let fsql = '';
             for (let i=0;i<fresults.length;i++){
                 fsql=fsql+fresults[i].field_name+',';
@@ -61,7 +61,7 @@ function popresults(req,res) {
                     console.log("Cases");
                     console.log(JSON.stringify(cases_results))
 //***********************
-                    let objectname='Tasks';
+                    let objectname='tasks';
                     let sql='SELECT obf.field_name,ob.NAME, ob.table_name FROM objects_fields obf\n' +
                         '      INNER JOIN objects ob ON obf.object_id=ob.id \n' +
                         '      LEFT JOIN information_schema.`COLUMNS` ic  on ic.TABLE_NAME=ob.TABLE_NAME AND obf.field_name=ic.COLUMN_NAME \n' +
@@ -94,7 +94,7 @@ function popresults(req,res) {
                             return;
                         }
                         else {
-                            let tablename=ftresults[0].table_name;
+                            let tablename=ftresults[0].table_name.toLowerCase();
                             let fsql = '';
                             for (let i=0;i<ftresults.length;i++){
                                 fsql=fsql+ftresults[i].field_name+',';

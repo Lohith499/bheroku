@@ -8,9 +8,9 @@ function editresults(req,res) {
 
     console.log(noticia);
 
-    req.checkBody('username', 'Username field cannot be empty.').notEmpty();
-    req.checkBody('username', 'Username must be between 4-15 characters long.').len(4, 30);
-    req.checkBody('username', 'Username can only contain letters, numbers, or underscores.').matches(/^[A-Za-z0-9_-]+$/, 'i');
+    req.checkBody('Profile_Name', 'Profile_Name field cannot be empty.').notEmpty();
+    req.checkBody('Profile_Name', 'Profile_Name must be between 4-15 characters long.').len(4, 30);
+    req.checkBody('Profile_Name', 'Profile_Name can only contain letters, numbers, or underscores.').matches(/^[A-Za-z0-9_-]+$/, 'i');
 
     const errors= req.validationErrors();
 
@@ -21,10 +21,10 @@ function editresults(req,res) {
     }
 
 
-    const username=req.body.username;
+    const Profile_Name=req.body.Profile_Name;
     const id=req.query.id;
     const  db=require('../../db.js');
-    db.query('Update profiles set name=?,lastModified_By=? where id=?',[username,req.user.user_id,id], function
+    db.query('Update profiles set Profile_Name=?,lastModified_By=? where id=?',[Profile_Name,req.user.user_id,id], function
         (error,results,fields){
         //if(error) throw error;
         if(error){

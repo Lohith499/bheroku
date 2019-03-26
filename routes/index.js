@@ -68,6 +68,24 @@ router.get('/s/accounts', authenticationMiddleware(),function(req, res, next) {
     });
 });
 
+router.post('/s/cases/edit/', authenticationMiddleware(),function(req, res, next) {
+    console.log('Accounts Edit');
+    let s1 = require('../controllers/homepage/homepage_menus');
+    s1.popresults(req, res,function(){
+        if(req.query.action==='view'){
+            let s2 = require('../controllers/cases/cases_edit_view_controllers');
+            s2.pushresults(req, res);
+            return;
+        } else if(req.query.action==='save'){
+            let s2 = require('../controllers/customobject/co_edit_controllers');
+            s2.pushresults(req, res);
+            return;
+
+        }else {
+            res.redirect("/");
+        }
+    });
+});
 
 router.get(/\/s\/.*\/list/, authenticationMiddleware(),function(req, res, next) {
     console.log(req.user);
@@ -200,68 +218,95 @@ router.post(/\/s\/.*\/new/, authenticationMiddleware(),function(req, res, next) 
 
 
 router.get('/setup', authenticationMiddleware(),function(req, res, next) {
+    if(req.user.is_Admin===1){
     console.log(req.user);
     console.log(req.isAuthenticated());
     res.header("organisation_id",req.user.organisation_Id);
     res.render('setup', { title: 'Setup' });
+    } else {
+        res.render('error',{title:'Objects New', message : "You Dont have access to Setup Page"});
+        return;
+    }
 });
 
 
 //Users Home page
 router.get('/setup/bUsers', authenticationMiddleware(),function(req, res, next) {
+    if(req.user.is_Admin===1) {
         console.log("Users Index");
         let s1 = require('../controllers/users/users_list_controllers');
         s1.popresults(req, res);
+    }else {
+        res.render('error',{title:'Objects New', message : "You Dont have access to Setup Page"});
+        return;
+    }
 });
 
 
 //Users List,Detail,New,Edit Actions
 router.get('/setup/bUsers/:actionperform', authenticationMiddleware(),function(req, res, next) {
-    console.log("Users Index");
-   // let pattern = /^details\?[a-z0-9]/g;
+    if(req.user.is_Admin===1) {
 
-    console.log("action performed"+req.params.actionperform);
-    if(req.params.actionperform==="list"){
-        console.log("redirecting to users list");
-        return res.redirect('/setup/bUsers');
-    } else if(req.params.actionperform==='new'){
-        res.header("organisation_id",+ req.user.organisation_Id);
-        console.log("Users New");
-        res.render('setup', { title: 'Users New' });
-    }else if(req.params.actionperform==='details'){
-          console.log("Users Detail of " + req.query.id);
-          let s1 = require('../controllers/users/users_detail_controllers');
-          s1.detailresults(req, res);
-    }else if(req.params.actionperform==='edit'){
-        console.log("Users Edit");
-        res.render('setup', { title: 'Users Edit' });
-    } else {
-        res.render('setup', { title: 'Setup Post' });
+        console.log("Users Index");
+        // let pattern = /^details\?[a-z0-9]/g;
+
+        console.log("action performed" + req.params.actionperform);
+        if (req.params.actionperform === "list") {
+            console.log("redirecting to users list");
+            return res.redirect('/setup/bUsers');
+        } else if (req.params.actionperform === 'new') {
+            res.header("organisation_id", +req.user.organisation_Id);
+            console.log("Users New");
+            res.render('setup', {title: 'Users New'});
+        } else if (req.params.actionperform === 'details') {
+            console.log("Users Detail of " + req.query.id);
+            let s1 = require('../controllers/users/users_detail_controllers');
+            s1.detailresults(req, res);
+        } else if (req.params.actionperform === 'edit') {
+            console.log("Users Edit");
+            res.render('setup', {title: 'Users Edit'});
+        } else {
+            res.render('setup', {title: 'Setup Post'});
+        }
+    }else {
+        res.render('error',{title:'Objects New', message : "You Dont have access to Setup Page"});
+        return;
     }
 });
 
 
 //Users Post New Record
 router.post('/setup/bUsers/new', authenticationMiddleware(),function(req, res, next) {
-    console.log("Users Submiting post");
-    console.log(req.isAuthenticated());
-    console.log(JSON.stringify(req.body));
-    let s1 = require('../controllers/users/users_new_controllers');
-    s1.pushresults(req, res);
+    if(req.user.is_Admin===1) {
+        console.log("Users Submiting post");
+
+        console.log(req.isAuthenticated());
+        console.log(JSON.stringify(req.body));
+        let s1 = require('../controllers/users/users_new_controllers');
+        s1.pushresults(req, res);
+    }else {
+        res.render('error',{title:'Objects New', message : "You Dont have access to Setup Page"});
+        return;
+    }
 });
 
 //Users Post Edit Record
 router.post('/setup/bUsers/edit', authenticationMiddleware(),function(req, res, next) {
-    console.log("Users Editing post");
-    if (req.query.action==="view"){
-        let s1 = require('../controllers/users/users_edit_view_controllers');
-        s1.edit_view_results(req, res);
-    }else if(req.query.action==="save"){
-        console.log("saving result");
-        let s1 = require('../controllers/users/users_edit_controllers');
-        s1.editresults(req,res);
-    } else {
-        res.render('setup', { title: 'Users List' });
+    if (req.user.is_Admin === 1) {
+        console.log("Users Editing post");
+        if (req.query.action === "view") {
+            let s1 = require('../controllers/users/users_edit_view_controllers');
+            s1.edit_view_results(req, res);
+        } else if (req.query.action === "save") {
+            console.log("saving result");
+            let s1 = require('../controllers/users/users_edit_controllers');
+            s1.editresults(req, res);
+        } else {
+            res.render('setup', {title: 'Users List'});
+        }
+    }else {
+        res.render('error',{title:'Objects New', message : "You Dont have access to Setup Page"});
+        return;
     }
 });
 
@@ -272,59 +317,79 @@ router.post('/setup/bUsers/edit', authenticationMiddleware(),function(req, res, 
 
 //Profiles Home page
 router.get('/setup/profiles', authenticationMiddleware(),function(req, res, next) {
-    console.log("profiles Index");
-    let s1 = require('../controllers/profiles/profiles_list_controllers');
-    s1.popresults(req, res);
+    if (req.user.is_Admin === 1) {
+        console.log("profiles Index");
+        let s1 = require('../controllers/profiles/profiles_list_controllers');
+        s1.popresults(req, res);
+    }else {
+        res.render('error',{title:'Objects New', message : "You Dont have access to Setup Page"});
+        return;
+    }
 });
 
 
 //Profiles List,Detail,New,Edit Actions
 router.get('/setup/profiles/:actionperform', authenticationMiddleware(),function(req, res, next) {
-    console.log("Profiles Index");
-    // let pattern = /^details\?[a-z0-9]/g;
+    if (req.user.is_Admin === 1) {
+        console.log("Profiles Index");
+        // let pattern = /^details\?[a-z0-9]/g;
 
-    console.log("action performed"+req.params.actionperform);
-    if(req.params.actionperform==="list"){
-        console.log("redirecting to profiles list");
-        return res.redirect('/setup/profiles');
-    } else if(req.params.actionperform==='new'){
-        res.header("organisation_id",+ req.user.organisation_Id);
-        console.log("redirecting to profiles new");
-        res.render('setup', { title: 'Profiles New' });
-    }else if(req.params.actionperform==='details'){
-        console.log("Profiles Detail of " + req.query.id);
-        let s1 = require('../controllers/profiles/profiles_detail_controllers');
-        s1.detailresults(req, res);
-    }else if(req.params.actionperform==='edit'){
-        console.log("Profiles Edit");
-        res.render('setup', { title: 'Profiles Edit' });
-    } else {
-        res.render('setup', { title: 'Setup Post' });
+        console.log("action performed" + req.params.actionperform);
+        if (req.params.actionperform === "list") {
+            console.log("redirecting to profiles list");
+            return res.redirect('/setup/profiles');
+        } else if (req.params.actionperform === 'new') {
+            res.header("organisation_id", +req.user.organisation_Id);
+            console.log("redirecting to profiles new");
+            res.render('setup', {title: 'Profiles New'});
+        } else if (req.params.actionperform === 'details') {
+            console.log("Profiles Detail of " + req.query.id);
+            let s1 = require('../controllers/profiles/profiles_detail_controllers');
+            s1.detailresults(req, res);
+        } else if (req.params.actionperform === 'edit') {
+            console.log("Profiles Edit");
+            res.render('setup', {title: 'Profiles Edit'});
+        } else {
+            res.render('setup', {title: 'Setup Post'});
+        }
+    }else {
+        res.render('error',{title:'Objects New', message : "You Dont have access to Setup Page"});
+        return;
     }
 });
 
 
 //Profiles Post New Record
 router.post('/setup/profiles/new', authenticationMiddleware(),function(req, res, next) {
-    console.log("Profiles Submitting new post");
-    console.log(req.isAuthenticated());
-    console.log(JSON.stringify(req.body));
-    let s1 = require('../controllers/profiles/profiles_new_controllers');
-    s1.pushresults(req, res);
+    if (req.user.is_Admin === 1) {
+        console.log("Profiles Submitting new post");
+        console.log(req.isAuthenticated());
+        console.log(JSON.stringify(req.body));
+        let s1 = require('../controllers/profiles/profiles_new_controllers');
+        s1.pushresults(req, res);
+    }else {
+        res.render('error',{title:'Objects New', message : "You Dont have access to Setup Page"});
+        return;
+    }
 });
 
 //Profiles Post Edit Record
 router.post('/setup/profiles/edit', authenticationMiddleware(),function(req, res, next) {
-    console.log("Profiles Editing post");
-    if (req.query.action==="view"){
-        let s1 = require('../controllers/profiles/profiles_edit_view_controllers');
-        s1.edit_view_results(req, res);
-    }else if(req.query.action==="save"){
-        console.log("saving profile edit result");
-        let s1 = require('../controllers/profiles/profiles_edit_controllers');
-        s1.editresults(req,res);
-    } else {
-        res.render('setup', { title: 'Profiles List' });
+    if (req.user.is_Admin === 1) {
+        console.log("Profiles Editing post");
+        if (req.query.action === "view") {
+            let s1 = require('../controllers/profiles/profiles_edit_view_controllers');
+            s1.edit_view_results(req, res);
+        } else if (req.query.action === "save") {
+            console.log("saving profile edit result");
+            let s1 = require('../controllers/profiles/profiles_edit_controllers');
+            s1.editresults(req, res);
+        } else {
+            res.render('setup', {title: 'Profiles List'});
+        }
+    }else {
+        res.render('error',{title:'Objects New', message : "You Dont have access to Setup Page"});
+        return;
     }
 });
 
@@ -335,59 +400,79 @@ router.post('/setup/profiles/edit', authenticationMiddleware(),function(req, res
 
 //Objects Home page
 router.get('/setup/objects', authenticationMiddleware(),function(req, res, next) {
-    console.log("objects Index");
-    let s1 = require('../controllers/objects/objects_list_controllers');
-    s1.popresults(req, res);
+    if (req.user.is_Admin === 1) {
+        console.log("objects Index");
+        let s1 = require('../controllers/objects/objects_list_controllers');
+        s1.popresults(req, res);
+    }else {
+        res.render('error',{title:'Objects New', message : "You Dont have access to Setup Page"});
+        return;
+    }
 });
 
 
 //Objects List,Detail,New,Edit Actions
 router.get('/setup/objects/:actionperform', authenticationMiddleware(),function(req, res, next) {
-    console.log("Objects Index");
-    // let pattern = /^details\?[a-z0-9]/g;
+    if (req.user.is_Admin === 1) {
+        console.log("Objects Index");
+        // let pattern = /^details\?[a-z0-9]/g;
 
-    console.log("action performed"+req.params.actionperform);
-    if(req.params.actionperform==="list"){
-        console.log("redirecting to objects list");
-        return res.redirect('/setup/objects');
-    } else if(req.params.actionperform==='new'){
-        res.header("organisation_id",+ req.user.organisation_Id);
-        console.log("redirecting to objects new");
-        res.render('setup', { title: 'Objects New' });
-    }else if(req.params.actionperform==='details'){
-        console.log("Objects Detail of " + req.query.id);
-        let s1 = require('../controllers/objects/objects_detail_controllers');
-        s1.detailresults(req, res);
-    }else if(req.params.actionperform==='edit'){
-        console.log("Objects Edit");
-        res.render('setup', { title: 'Objects Edit' });
-    } else {
-        res.render('setup', { title: 'Setup Post' });
+        console.log("action performed" + req.params.actionperform);
+        if (req.params.actionperform === "list") {
+            console.log("redirecting to objects list");
+            return res.redirect('/setup/objects');
+        } else if (req.params.actionperform === 'new') {
+            res.header("organisation_id", +req.user.organisation_Id);
+            console.log("redirecting to objects new");
+            res.render('setup', {title: 'Objects New'});
+        } else if (req.params.actionperform === 'details') {
+            console.log("Objects Detail of " + req.query.id);
+            let s1 = require('../controllers/objects/objects_detail_controllers');
+            s1.detailresults(req, res);
+        } else if (req.params.actionperform === 'edit') {
+            console.log("Objects Edit");
+            res.render('setup', {title: 'Objects Edit'});
+        } else {
+            res.render('setup', {title: 'Setup Post'});
+        }
+    }else {
+        res.render('error',{title:'Objects New', message : "You Dont have access to Setup Page"});
+        return;
     }
 });
 
 
 //Objects Post New Record
 router.post('/setup/objects/new', authenticationMiddleware(),function(req, res, next) {
-    console.log("Objects Submitting new post");
-    console.log(req.isAuthenticated());
-    console.log(JSON.stringify(req.body));
-    let s1 = require('../controllers/objects/objects_new_controllers');
-    s1.pushresults(req, res);
+    if (req.user.is_Admin === 1) {
+        console.log("Objects Submitting new post");
+        console.log(req.isAuthenticated());
+        console.log(JSON.stringify(req.body));
+        let s1 = require('../controllers/objects/objects_new_controllers');
+        s1.pushresults(req, res);
+    }else {
+        res.render('error',{title:'Objects New', message : "You Dont have access to Setup Page"});
+        return;
+    }
 });
 
 //Objects Post Edit Record
 router.post('/setup/objects/edit', authenticationMiddleware(),function(req, res, next) {
-    console.log("Objects Editing post");
-    if (req.query.action==="view"){
-        let s1 = require('../controllers/objects/objects_edit_view_controllers');
-        s1.edit_view_results(req, res);
-    }else if(req.query.action==="save"){
-        console.log("saving profile edit result");
-        let s1 = require('../controllers/objects/objects_edit_controllers');
-        s1.editresults(req,res);
-    } else {
-        res.render('setup', { title: 'Setup Post' });
+    if (req.user.is_Admin === 1) {
+        console.log("Objects Editing post");
+        if (req.query.action === "view") {
+            let s1 = require('../controllers/objects/objects_edit_view_controllers');
+            s1.edit_view_results(req, res);
+        } else if (req.query.action === "save") {
+            console.log("saving profile edit result");
+            let s1 = require('../controllers/objects/objects_edit_controllers');
+            s1.editresults(req, res);
+        } else {
+            res.render('setup', {title: 'Setup Post'});
+        }
+    }else {
+        res.render('error',{title:'Objects New', message : "You Dont have access to Setup Page"});
+        return;
     }
 });
 
@@ -398,45 +483,60 @@ router.post('/setup/objects/edit', authenticationMiddleware(),function(req, res,
 //Objects Fields
 
 router.post('/setup/objects/objectfields/:actionperform', authenticationMiddleware(),function(req, res, next) {
-    console.log("Object fields Index");
-   if(req.params.actionperform==='new' && req.query.action==="view"){
+    if (req.user.is_Admin === 1) {
+        console.log("Object fields Index");
+        if (req.params.actionperform === 'new' && req.query.action === "view") {
 
-       let s1 = require('../controllers/object_fields/objectfields_new_view_controllers');
-       s1.pushresults(req,res);
+            let s1 = require('../controllers/object_fields/objectfields_new_view_controllers');
+            s1.pushresults(req, res);
 
-    } else if(req.params.actionperform==='new' && req.query.action==="save"){
-       let s1 = require('../controllers/object_fields/objectfields_new_controllers');
-       s1.pushresults(req,res);
+        } else if (req.params.actionperform === 'new' && req.query.action === "save") {
+            let s1 = require('../controllers/object_fields/objectfields_new_controllers');
+            s1.pushresults(req, res);
+        } else {
+            res.render('setup', {title: 'Setup Post'});
+        }
     }else {
-        res.render('setup', { title: 'Setup Post' });
+        res.render('error',{title:'Objects New', message : "You Dont have access to Setup Page="+req.user.is_Admin});
+        return;
     }
 });
 
 //Custom Scripts
 
 router.post('/setup/objects/customscripts/:actionperform', authenticationMiddleware(),function(req, res, next) {
-    console.log("Object fields Index");
-    if(req.params.actionperform==='new' && req.query.action==="view"){
-        let s1 = require('../controllers/customScripts/customscript_new_view_controllers');
-        s1.pushresults(req,res);
-    } else if(req.params.actionperform==='new' && req.query.action==="save"){
-        let s1 = require('../controllers/customScripts/customscript_new_controllers');
-        s1.pushresults(req,res);
+    if (req.user.is_Admin === 1) {
+        console.log("Object fields Index");
+        if (req.params.actionperform === 'new' && req.query.action === "view") {
+            let s1 = require('../controllers/customScripts/customscript_new_view_controllers');
+            s1.pushresults(req, res);
+        } else if (req.params.actionperform === 'new' && req.query.action === "save") {
+            let s1 = require('../controllers/customScripts/customscript_new_controllers');
+            s1.pushresults(req, res);
+        } else {
+            res.render('setup', {title: 'Setup Post'});
+        }
     }else {
-        res.render('setup', { title: 'Setup Post' });
+        res.render('error',{title:'Objects New', message : "You Dont have access to Setup Page"});
+        return;
     }
 });
 
 router.post('/setup/objects/lookups/:actionperform', authenticationMiddleware(),function(req, res, next) {
-    console.log("Object fields Index");
-    if(req.params.actionperform==='new' && req.query.action==="view"){
-        let s1 = require('../controllers/object_lookups/objlookup_new_view_controllers');
-        s1.pushresults(req,res);
-    } else if(req.params.actionperform==='new' && req.query.action==="save"){
-        let s1 = require('../controllers/object_lookups/objlookup_new_controllers');
-        s1.pushresults(req,res);
+    if (req.user.is_Admin === 1) {
+        console.log("Object fields Index");
+        if (req.params.actionperform === 'new' && req.query.action === "view") {
+            let s1 = require('../controllers/object_lookups/objlookup_new_view_controllers');
+            s1.pushresults(req, res);
+        } else if (req.params.actionperform === 'new' && req.query.action === "save") {
+            let s1 = require('../controllers/object_lookups/objlookup_new_controllers');
+            s1.pushresults(req, res);
+        } else {
+            res.render('setup', {title: 'Setup Post'});
+        }
     }else {
-        res.render('setup', { title: 'Setup Post' });
+        res.render('error',{title:'Objects New', message : "You Dont have access to Setup Page"});
+        return;
     }
 });
 
@@ -445,13 +545,18 @@ router.post('/setup/objects/lookups/:actionperform', authenticationMiddleware(),
 
 
 router.post('/setup', authenticationMiddleware(),function(req, res, next) {
-    console.log("setup post");
-    console.log(req.isAuthenticated());
-    var noticia = req.body;
-    console.log(noticia);
-    //console.log(e.target.getAttribute('id'));
-   // var so =require('../controllers/setup_organisation');
-    res.render('setup', { title: 'Setup Post' });
+    if (req.user.is_Admin === 1) {
+        console.log("setup post");
+        console.log(req.isAuthenticated());
+        var noticia = req.body;
+        console.log(noticia);
+        //console.log(e.target.getAttribute('id'));
+        // var so =require('../controllers/setup_organisation');
+        res.render('setup', {title: 'Setup Post'});
+    }else {
+        res.render('error',{title:'Objects New', message : "You Dont have access to Setup Page"});
+        return;
+    }
 });
 
 

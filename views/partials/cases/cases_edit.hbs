@@ -1,0 +1,109 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    function myFunction(){
+        let standardFields={{{JSONfetch standardFields}}};
+        let tasks ={{{JSONfetch tasks}}};
+        console.log(JSON.stringify(tasks));
+        console.log(JSON.stringify(standardFields));
+        let validationstatus=true;
+        let message='';
+        {{{customscript}}}
+        if(validationstatus==true){
+        document.getElementById("submitform").submit();
+        }else {
+            document.getElementById("formerror").innerHTML=message;
+            document.getElementById("formerror").style.display='block';
+        }
+    }
+</script>
+
+<div class="Maintitle" style="margin : 10px;border-bottom: black;border-bottom-width: 5px">
+    <table>
+        <tr>
+            {{{imgicon title}}}
+            <td><h4 style="text-decoration-line: underline">{{objectname}}</h4></td></tr></td>
+    </table>
+
+</div>
+{{#if errors}}
+    {{#each errors}}
+        <div class="alert alert-danger" role="alert">
+            <strong style="text-transform: uppercase;">{{this.param}}</strong> {{this.msg}}
+        </div>
+    {{/each}}
+{{/if}}
+{{#if error}}
+    <div class="alert alert-danger" role="alert">
+        <strong style="text-transform: uppercase;">Error : </strong> {{error.sqlMessage}}
+    </div>
+{{/if}}
+<spam name="formerror" id="formerror" value="Error" style="display: none">Error</spam>
+<h2> Cases Edit Lohith</h2>
+<form id="submitform" method="post" action="/s/{{objectname}}/edit?id={{id}}&action=save">
+    {{#ifCond standardFields.length '>=' 1 }}
+    <h3 style="text-decoration-line: underline;text-align: center"> Standard Fields </h3>
+
+    <table id="accounts_form" style="width: 100%" >
+            {{{inputgen standardFields}}}
+    </table>
+    {{/ifCond}}
+    {{#ifCond standardFields.length '>' 0 }}
+       {{#ifCond customFields.length '>=' 1 }}
+            <h3 style="padding-top:20px;text-decoration-line: underline;text-align: center"> Custom Fields </h3>
+       {{/ifCond}}
+    {{/ifCond}}
+
+       {{#ifCond customFields.length '>=' 1 }}
+        <table id="accounts_form" style="width: 100%">
+            {{{inputgen customFields}}}
+        </table>
+   {{/ifCond}}
+    <div style="margin: 10px;text-align: center">
+    <button type="button" onclick="myFunction()" class="btn btn-success">Save</button>
+
+    <button type="reset" class="btn btn-danger">Reset</button>
+    <button type="button" class="btn btn-danger" onclick="history.go(-1);">Cancel</button>
+    </div>
+</form>
+{{#ifCond customscript.length '>' 0 }}
+<p>custom script on this page</p>
+<p> {{customscript}}</p>
+{{else}}
+    <p><b>Note:</b>No custom script on this page</p>
+{{/ifCond}}
+
+<style>
+    #accounts_form td{
+        padding-left: 10px;
+        padding-right: 10px;
+        background: aqua;
+        border-radius: 20px;
+        border-left: 5px solid white;
+        border-right: 5px solid white;
+    }
+    table#accounts_form tr{
+        border-top: 5px solid white;
+
+    }
+    #accounts_form td label {
+        padding-top: 2px;
+        padding-right: 4px;
+        padding-left: 4px;
+        background:dodgerblue;
+        border-radius: 10px;
+        text-transform:uppercase;
+        font-weight: bold;
+        color: black;
+        min-width: 50px;
+        height: 35px;
+        border-bottom: 3px solid black;
+        border-right: 2px solid white;
+        border-left: 1px solid black;
+        border-top: 1px solid white;
+    }
+    .fb-required{
+        color: red;
+        padding-left: 2px;
+    }
+
+</style>
