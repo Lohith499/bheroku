@@ -33,7 +33,7 @@ npm-debug.log
 *.map
 
 # Local env file with credentials
-.env
+
 
 # Yarn
 .yarn
