@@ -12,7 +12,7 @@ const { document } = window;
 // Also set global window and document before requiring jQuery
 global.window = window;
 global.document = document;
-const $ = global.jQuery = require( 'jquery' );
+//const $ = global.jQuery = require( 'jquery' );
 
 //**************
 
