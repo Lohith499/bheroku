@@ -47,6 +47,7 @@ router.get('/', function(req, res, next) {
         });
 
     } else {
+
         res.render('home_Loggedout', { title: 'home_Loggedout' });
         console.log("not yet logged in");
     }
@@ -562,7 +563,18 @@ router.post('/setup', authenticationMiddleware(),function(req, res, next) {
 
 
 router.get('/login', function(req, res, next) {
-    res.render('login', { title: 'Login' });
+
+    if(req.hasOwnProperty('query')){
+        console.log(JSON.stringify(req.query));
+        if(req.query.hasOwnProperty('error')){
+            res.render('login', { title: 'Login', erro:"Please enter correct Username and Password" });
+            return;
+        } else {
+            res.render('login', { title: 'Login'});
+            return;
+        }
+    }
+    res.render('login', { title: 'Login'});
     return;
 });
 
@@ -572,7 +584,7 @@ router.post('/login' , passport.authenticate(
     'local',
     {
      successRedirect: '/',
-     failureRedirect: '/login'
+     failureRedirect: '/login?error'
     })
 );
 
@@ -661,6 +673,13 @@ function authenticationMiddleware () {
         console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
 
         if (req.isAuthenticated()) return next();
+        req.logout();
+        req.session.destroy(() => {
+            res.clearCookie('connect.sid')
+            setTimeout(function() {
+                res.redirect('/');
+            }, 1000);
+        });
         res.redirect('/login')
     }
 }

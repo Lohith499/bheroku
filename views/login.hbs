@@ -6,7 +6,9 @@
     <div class="jumbotron">
 <div class="container">
     <h2>Login</h2>
-
+            {{#if erro}}
+            <spam style="color:red;font-style: italic">*{{{erro}}}*</spam>
+            {{/if}}
     <form method="post" action="/login">
 
         <div class="form-group">
