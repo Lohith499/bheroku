@@ -30,7 +30,7 @@
     }
 </script>
 {{/ifCond}}
-
+<div style="overflow:auto;">
 <div class="Maintitle" style="margin : 5px;border-bottom: black;border-bottom-width: 5px">
     <table style="background: antiquewhite;border-radius: 5px">
         <tr>
@@ -74,7 +74,9 @@
                 </div>
                 {{/ifCond}}
                 <div style="border-bottom-style:dashed;width: 100%;background:white"></div>
+                <div style="overflow: auto">
                 {{{contentgen uresult}}}
+                </div>
                 <div style="margin:0px;height: 5px;width: 100%;background:black"></div>
                 <!-- Main Section Data-->
                 <div id="loginfo" class="bigdott" style="margin-top: 20px;margin-left: 10px;margin-right: 10px;margin-bottom: 10px;">
@@ -115,6 +117,7 @@
 <!--Sub Results-->
 {{#each lookupresults}}
     {{#ifCond this.length '>' 0}}
+        <div style="overflow: auto;">
         <div class="imgcontainer">
             <img src="/public/images/buttonbackground.svg" alt="Snow" style="height: 50px;width:250px;">
             <div class="imgcentered">*   <a href="/s/{{@key}}">{{@key}}</a>  *</div>
@@ -123,8 +126,11 @@
        <!-- <h5 style="margin-top: 10px;text-align: center;font-family:Arial,Helvetica,sans-serif ;text-decoration: underline"> {{@key}}</h5>-->
         {{{tablegen this 'Y'}}}
         <div style="width: 100%;border-bottom: 2px dashed blue;"></div>
+        </div>
     {{/ifCond}}
 {{/each}}
+</div>
+
 </div>
 <style>
     #histoy > ul {

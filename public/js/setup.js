@@ -7,6 +7,6 @@ $(document).ready(function() {
     } else {
         $('.example').show();
     }
-    $("#sidemenu").height($("#content_beside_sidemenu").height());
+    //$("#sidemenu").height($("#content_beside_sidemenu").height());
 } );
 
