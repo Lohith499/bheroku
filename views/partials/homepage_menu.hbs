@@ -2,9 +2,13 @@
 <img src="https://eautoappraise.com/wp-content/uploads/eAA_HomePageBanner_2000x385.jpg" style="margin-top:56px;width: 100%;height:90px;" alt="">
 
 
+
+
+
 <div>
     <!--<div style="width: 100%;height:56px;padding-top: 0px;top: 55px; opacity: 1.4;">-->
      <nav class="navbar navbar-expand-lg navbar-dark"  style="padding:0px;background:#6895fa;border: 5px white;">
+             <span id="clicksidemenu" style="font-size:30px;color : red;cursor:pointer" onclick="openNav()">&#9776;</span>
             <img src="/public/images/standard.png" width="130" height="30">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navsubbarsExampleDefault1" aria-controls="navsubbarsExampleDefault1" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -53,3 +57,20 @@
         </nav>
     <!--</div>-->
     </div>
+<link rel="stylesheet" href="/public/css/sidemenu.css">
+<script>
+    function openNav() {
+        if(document.getElementById("mySidenav").offsetWidth == 0){
+            document.getElementById("mySidenav").style.width = "180px";
+            document.getElementById("main").style.marginLeft = "180px";
+            document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+            document.getElementById("clicksidemenu").innerHTML ="&#x274E;";
+
+        } else {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("main").style.marginLeft= "0";
+            document.body.style.backgroundColor = "white";
+            document.getElementById("clicksidemenu").innerHTML ="&#9776;";
+        }
+    }
+</script>

@@ -5,9 +5,20 @@
 {{/ifCond}}
 
 
+<div >
+<div id="mySidenav" class="sidenav">
+    <p style="font-size: 25px;">Standard</p>
+    {{#each standard_menu}}
+        <a class="dropdown-item" style="text-transform: capitalize;" href="/s/{{this}}/list">{{this}}</a>
+    {{/each}}
+    <p style="font-size: 25px;">Custom</p>
+    {{#each custom_menu}}
+        <a class="dropdown-item" style="text-transform: capitalize;"  href="/s/{{this}}/list">{{this}}</a>
+    {{/each}}
 
+</div>
 
-<div class="below_menu ">
+<div class="below_menu" id="main">
     <main class="Homecontent" style="padding-top: 20px;border: black 5px;">
 
         {{#ifvalue title value="Home_LoggedIn"}}
@@ -88,7 +99,7 @@
 
     </main>
 </div>
-
+</div>
 {{#ifCond subtabdisplay '!=' 'No'}}
 {{> footer }}
 {{/ifCond}}
