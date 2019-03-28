@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d34a7c99-b8e7-4100-8a37-37d4a1cb63a4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/views/home_Loggedout.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/home_Loggedout.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/partials/header.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/header.hbs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,10 +47,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/home_Loggedout.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="55" selection-start-line="6" selection-start-column="55" selection-end-line="6" selection-end-column="55" />
+            <state relative-caret-position="255">
+              <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#main#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#main#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -263,7 +263,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553752420146" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553752772109" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -365,12 +365,12 @@
       <workItem from="1553571815650" duration="5908000" />
       <workItem from="1553649511098" duration="697000" />
       <workItem from="1553650262767" duration="2544000" />
-      <workItem from="1553744762244" duration="7626000" />
+      <workItem from="1553744762244" duration="7977000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="544524000" />
+    <option name="totallyTimeSpent" value="544875000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -385,7 +385,7 @@
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49166667" visible="true" weight="0.22239032" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49166667" visible="true" weight="0.22239032" />
       <window_info id="Structure" order="1" sideWeight="0.5083333" side_tool="true" weight="0.27449664" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -394,7 +394,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4978038" visible="true" weight="0.33333334" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4978038" visible="true" weight="0.33333334" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4977307" weight="0.39324117" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1064,10 +1064,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/home_Loggedout.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="55" selection-start-line="6" selection-start-column="55" selection-end-line="6" selection-end-column="55" />
+        <state relative-caret-position="255">
+          <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
           <folding>
             <element signature="n#style#0;n#div#0;n#main#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#main#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
