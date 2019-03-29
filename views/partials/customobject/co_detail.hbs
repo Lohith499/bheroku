@@ -23,115 +23,114 @@
     function func(event){
         let x = document.getElementsByClassName("city");
         let cid='c'+(x.length+1);
-        document.getElementById('parent').innerHTML+='<div id="bd'+cid+'"><button class="w3-bar-item w3-button"  id="b'+cid+'"   onclick="openCity(\''+cid+'\')">'+event.target.getAttribute("tabname")+'</button><img onclick="closeSubTab(event)" class="w3-bar-item w3-button" src="/public/images/close.png" alt="" value="bd'+cid+'" style="height:36px;width:30px;padding-left: 5px;padding-right: 5px;"></div>';
+        document.getElementById('parent').innerHTML+='<div id="bd'+cid+'"><button class="w3-bar-item w3-button"  id="b'+cid+'"   onclick="openCity(\''+cid+'\')"><h5 style="text-transform:uppercase;">'+event.target.getAttribute("tabname")+'</h5></button><img onclick="closeSubTab(event)" class="w3-bar-item w3-button" src="/public/images/close.png" alt="" value="bd'+cid+'" style="height:36px;width:30px;padding-left: 5px;padding-right: 5px;"></div>';
         document.getElementById('parentcontent').innerHTML+='<div id="'+cid+'" class="w3-container city" style="display:none;height:100vh;width:100%"></div>';
         document.getElementById(cid).innerHTML+='<iframe frameborder="0" style="overflow:hidden;height:100%;width:100%" height="100%" width="100%" src="'+event.target.getAttribute("value")+'"><p>Your browser does not support iframes.</p></iframe>';
         openCity(cid);
     }
 </script>
 {{/ifCond}}
-<div style="overflow:auto;">
-<div class="Maintitle" style="margin : 5px;border-bottom: black;border-bottom-width: 5px">
-    <table style="background: antiquewhite;border-radius: 5px">
-        <tr>
-            {{{imgicon title}}}
-            <td><h4 style="text-decoration: underline;font-weight: bold">{{objectname}} Details</h4></td>
-        </tr>
-    </table>
-</div>
+    <div style="overflow:auto;">
+        <div class="Maintitle" style="margin : 5px;border-bottom: black;border-bottom-width: 5px">
+            <table style="background: antiquewhite;border-radius: 5px">
+                <tr>
+                    {{{imgicon title}}}
+                    <td><h4 style="text-transform:uppercase;text-decoration: underline;font-weight: bold">{{objectname}} Details</h4></td>
+                </tr>
+            </table>
+        </div>
 
 
-<div id="parent" class="w3-bar w3-black">
-    <div id="bc1">
-    <button class="w3-bar-item w3-button" id="bc1" onclick="openCity('c1')">{{objectname}}</button>
-    </div>
-</div>
-
-
-<div id="parentcontent">
-    <div id="c1" class="w3-container city" style="margin: 0px;padding: 0px;">
-        <div>
-            {{#ifCond subtabdisplay '!=' 'No'}}
-            <div style="margin-top: 20px;margin-bottom: 15px;">
-            <p style="color: blue;text-decoration: underline;font-weight: bold"><a href="/s/{{objectname}}"><img src="/public/images/back.png" style="height:20px;width:20px;" alt="">Back to List results</a></p>
+        <div id="parent" class="w3-bar w3-black">
+            <div id="bc1">
+            <button class="w3-bar-item w3-button" id="bc1" onclick="openCity('c1')"><h5 style="text-transform:uppercase;">{{objectname}}</h5></button>
             </div>
-            <div style="border-bottom-style:dashed;width: 100%;background:white"></div>
-            {{/ifCond}}
-            <form>
-                {{#if error}}
-                    <div class="alert alert-danger" role="alert">
-                        <strong style="text-transform: uppercase;">Error : </strong> {{error.sqlMessage}}
+        </div>
+
+
+        <div id="parentcontent">
+            <div id="c1" class="w3-container city" style="margin: 0px;padding: 0px;">
+                <div>
+                    {{#ifCond subtabdisplay '!=' 'No'}}
+                    <div style="margin-top: 20px;margin-bottom: 15px;">
+                    <p style="color: blue;text-decoration: underline;font-weight: bold"><a href="/s/{{objectname}}"><img src="/public/images/back.png" style="height:20px;width:20px;" alt="">Back to List results</a></p>
                     </div>
-                {{/if}}
-                {{#ifCond subtabdisplay '!=' 'No'}}
-                <div style="background: white;width: 100%;text-align: center;">
-                    <div style="margin-left:40%;text-align: center;background: blue;width: fit-content">
-                        <button id="new_bUsers" class="form_button" formmethod="get" formaction="/s/{{objectname}}/new"
-                                style="position: center;background: orangered">New</button>
-                        <span class="dot"></span>
-                        <button id="edit_bUsers" style="background: green;" class="form_button" type=submit formmethod="post" formaction="/s/{{objectname}}/edit?id={{id}}&action=view">Edit</button>
-                    </div>
+                    <div style="border-bottom-style:dashed;width: 100%;background:white"></div>
+                    {{/ifCond}}
+                    <form>
+                        {{#if error}}
+                            <div class="alert alert-danger" role="alert">
+                                <strong style="text-transform: uppercase;">Error : </strong> {{error.sqlMessage}}
+                            </div>
+                        {{/if}}
+                        {{#ifCond subtabdisplay '!=' 'No'}}
+                        <div style="background: white;width: 100%;text-align: center;">
+                            <div style="margin-left:40%;text-align: center;background: blue;width: fit-content">
+                                <button id="new_bUsers" class="form_button" formmethod="get" formaction="/s/{{objectname}}/new"
+                                        style="position: center;background: orangered">New</button>
+                                <span class="dot"></span>
+                                <button id="edit_bUsers" style="background: green;" class="form_button" type=submit formmethod="post" formaction="/s/{{objectname}}/edit?id={{id}}&action=view">Edit</button>
+                            </div>
+                        </div>
+                        {{/ifCond}}
+                        <div style="border-bottom-style:dashed;width: 100%;background:white"></div>
+                        <div style="overflow: auto">
+                        {{{contentgen uresult}}}
+                        </div>
+                        <div style="margin:0px;height: 5px;width: 100%;background:black"></div>
+                        <!-- Main Section Data-->
+                        <div id="loginfo" class="bigdott" style="margin-top: 20px;margin-left: 10px;margin-right: 10px;margin-bottom: 10px;">
+                             <h5 style="text-decoration: underline;padding-top: 10px;padding-bottom: 5px;">Record Log Information</h5>
+                            <div id="histoy">
+                                <ul>
+                                    <li style="font-weight:bold;text-align:right;border-radius: 5px;background: #6895fa;padding-right: 5px;">Created By</li>
+                                    <li style="padding-left: 5px;text-align:left;border-radius: 5px;background: #c2d4fd;">{{logresult.created_By}}</li>
+                                    <li style="font-weight:bold;text-align:right;border-radius: 5px;background: #6895fa;padding-right: 5px;">Created Date</li>
+                                    <li style="padding-left: 5px;text-align:left;border-radius: 5px;background: #c2d4fd;">{{logresult.created_Date}}</li>
+                                </ul>
+                                <ul>
+                                    <li style="font-weight:bold;text-align:right;border-radius: 5px;background: #6895fa;padding-right: 5px;">LastModified By</li>
+                                    <li style="padding-left: 5px;text-align:left;border-radius: 5px;background: #c2d4fd;">{{logresult.lastModified_By}}</li>
+                                    <li style="font-weight:bold;text-align:right;border-radius: 5px;background: #6895fa;padding-right: 5px;">LastModified Date</li>
+                                    <li style="padding-left: 5px;text-align:left;border-radius: 5px;background: #c2d4fd;">{{logresult.lastModified_Date}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="border-bottom-style:dashed;width: 100%;background:white"></div>
+                        {{#ifCond subtabdisplay '!=' 'No'}}
+                        <div style="background: white;width: 100%;text-align: center;">
+                            <div style="margin-left:40%;text-align: center;background: blue;width: fit-content">
+                                <button id="new_bUsers" class="form_button" formmethod="get" formaction="/s/{{objectname}}/new"
+                                        style="position: center;background: orangered">New</button>
+                                <span class="dot"></span>
+                                <button id="edit_bUsers" style="background: green;" class="form_button" type=submit formmethod="post" formaction="/s/{{objectname}}/edit?id={{id}}&action=view">Edit</button>
+                            </div>
+                        </div>
+                        {{/ifCond}}
+                    </form>
                 </div>
-                {{/ifCond}}
                 <div style="border-bottom-style:dashed;width: 100%;background:white"></div>
-                <div style="overflow: auto">
-                {{{contentgen uresult}}}
+                <div style="margin-left: 10px;margin-right: 10px;margin-bottom: 20px;">
+                    <!--Sub Results-->
+                    {{#each lookupresults}}
+                        {{#ifCond this.length '>' 0}}
+                            <div style="overflow: auto;">
+                                <div class="imgcontainer">
+                                    <img src="/public/images/buttonbackground.svg" alt="Snow" style="height: 50px;width:250px;">
+                                    <div class="imgcentered">*   <a href="/s/{{@key}}">{{@key}}</a>  *</div>
+                                </div>
+
+                                <!-- <h5 style="margin-top: 10px;text-align: center;font-family:Arial,Helvetica,sans-serif ;text-decoration: underline"> {{@key}}</h5>-->
+                                {{{tablegen this 'Y'}}}
+                                <div style="width: 100%;border-bottom: 2px dashed blue;"></div>
+                            </div>
+                        {{/ifCond}}
+                    {{/each}}
                 </div>
-                <div style="margin:0px;height: 5px;width: 100%;background:black"></div>
-                <!-- Main Section Data-->
-                <div id="loginfo" class="bigdott" style="margin-top: 20px;margin-left: 10px;margin-right: 10px;margin-bottom: 10px;">
-                     <h5 style="text-decoration: underline;padding-top: 10px;padding-bottom: 5px;">Record Log Information</h5>
-                    <div id="histoy">
-                        <ul>
-                            <li style="font-weight:bold;text-align:right;border-radius: 5px;background: #6895fa;padding-right: 5px;">Created By</li>
-                            <li style="padding-left: 5px;text-align:left;border-radius: 5px;background: #c2d4fd;">{{logresult.created_By}}</li>
-                            <li style="font-weight:bold;text-align:right;border-radius: 5px;background: #6895fa;padding-right: 5px;">Created Date</li>
-                            <li style="padding-left: 5px;text-align:left;border-radius: 5px;background: #c2d4fd;">{{logresult.created_Date}}</li>
-                        </ul>
-                        <ul>
-                            <li style="font-weight:bold;text-align:right;border-radius: 5px;background: #6895fa;padding-right: 5px;">LastModified By</li>
-                            <li style="padding-left: 5px;text-align:left;border-radius: 5px;background: #c2d4fd;">{{logresult.lastModified_By}}</li>
-                            <li style="font-weight:bold;text-align:right;border-radius: 5px;background: #6895fa;padding-right: 5px;">LastModified Date</li>
-                            <li style="padding-left: 5px;text-align:left;border-radius: 5px;background: #c2d4fd;">{{logresult.lastModified_Date}}</li>
-                        </ul>
-                    </div>
-                </div>
-                <div style="border-bottom-style:dashed;width: 100%;background:white"></div>
-                {{#ifCond subtabdisplay '!=' 'No'}}
-                <div style="background: white;width: 100%;text-align: center;">
-                    <div style="margin-left:40%;text-align: center;background: blue;width: fit-content">
-                        <button id="new_bUsers" class="form_button" formmethod="get" formaction="/s/{{objectname}}/new"
-                                style="position: center;background: orangered">New</button>
-                        <span class="dot"></span>
-                        <button id="edit_bUsers" style="background: green;" class="form_button" type=submit formmethod="post" formaction="/s/{{objectname}}/edit?id={{id}}&action=view">Edit</button>
-                    </div>
-                </div>
-                {{/ifCond}}
-            </form>
+            </div>
         </div>
     </div>
-</div>
 
-<div style="border-bottom-style:dashed;width: 100%;background:white"></div>
-<div style="margin-left: 10px;margin-right: 10px;margin-bottom: 20px;">
-<!--Sub Results-->
-{{#each lookupresults}}
-    {{#ifCond this.length '>' 0}}
-        <div style="overflow: auto;">
-        <div class="imgcontainer">
-            <img src="/public/images/buttonbackground.svg" alt="Snow" style="height: 50px;width:250px;">
-            <div class="imgcentered">*   <a href="/s/{{@key}}">{{@key}}</a>  *</div>
-        </div>
-
-       <!-- <h5 style="margin-top: 10px;text-align: center;font-family:Arial,Helvetica,sans-serif ;text-decoration: underline"> {{@key}}</h5>-->
-        {{{tablegen this 'Y'}}}
-        <div style="width: 100%;border-bottom: 2px dashed blue;"></div>
-        </div>
-    {{/ifCond}}
-{{/each}}
-</div>
-
-</div>
 <style>
     #histoy > ul {
         width: 100%;

@@ -6,6 +6,7 @@
 
 
 <div >
+{{#ifCond subtabdisplay '!=' 'No'}}
 <div id="mySidenav" class="sidenav">
     <p style="font-size: 25px;">Standard</p>
     {{#each standard_menu}}
@@ -17,7 +18,7 @@
     {{/each}}
 
 </div>
-
+{{/ifCond}}
 <div class="below_menu" id="main">
     <main class="Homecontent" style="padding-top: 20px;border: black 5px;">
 
