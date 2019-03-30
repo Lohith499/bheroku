@@ -99,7 +99,12 @@ router.post('/s/cases/edit/', authenticationMiddleware(),function(req, res, next
         }
     });
 });
-//Webservice
+
+
+
+
+
+//***********************Web Services****************************************
 router.get(/\/c\/.*\/details/, function(req, res, next) {
     let s2 = require('../controllers/webservices/webservice_detail_controllers');
     s2.pushresults(req, res);
@@ -111,6 +116,25 @@ router.get(/\/c\/.*\/list/, function(req, res, next) {
     s2.pushresults(req, res);
     return;
 });
+
+
+router.get(/\/c\/.*\/new/, function(req, res, next) {
+    let s2 = require('../controllers/webservices/webservice_new_view_controllers');
+    s2.pushresults(req, res);
+    return;
+});
+
+
+router.post(/\/c\/.*\/new/,function(req, res, next) {
+    console.log(req.body);
+    console.log('req');
+    let s2 = require('../controllers/webservices/webservice_new_save_controllers');
+    s2.pushresults(req, res);
+    return;
+});
+
+//***********************Web Services****************************************
+
 
 
 router.get(/\/s\/.*\/list/, authenticationMiddleware(),function(req, res, next) {

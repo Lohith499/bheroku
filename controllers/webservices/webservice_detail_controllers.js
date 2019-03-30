@@ -195,6 +195,7 @@ function pushresults(req,res) {
                                                     console.log('************************');
                                                     if(i===(lookupTables.length-1)){
                                                         res.json({
+                                                            record_id : req.query.id,
                                                             'Details': contentresults,
                                                             'RelatedObjects': lookupObjects,
                                                             'Related_Objects_Details': lookupresults
@@ -205,6 +206,7 @@ function pushresults(req,res) {
                                             }
                                         }else {
                                             res.json({
+                                                record_id : req.query.id,
                                                 'Details': contentresults,
                                                 'RelatedObjects': lookupObjects,
                                                 'Related_Objects_Details': lookupresults
@@ -213,6 +215,7 @@ function pushresults(req,res) {
                                         }
                                     } else {
                                         res.json({
+                                            record_id: req.query.id,
                                             'Details': contentresults,
                                             'RelatedObjects': lookupObjects,
                                             'Related_Objects_Details': lookupresults
