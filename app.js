@@ -50,6 +50,10 @@ app.use(cookieParser());
 app.use('/public', express.static('public'))
 
 var options = {
+    connectionLimit : 1000,
+    connectTimeout  : 60 * 60 * 1000,
+    acquireTimeout  : 60 * 60 * 1000,
+    timeout         : 60 * 60 * 1000,
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     port:process.env.DB_PORT,
@@ -93,8 +97,6 @@ app.use('/users', users);
 
 passport.use(new LocalStrategy(
     function (username,password,done) {
-        console.log(username);
-        console.log(password);
         const db =require('./db');
         db.query('SELECT id,password,organisationId,Profile_Name FROM users where username=? ',[username],function (err,results,fields) {
             if(err) {done(err)}
@@ -103,7 +105,6 @@ passport.use(new LocalStrategy(
             } else {
                 console.log(results[0].password.toString());
                 const hash =results[0].password.toString();
-
                 bcrypt.compare(password,hash,function (err,response) {
                     if(response===true){
                         console.log('hash pass');

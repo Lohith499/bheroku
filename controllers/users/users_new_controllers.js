@@ -35,7 +35,7 @@ function pushresults(req,res) {
     const email=req.body.email;
     const  db=require('../../db.js');
     bcrypt.hash(password,saltRound,function (err,hash) {
-        db.query('INSERT INTO users (username,email,password,created_By) VALUES (?,?,?,?)',[username,email,hash,req.user.user_id], function
+        db.query('INSERT INTO users (username,email,password,created_By,organisationId) VALUES (?,?,?,?,?)',[username,email,hash,req.user.user_id,req.user.organisation_Id], function
             (error,results,fields){
             if(error) {
                 console.log('error:'+ error.sqlMessage);
@@ -49,14 +49,14 @@ function pushresults(req,res) {
             };
             console.log(JSON.stringify(results));
             const user_id = results.insertId;
-            console.log(results.insertId);
-            let orgid=req.user.organisation_Id;
-            db.query('call Update_Organisation_Id(?,?)',[orgid,user_id], function (error1,results1) {
-                if(error1) throw error1;
-                console.log('updating procedure'+orgid+" and  "+user_id);
-                console.log(JSON.stringify(results1));
+            console.log('registered userid='+user_id);
+            //let orgid=req.user.organisation_Id;
+           // db.query('call Update_Organisation_Id(?,?)',[orgid,user_id], function (error1,results1) {
+           //     if(error1) throw error1;
+          //      console.log('updating procedure'+orgid+" and  "+user_id);
+          //      console.log(JSON.stringify(results1));
                 res.redirect('/setup/bUsers');
-            });
+          //  });
         });
     });
 }

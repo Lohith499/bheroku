@@ -8,7 +8,7 @@ function popresults(req,res) {
         '      INNER JOIN objects ob ON obf.object_id=ob.id \n' +
         '      LEFT JOIN information_schema.`COLUMNS` ic  on ic.TABLE_NAME=ob.TABLE_NAME AND obf.field_name=ic.COLUMN_NAME \n' +
         'WHERE ob.NAME=\''+ourl[2]+'\' AND  obf.showinlist=\'Y\' AND'+
-        '     (obf.organisationId=\'u000002\' or obf.organisationId=\'\' or obf.organisationId IS NULL) ORDER BY obf.id';
+        '     (obf.organisationId=\''+req.user.organisation_Id+'\' or obf.organisationId=\'\' or obf.organisationId IS NULL) ORDER BY obf.id';
     dbu.query(sql,function(error,fresults){
         if(error || fresults.length===0){
             console.log(JSON.stringify(error));
@@ -37,8 +37,6 @@ function popresults(req,res) {
                     });
                 return;
             }
-
-
 
 
          } else {

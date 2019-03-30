@@ -26,6 +26,18 @@ const saltRound=10;
 
 router.get('/', function(req, res, next) {
 
+    console.log(req);
+  /*  var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+    var reqs = new XMLHttpRequest();
+    reqs.open('GET', document.location, false);
+    reqs.send(null);
+// associate array to store all values
+    var data = new Object();
+// get all headers in one call and parse each item
+    var headers = reqs.getAllResponseHeaders().toLowerCase();
+    console.log("Headers");
+    console.log(JSON.stringify(headers));*/
+
     console.log(req.isAuthenticated());
     if(req.isAuthenticated()){
         console.log("JSON "+JSON.stringify(req.user));
@@ -87,6 +99,19 @@ router.post('/s/cases/edit/', authenticationMiddleware(),function(req, res, next
         }
     });
 });
+//Webservice
+router.get(/\/c\/.*\/details/, function(req, res, next) {
+    let s2 = require('../controllers/webservices/webservice_detail_controllers');
+    s2.pushresults(req, res);
+    return;
+});
+
+router.get(/\/c\/.*\/list/, function(req, res, next) {
+    let s2 = require('../controllers/webservices/webservice_list_controllers');
+    s2.pushresults(req, res);
+    return;
+});
+
 
 router.get(/\/s\/.*\/list/, authenticationMiddleware(),function(req, res, next) {
     console.log(req.user);
@@ -100,6 +125,7 @@ router.get(/\/s\/.*\/list/, authenticationMiddleware(),function(req, res, next) 
         return;
     });
 });
+
 
 router.get(/\/s\/.*\/lookup/, authenticationMiddleware(),function(req, res, next) {
     console.log(req.user);
@@ -593,6 +619,7 @@ router.post('/login' , passport.authenticate(
 
 router.get('/logout', function(req, res, next) {
     req.logout();
+    console.log("logged out id:"+req.sessionID);
     req.session.destroy(() => {
         res.clearCookie('connect.sid')
         setTimeout(function() {
@@ -649,11 +676,19 @@ router.post('/register', function(req, res, next) {
               if(error) throw error;
               db.query('SELECT LAST_INSERT_ID() as user_id',function (error,results,fields) {
                   if(error) throw error;
-                  const user_id = results[0];
-                  console.log((results[0]));
-                  req.login(user_id,function (err) {
-                      res.redirect('/logout');
+                  const user_id = results[0]['user_id'];
+                  let orgid='u00000'+user_id;
+                  console.log('user_id='+user_id+' orgid='+orgid);
+                  db.query('call Update_Organisation_Id(?,?)',[orgid,user_id], function (error1,results1) {
+                      if(error1) throw error1;
+                      console.log('updating procedure'+orgid+" and  "+user_id);
+                      console.log(JSON.stringify(results1));
+                      req.login(user_id,function (err) {
+                          res.redirect('/logout');
+                      });
+                      return;
                   });
+
               });
           });
       });
@@ -680,7 +715,8 @@ function authenticationMiddleware () {
                 res.redirect('/');
             }, 1000);
         });
-        res.redirect('/login')
+        res.redirect('/login');
+        return;
     }
 }
 
