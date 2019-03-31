@@ -89,7 +89,7 @@ function pushresults(req,res) {
                         standardFields=[];
                         standardFields=filtered;
                         let cssql='SELECT ob.NAME,css.scriptcode FROM customscripts css INNER JOIN objects ob ON ob.id=css.object_id WHERE ' +
-                            'ob.NAME=\''+ourl[2]+'\';';
+                            'ob.NAME=\''+ourl[2]+'\' and (css.organisationId=\''+req.user.organisation_Id+'\' or css.organisationId=\'\' or css.organisationId IS NULL);';
                         console.log('customscript sql='+cssql);
                         db.query(cssql,function (errs,csresults,fields) {
                             if(errs){
@@ -111,10 +111,8 @@ function pushresults(req,res) {
                             return;
                         });
                     });
-
-
                     // res.json("{user_id: "+results[0].id+", organisation_Id : "+results[0].organisationId+", is_Admin : "+results[0].Profile_Name+" }");
-                    return;
+                    //return;
                 }else {
                     console.log('hash fail');
                     res.json('{Status : "Authentication Failed"}');

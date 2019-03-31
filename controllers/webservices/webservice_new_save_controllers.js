@@ -8,9 +8,21 @@ function pushresults(req,res) {
     let password=headers["password"];
     const  dbs =require('../../db.js');
     dbs.query('SELECT id,password,organisationId,Profile_Name FROM users where username=? ',[username],function (err,results,fields) {
-        if(err) {done(err)}
+        if(err) {res.render('error',
+            {
+                message : error.sqlMessage,
+                error : error,
+                title: "Home List"
+            });
+            return;}
         if(results.length===0){
-            done(null,false);
+            res.render('error',
+                {
+                    message : error.sqlMessage,
+                    error : error,
+                    title: "Home List"
+                });
+            return;
         } else {
             console.log(results[0].password.toString());
             const hash =results[0].password.toString();
