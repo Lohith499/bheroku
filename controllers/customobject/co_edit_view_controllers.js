@@ -91,7 +91,7 @@ function pushresults(req,res) {
                     }
                 }
                 let cssql='SELECT ob.NAME,css.scriptcode FROM customscripts css INNER JOIN objects ob ON ob.id=css.object_id WHERE ' +
-                    'ob.NAME=\''+ourl[2]+'\';';
+                    'ob.NAME=\''+ourl[2]+'\' and (css.organisationId=\''+req.user.organisation_Id+'\' or css.organisationId=\'\' or css.organisationId IS NULL);';
                 db.query(cssql,function (errs,csresults,fields) {
                     if(errs){
                         console.log('error:'+ errs.sqlMessage);
