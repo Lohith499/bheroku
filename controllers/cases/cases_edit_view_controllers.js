@@ -152,6 +152,26 @@ function pushresults(req,res) {
                                     objectname : objectname
                                 });
                                 return;
+                            }else {
+                                standardFields=[];
+                                standardFields=filtered;
+                                console.log('standardFields');
+                                console.log(JSON.stringify(standardFields));
+                                console.log('Custom');
+                                console.log(JSON.stringify(customFields));
+                                res.render('home_Loggedin', {
+                                    title : 'Cases Edit' ,
+                                    standard_menu: req.user.standard_menu,
+                                    custom_menu:req.user.custom_menu,
+                                    standardFields : standardFields,
+                                    customFields : customFields,
+                                    customscript : customscript,
+                                    tablename : tablename,
+                                    tasks : tasks,
+                                    id:fid,
+                                    objectname : objectname
+                                });
+                                return;
                             }
                         } else {
                             standardFields=[];
@@ -174,8 +194,6 @@ function pushresults(req,res) {
                             });
                             return;
                         }
-
-
                     });
                     //Getting custom script
 

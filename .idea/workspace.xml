@@ -35,11 +35,20 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="214">
+              <caret line="83" column="14" selection-start-line="83" selection-start-column="14" selection-end-line="83" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/cases/cases_edit_view_controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="128" column="31" selection-start-line="128" selection-start-column="31" selection-end-line="128" selection-end-column="31" />
+            <state relative-caret-position="289">
+              <caret line="174" column="29" selection-start-line="174" selection-start-column="29" selection-end-line="174" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -160,8 +169,8 @@
         <option value="$PROJECT_DIR$/controllers/customobject/co_edit_view_controllers.js" />
         <option value="$PROJECT_DIR$/controllers/lookups/lookups_list_controllers.js" />
         <option value="$PROJECT_DIR$/views/lookups_list.hbs" />
-        <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/controllers/customobject/co_new_save_controllers.js" />
+        <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/controllers/cases/cases_edit_view_controllers.js" />
       </list>
     </option>
@@ -194,8 +203,7 @@
             <path>
               <item name="OS_NEM_CRM" type="b2602c69:ProjectViewProjectNode" />
               <item name="OS_NEM_CRM" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-              <item name="customobject" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="OS_NEM_CRM" type="b2602c69:ProjectViewProjectNode" />
@@ -336,12 +344,12 @@
       <workItem from="1553649511098" duration="697000" />
       <workItem from="1553650262767" duration="2544000" />
       <workItem from="1553744762244" duration="26645000" />
-      <workItem from="1553998276119" duration="4595000" />
+      <workItem from="1553998276119" duration="4882000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="568138000" />
+    <option name="totallyTimeSpent" value="568425000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -563,7 +571,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/controllers/cases/cases_edit_view_controllers.js</url>
-          <line>156</line>
+          <line>176</line>
           <option name="timeStamp" value="224" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -981,13 +989,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="637" column="5" lean-forward="true" selection-start-line="637" selection-start-column="5" selection-end-line="637" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/customobject/co_new_view_controllers.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
@@ -1033,10 +1034,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="83" column="14" selection-start-line="83" selection-start-column="14" selection-end-line="83" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/cases/cases_edit_view_controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="128" column="31" selection-start-line="128" selection-start-column="31" selection-end-line="128" selection-end-column="31" />
+        <state relative-caret-position="289">
+          <caret line="174" column="29" selection-start-line="174" selection-start-column="29" selection-end-line="174" selection-end-column="29" />
         </state>
       </provider>
     </entry>
