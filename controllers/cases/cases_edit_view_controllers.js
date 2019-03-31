@@ -125,7 +125,8 @@ function pushresults(req,res) {
                             res.render('error', { title: 'CaseEdit Page' , message : "Error while fetching tasks records for the case number="+req.query.id, id : req.query.id, error : errs});
                             return;
                         }
-                        if(taskresults){
+                        //if(taskresults){
+                        if(true){
                             if(taskresults.length>0){
                                 for(let i=0;i<taskresults.length;i++){
                                     tasks.push(taskresults[i]);
