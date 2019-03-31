@@ -567,11 +567,14 @@ router.post('/setup/objects/customscripts/:actionperform', authenticationMiddlew
         if (req.params.actionperform === 'new' && req.query.action === "view") {
             let s1 = require('../controllers/customScripts/customscript_new_view_controllers');
             s1.pushresults(req, res);
+            return;
         } else if (req.params.actionperform === 'new' && req.query.action === "save") {
             let s1 = require('../controllers/customScripts/customscript_new_controllers');
             s1.pushresults(req, res);
+            return;
         } else {
             res.render('setup', {title: 'Setup Post'});
+            return;
         }
     }else {
         res.render('error',{title:'Objects New', message : "You Dont have access to Setup Page"});
@@ -585,11 +588,14 @@ router.post('/setup/objects/lookups/:actionperform', authenticationMiddleware(),
         if (req.params.actionperform === 'new' && req.query.action === "view") {
             let s1 = require('../controllers/object_lookups/objlookup_new_view_controllers');
             s1.pushresults(req, res);
+            return;
         } else if (req.params.actionperform === 'new' && req.query.action === "save") {
             let s1 = require('../controllers/object_lookups/objlookup_new_controllers');
             s1.pushresults(req, res);
+            return;
         } else {
             res.render('setup', {title: 'Setup Post'});
+            return;
         }
     }else {
         res.render('error',{title:'Objects New', message : "You Dont have access to Setup Page"});
