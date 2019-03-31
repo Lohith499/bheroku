@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d34a7c99-b8e7-4100-8a37-37d4a1cb63a4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/controllers/lookups/lookups_list_controllers.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/lookups/lookups_list_controllers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/lookups_list.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/lookups_list.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,20 +35,29 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="129">
-              <caret line="125" selection-start-line="125" selection-end-line="125" />
+            <state relative-caret-position="163">
+              <caret line="553" column="19" selection-start-line="553" selection-start-column="19" selection-end-line="553" selection-end-column="19" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/lookups_list.hbs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
               <caret line="26" column="233" selection-start-line="26" selection-start-column="233" selection-end-line="26" selection-end-column="233" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/object_fields/objectfields_new_controllers.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="193">
+              <caret line="115" column="19" lean-forward="true" selection-start-line="115" selection-start-column="19" selection-end-line="115" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -165,7 +173,6 @@
         <option value="$PROJECT_DIR$/controllers/webservices/webservice_list_controllers.js" />
         <option value="$PROJECT_DIR$/controllers/webservices/list.js" />
         <option value="$PROJECT_DIR$/controllers/webservices/webservice_new_view_controllers.js" />
-        <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/controllers/webservices/webservice_new_save_controllers.js" />
         <option value="$PROJECT_DIR$/controllers/webservices/webservice_detail_controllers.js" />
         <option value="$PROJECT_DIR$/controllers/objects/objects_detail_controllers.js" />
@@ -173,6 +180,7 @@
         <option value="$PROJECT_DIR$/controllers/customobject/co_edit_view_controllers.js" />
         <option value="$PROJECT_DIR$/controllers/lookups/lookups_list_controllers.js" />
         <option value="$PROJECT_DIR$/views/lookups_list.hbs" />
+        <option value="$PROJECT_DIR$/routes/index.js" />
       </list>
     </option>
   </component>
@@ -205,7 +213,7 @@
               <item name="OS_NEM_CRM" type="b2602c69:ProjectViewProjectNode" />
               <item name="OS_NEM_CRM" type="462c0819:PsiDirectoryNode" />
               <item name="controllers" type="462c0819:PsiDirectoryNode" />
-              <item name="lookups" type="462c0819:PsiDirectoryNode" />
+              <item name="object_fields" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="OS_NEM_CRM" type="b2602c69:ProjectViewProjectNode" />
@@ -223,6 +231,20 @@
               <item name="OS_NEM_CRM" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="partials" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OS_NEM_CRM" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OS_NEM_CRM" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="partials" type="462c0819:PsiDirectoryNode" />
+              <item name="object_fields" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OS_NEM_CRM" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OS_NEM_CRM" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="partials" type="462c0819:PsiDirectoryNode" />
+              <item name="objlookups" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -338,12 +360,12 @@
       <workItem from="1553649511098" duration="697000" />
       <workItem from="1553650262767" duration="2544000" />
       <workItem from="1553744762244" duration="26645000" />
-      <workItem from="1553998276119" duration="1209000" />
+      <workItem from="1553998276119" duration="1970000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="564752000" />
+    <option name="totallyTimeSpent" value="565513000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -600,12 +622,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/routes/index.js</url>
-          <line>616</line>
+          <line>622</line>
           <option name="timeStamp" value="238" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/routes/index.js</url>
-          <line>705</line>
+          <line>711</line>
           <option name="timeStamp" value="240" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -647,25 +669,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/node_modules/jQuery/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1058" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/profiles/profiles_edit_controllers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="26" column="92" selection-start-line="26" selection-start-column="92" selection-end-line="26" selection-end-column="92" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/partials/profiles/profiles_edit.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="24" column="32" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/profiles/profiles_new_controllers.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-68">
@@ -1006,17 +1009,32 @@
         <state relative-caret-position="-1340" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
+    <entry file="file://$PROJECT_DIR$/views/partials/object_fields/objectfields_new.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="125" selection-start-line="125" selection-end-line="125" />
-        </state>
+        <state relative-caret-position="-255" />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/object_fields/objectfields_new_view_controllers.js">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/views/lookups_list.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="26" column="233" selection-start-line="26" selection-start-column="233" selection-end-line="26" selection-end-column="233" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/object_fields/objectfields_new_controllers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="115" column="19" lean-forward="true" selection-start-line="115" selection-start-column="19" selection-end-line="115" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="553" column="19" selection-start-line="553" selection-start-column="19" selection-end-line="553" selection-end-column="19" />
         </state>
       </provider>
     </entry>

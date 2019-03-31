@@ -514,12 +514,15 @@ router.post('/setup/objects/edit', authenticationMiddleware(),function(req, res,
         if (req.query.action === "view") {
             let s1 = require('../controllers/objects/objects_edit_view_controllers');
             s1.edit_view_results(req, res);
+            return;
         } else if (req.query.action === "save") {
             console.log("saving profile edit result");
             let s1 = require('../controllers/objects/objects_edit_controllers');
             s1.editresults(req, res);
+            return;
         } else {
             res.render('setup', {title: 'Setup Post'});
+            return;
         }
     }else {
         res.render('error',{title:'Objects New', message : "You Dont have access to Setup Page"});
@@ -540,12 +543,15 @@ router.post('/setup/objects/objectfields/:actionperform', authenticationMiddlewa
 
             let s1 = require('../controllers/object_fields/objectfields_new_view_controllers');
             s1.pushresults(req, res);
+            return;
 
         } else if (req.params.actionperform === 'new' && req.query.action === "save") {
             let s1 = require('../controllers/object_fields/objectfields_new_controllers');
             s1.pushresults(req, res);
+            return;
         } else {
             res.render('setup', {title: 'Setup Post'});
+            return;
         }
     }else {
         res.render('error',{title:'Objects New', message : "You Dont have access to Setup Page="+req.user.is_Admin});
