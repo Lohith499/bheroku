@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d34a7c99-b8e7-4100-8a37-37d4a1cb63a4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/views/home_Loggedout.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/home_Loggedout.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/partials/footer.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/footer.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/register.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/register.hbs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,7 +46,7 @@
         <entry file="file://$PROJECT_DIR$/.env">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17">
-              <caret line="1" column="7" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
+              <caret line="1" column="9" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -54,16 +54,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/home_Loggedout.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="13" column="32" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
+            <state relative-caret-position="272">
+              <caret line="16" column="10" lean-forward="true" selection-start-line="5" selection-start-column="4" selection-end-line="16" selection-end-column="10" />
               <folding>
+                <element signature="n#style#0;n#p#2;n#div#0;n#div#0;n#main#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#main#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/partials/footer.hbs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
@@ -72,11 +73,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/register.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="738" lean-forward="true" selection-start-line="738" selection-end-line="738" />
+            <state relative-caret-position="272">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
+              <folding>
+                <element signature="e#1053#1072#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/home_Loggedin.hbs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="867">
+              <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
             </state>
           </provider>
         </entry>
@@ -190,16 +203,16 @@
         <option value="$PROJECT_DIR$/public/js/setup.js" />
         <option value="$PROJECT_DIR$/views/setup.hbs" />
         <option value="$PROJECT_DIR$/webpack.config.js" />
-        <option value="$PROJECT_DIR$/views/register.hbs" />
         <option value="$PROJECT_DIR$/views/login.hbs" />
         <option value="$PROJECT_DIR$/public/css/sidemenu.css" />
         <option value="$PROJECT_DIR$/views/partials/homepage_menu.hbs" />
         <option value="$PROJECT_DIR$/views/home_Loggedin.hbs" />
         <option value="$PROJECT_DIR$/views/partials/header.hbs" />
         <option value="$PROJECT_DIR$/routes/index.js" />
-        <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/views/home_Loggedout.hbs" />
         <option value="$PROJECT_DIR$/views/partials/footer.hbs" />
+        <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/views/register.hbs" />
       </list>
     </option>
   </component>
@@ -363,12 +376,12 @@
       <workItem from="1553822079592" duration="1284000" />
       <workItem from="1553823523028" duration="730000" />
       <workItem from="1553885991337" duration="1348000" />
-      <workItem from="1554067462974" duration="1390000" />
+      <workItem from="1554067462974" duration="2485000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="550016000" />
+    <option name="totallyTimeSpent" value="551111000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -383,7 +396,7 @@
     <frame x="-6" y="34" width="1435" height="772" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49455675" visible="true" weight="0.24292965" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49455675" visible="true" weight="0.24292965" />
       <window_info id="Structure" order="1" sideWeight="0.5054432" side_tool="true" weight="0.23567803" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -392,7 +405,7 @@
       <window_info id="Favorites" order="6" sideWeight="0.5054432" side_tool="true" weight="0.23567803" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4978038" visible="true" weight="0.33281493" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4978038" visible="true" weight="0.33281493" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4977307" weight="0.3919129" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -918,13 +931,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/register.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="42" selection-start-line="28" selection-start-column="42" selection-end-line="28" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/login.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -974,13 +980,6 @@
         <state relative-caret-position="-643" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/home_Loggedin.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-986">
-          <caret line="66" column="45" selection-start-line="66" selection-start-column="36" selection-end-line="66" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="281">
@@ -1012,6 +1011,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/views/partials/footer.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/home_Loggedout.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="10" lean-forward="true" selection-start-line="5" selection-start-column="4" selection-end-line="16" selection-end-column="10" />
+          <folding>
+            <element signature="n#style#0;n#p#2;n#div#0;n#div#0;n#main#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#main#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
@@ -1019,27 +1036,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/views/home_Loggedin.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
-          <caret line="1" column="7" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
+          <caret line="1" column="9" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/home_Loggedout.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="13" column="32" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#main#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/partials/footer.hbs">
+    <entry file="file://$PROJECT_DIR$/views/register.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="e#1053#1072#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

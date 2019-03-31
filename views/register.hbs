@@ -1,45 +1,21 @@
 {{> header }}
-<div class="container">
-<h1>{{title}}</h1>
 
-    {{#if errors}}
-        {{#each errors}}
-        <div class="alert alert-danger" role="alert">
-            <strong style="text-transform: uppercase;">{{this.param}}</strong> {{this.msg}}
-        </div>
-        {{/each}}
-    {{/if}}
 
-<p>Welcome to {{title}}</p>
 
-    <form method="post" action="/register">
 
-        <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" name="username" class="form-control" placeholder="username">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+<div class="jumbotrons" style="background: aqua;padding-top: 64px;padding-bottom: 15px;">
+    <div class="container" style="margin-top: 5px;background: #F0FFFF;border-radius: 25px;">
+        <h1 class="display-5" >OpenNEMCRM</h1>
+        <p style="text-align: justify;padding: 10px;">
+            Due to Lot of Registrations from different people being done , as of now Registration for new users is kept on hold </p>
+        <p style="text-align: justify;padding: 10px;"> If you are interested in Practical Demo of App and Technical Walkthrough
+            Please reach me at lohith.gre@gmail.com or nimmalal@mail.gvsu.edu<p>
+        <p style="color: red;">Development is still InProgress(prototype is ready interested people can reach me for Demo-Check Footer)</p>
+
     </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" name="email" class="form-control" placeholder="Enter email">
-        </div>
-
-
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" name="password" class="form-control" placeholder="password">
-
-        </div>
-
-        <div class="form-group">
-            <label for="passwordMatch">Confirm Password</label>
-            <input type="password" name="passwordMatch" class="form-control" placeholder="password">
-
-        </div>
-        <label>Note: If your registration is successful you will be redirected to Home page</label>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-
 </div>
+
+
+
 
 {{> footer }}
