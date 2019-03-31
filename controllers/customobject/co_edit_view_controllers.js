@@ -9,6 +9,11 @@ function pushresults(req,res) {
     let standardFields=[];
     let customFields=[];
     let customscript='';
+    let lookupObjects=[];
+    let lookupTables=[];
+    let lookupresults={};
+    let k1="pp";
+    let obj_id=req.query.id;
     console.log(JSON.stringify(req.query));
     let fid= req.query.id;
     let ourl=req.originalUrl.split('/');
@@ -124,7 +129,146 @@ function pushresults(req,res) {
                     console.log(JSON.stringify(standardFields));
                     console.log('Custom');
                     console.log(JSON.stringify(customFields));
-                    res.render('home_Loggedin', {
+
+
+
+
+                    //Lookup data
+                    let lookupObfsql='SELECT ob.TABLE_NAME,obf.field_name AS lookupField,ob.NAME,obf1.field_name FROM objects_fields obf INNER JOIN objects ob ON ob.id=obf.object_id INNER JOIN objects_fields obf1 ON obf1.object_id=ob.id WHERE obf.lookup="'+objectname+'" AND (ob.organisationId=\''+req.user.organisation_Id+'\' or ob.organisationId=\'\' or ob.organisationId IS NULL) AND obf1.showinlist=\'Y\' ORDER BY ob.name,obf1.id;';
+                    db.query(lookupObfsql,obj_id,function (error,lookupObfsql_results) {
+                        if(error) {
+                            console.log('error:'+ error.sqlMessage);
+                            // let s1 = require('./objects_edit_view_controllers');
+                            //  s1.edit_view_results(req, res);
+                            if(error.sqlMessage.includes("Duplicate")){
+                                error.sqlMessage="There is already a Object with this name in your Organisation"
+                            }
+                            res.render('error',{title:'Objects New', error : error});
+                            return;
+                        } else if(lookupObfsql_results){
+                            if(lookupObfsql_results.length>0){
+
+                                var arrays1 = {};
+                                lookupObfsql_results.forEach(function (str) {
+                                    // Get id piece
+                                    let str_api =str.TABLE_NAME ;
+                                    // check if existing property for this id, if not initialize new array
+                                    if (!arrays1[str_api]) {
+                                        arrays1[str_api] = [];
+                                    }
+                                    // get value piece
+                                    let str_id = str.lookupField;
+                                    // add to that id's array
+                                    if(!arrays1[str_api].includes(str_id)){
+                                        arrays1[str_api].push(str_id);
+                                        str_id = str.NAME;
+                                        arrays1[str_api].push(str_id);
+                                    }
+                                });
+                                var arrays = {};
+                                lookupObfsql_results.forEach(function (str) {
+                                    // Get id piece
+                                    let str_api =str.TABLE_NAME ;
+                                    // check if existing property for this id, if not initialize new array
+                                    if (!arrays[str_api]) {
+                                        arrays[str_api] = [];
+                                    }
+                                    // get value piece
+                                    let str_id = str.field_name;
+                                    // add to that id's array
+                                    arrays[str_api].push(str_id);
+                                });
+                                for(let i=0;i<Object.keys(arrays1).length;i++){
+                                    lookupObjects.push(arrays1[Object.keys(arrays1)[i]][1]);
+                                }
+
+                                lookupTables=Object.keys(arrays);
+                                for(let i=0;i<lookupTables.length;i++){
+                                    let sql='Select ';
+                                    for(let j=0;j<arrays[lookupTables[i]].length;j++){
+                                        sql+=arrays[lookupTables[i]][j];
+                                        if(j<(arrays[lookupTables[i]].length-1)){
+                                            sql+=',';
+                                        }
+                                    }
+                                    sql+=' from '+lookupTables[i]+' where '+arrays1[lookupTables[i]][0]+'='+req.query.id+';';
+                                    db.query(sql,function (error,lookeachresult) {
+                                        if(error) {
+                                            console.log('error:'+ error.sqlMessage);
+                                            // let s1 = require('./objects_edit_view_controllers');
+                                            //  s1.edit_view_results(req, res);
+                                            if(error.sqlMessage.includes("Duplicate")){
+                                                error.sqlMessage="There is already a Object with this name in your Organisation"
+                                            }
+                                            res.render('error',{title:'Objects New', error : error});
+                                            return;
+                                        }
+                                        for(let l=0;l<lookeachresult.length;l++){
+                                            lookeachresult[l]['tablename']=lookupObjects[i];
+                                        }
+                                        lookupresults[lookupObjects[i]]=[];
+                                        for(let k=0;k<lookeachresult.length;k++){
+                                            lookupresults[lookupObjects[i]].push(lookeachresult[k]);
+                                        }
+                                        k1="Hi";
+                                        console.log('************************');
+                                        console.log(JSON.stringify(lookupresults));
+                                        console.log('************************');
+                                        if(i===(lookupTables.length-1)){
+                                            res.render('home_Loggedin',
+                                                {
+                                                    standard_menu: req.user.standard_menu,
+                                                    custom_menu:req.user.custom_menu,
+                                                    lookupObjects:lookupObjects,
+                                                    lookupresults:lookupresults,
+                                                    standardFields : standardFields,
+                                                    customFields : customFields,
+                                                    customscript : customscript,
+                                                    tablename : tablename,
+                                                    id:fid,
+                                                    objectname : objectname,
+                                                    title: "Custom Edit"
+                                                });
+                                            return;
+                                        }
+                                    });
+                                }
+                            }else {
+                                res.render('home_Loggedin',
+                                    {
+                                        standard_menu: req.user.standard_menu,
+                                        custom_menu:req.user.custom_menu,
+                                        lookupObjects:lookupObjects,
+                                        lookupresults:lookupresults,
+                                        standardFields : standardFields,
+                                        customFields : customFields,
+                                        customscript : customscript,
+                                        tablename : tablename,
+                                        id:fid,
+                                        objectname : objectname,
+                                        title: "Custom Edit"
+                                    });
+                                return;
+                            }
+                        } else {
+                            res.render('home_Loggedin',
+                                {
+                                    standard_menu: req.user.standard_menu,
+                                    custom_menu:req.user.custom_menu,
+                                    lookupObjects:lookupObjects,
+                                    lookupresults:lookupresults,
+                                    standardFields : standardFields,
+                                    customFields : customFields,
+                                    customscript : customscript,
+                                    tablename : tablename,
+                                    id:fid,
+                                    objectname : objectname,
+                                    title: "Custom Edit"
+                                });
+                            return;
+                        }
+                    });
+                   /* res.render('home_Loggedin', {
                         title : 'Custom Edit' ,
                         standard_menu: req.user.standard_menu,
                         custom_menu:req.user.custom_menu,
@@ -135,7 +279,7 @@ function pushresults(req,res) {
                         id:fid,
                         objectname : objectname
                     });
-                    return;
+                    return;*/
                 });
             });
         });

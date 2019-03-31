@@ -2,7 +2,10 @@
 <script>
     function myFunction(){
         let standardFields={{{JSONfetch standardFields}}};
-        console.log(JSON.stringify(standardFields));
+        let customFields={{{JSONfetch customFields}}};
+
+        lookupObjects={{{JSONfetch lookupObjects}}};
+        lookupresults={{{JSONfetch lookupresults}}};
         let validationstatus=true;
         let message='';
         {{{customscript}}}
