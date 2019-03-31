@@ -69,7 +69,7 @@ function popresults(req,res) {
                     b=b+' or ';
                 }
             }
-            let sqlsearch='select id as target,\''+returnTo+'\' as source,'+ a+' from  '+table_name+' where '+b+';';
+            let sqlsearch='select id as target,\''+returnTo+'\' as source,'+ a+' from  '+table_name+' where ('+b+') and (organisationId=\'\' or organisationId=\''+req.user.organisation_Id+'\' or organisationId is NULL);;';
             console.log(sqlsearch);
             db.query(sqlsearch,function (error,searchresults) {
                 if(error) {
