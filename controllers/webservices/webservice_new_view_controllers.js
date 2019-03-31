@@ -29,6 +29,7 @@ function pushresults(req,res) {
                     let standardFields=[];
                     let customFields=[];
                     let customscript='';
+                    let jsonbody={};
                     let ourl=req.originalUrl.split('/');
                     let tablename=ourl[2];
                     let sql= 'SELECT obf.NAME,obf.field_name,obf.type,obf.field_type, obf.organisationId,obf.lookup,ob.name,ob.table_name,ic.COLUMN_TYPE FROM objects_fields obf ' +
@@ -38,6 +39,7 @@ function pushresults(req,res) {
                         '(obf.organisationId=\''+req.user.organisation_Id+'\' or obf.organisationId=\'\' or obf.organisationId IS NULL) ' +
                         'ORDER BY obf.id';
                     const  db=require('../../db.js');
+
                     db.query(sql, function
                         (error,results,fields){
                         if(error) {
@@ -48,6 +50,8 @@ function pushresults(req,res) {
                             res.render('error',{title:'Home_LoggedIn', error : error});
                             return;
                         }
+
+
                         tablename=results[0].table_name;
                         let objectname=results[0].name;
 
@@ -69,6 +73,17 @@ function pushresults(req,res) {
                             } else {
                                 customFields.push(results[i]);
                             }
+                        }
+
+                        for( let i=0;i<results.length;i++){
+                            if (!(results[i].field_name==='id'
+                                || results[i].field_name==='created_Date'
+                                || results[i].field_name==='created_By'
+                                || results[i].field_name==='lastModified_Date'
+                                || results[i].field_name==='lastModified_By'
+                                || results[i].field_name==='organisationId'
+                            ))
+                            jsonbody[results[i].field_name]='';
                         }
 
 
@@ -105,6 +120,7 @@ function pushresults(req,res) {
                                 'objectname' : objectname,
                                 'standardFields' : standardFields,
                                 'customFields' : customFields,
+                                'jsonbody' : jsonbody,
                                 'customscript' : customscript,
 
                             });
