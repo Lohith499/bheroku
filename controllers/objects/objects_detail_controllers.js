@@ -15,7 +15,7 @@ function detailresults(req,res) {
 
         let db1=require('../../db.js');
         db1.query('SELECT obf.id,obf.NAME,obf.field_name,obf.`type`,obf.field_type, "objects_fields" as tablename FROM objects_fields obf ' +
-            'WHERE obf.object_id=? ORDER BY obf.id; ;',[req.query.id], function(err, subresults) {
+            'WHERE obf.object_id=? AND (obf.organisationId=\''+req.user.organisation_Id+'\' or obf.organisationId=\'\' or obf.organisationId IS NULL) ORDER BY obf.id; ;',[req.query.id], function(err, subresults) {
             if (err) {
                 res.render('setup', {title: "Objects List", error: err});
                 return;

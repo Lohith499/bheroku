@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d34a7c99-b8e7-4100-8a37-37d4a1cb63a4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/controllers/webservices/webservice_new_view_controllers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/webservices/list.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/webservices/list.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/webservices/webservice_detail_controllers.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/webservices/webservice_detail_controllers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/webservices/webservice_new_save_controllers.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/webservices/webservice_new_save_controllers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/objects/objects_detail_controllers.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/objects/objects_detail_controllers.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -49,11 +44,29 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/webservices/webservice_detail_controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="197" column="69" selection-start-line="197" selection-start-column="69" selection-end-line="197" selection-end-column="69" />
+            <state relative-caret-position="290">
+              <caret line="187" column="53" lean-forward="true" selection-start-line="187" selection-start-column="53" selection-end-line="187" selection-end-column="53" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/controllers/objects/objects_detail_controllers.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="21" column="13" lean-forward="true" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/customobject/co_detail_controllers.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="31" column="211" lean-forward="true" selection-start-line="31" selection-start-column="97" selection-end-line="31" selection-end-column="211" />
             </state>
           </provider>
         </entry>
@@ -126,7 +139,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/views/partials/cases/cases_new.hbs" />
         <option value="$PROJECT_DIR$/controllers/customobject/co_new_save_controllers.js" />
         <option value="$PROJECT_DIR$/views/partials/footer.hbs" />
         <option value="$PROJECT_DIR$/views/lookups_search.hbs" />
@@ -177,6 +189,7 @@
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/controllers/webservices/webservice_new_save_controllers.js" />
         <option value="$PROJECT_DIR$/controllers/webservices/webservice_detail_controllers.js" />
+        <option value="$PROJECT_DIR$/controllers/objects/objects_detail_controllers.js" />
       </list>
     </option>
   </component>
@@ -209,7 +222,13 @@
               <item name="OS_NEM_CRM" type="b2602c69:ProjectViewProjectNode" />
               <item name="OS_NEM_CRM" type="462c0819:PsiDirectoryNode" />
               <item name="controllers" type="462c0819:PsiDirectoryNode" />
-              <item name="webservices" type="462c0819:PsiDirectoryNode" />
+              <item name="customobject" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OS_NEM_CRM" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OS_NEM_CRM" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="objects" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="OS_NEM_CRM" type="b2602c69:ProjectViewProjectNode" />
@@ -233,7 +252,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553984736267" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553995891960" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -335,12 +354,12 @@
       <workItem from="1553571815650" duration="5908000" />
       <workItem from="1553649511098" duration="697000" />
       <workItem from="1553650262767" duration="2544000" />
-      <workItem from="1553744762244" duration="25748000" />
+      <workItem from="1553744762244" duration="26645000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="562646000" />
+    <option name="totallyTimeSpent" value="563543000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -355,7 +374,7 @@
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49166667" visible="true" weight="0.22239032" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49166667" visible="true" weight="0.22239032" />
       <window_info id="Structure" order="1" sideWeight="0.5083333" side_tool="true" weight="0.27449664" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -364,7 +383,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32872504" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4978038" visible="true" weight="0.33333334" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4978038" visible="true" weight="0.33333334" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4977307" weight="0.39324117" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -649,20 +668,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/controllers/profiles/profiles_list_controllers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-68">
-          <caret line="5" column="34" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/profiles/profiles_detail_controllers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-272">
-          <caret line="5" column="38" selection-start-line="5" selection-start-column="38" selection-end-line="5" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/partials/profiles/profiles_new.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -1026,8 +1031,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/webservices/webservice_detail_controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="197" column="69" selection-start-line="197" selection-start-column="69" selection-end-line="197" selection-end-column="69" />
+        <state relative-caret-position="290">
+          <caret line="187" column="53" lean-forward="true" selection-start-line="187" selection-start-column="53" selection-end-line="187" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/customobject/co_detail_controllers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="31" column="211" lean-forward="true" selection-start-line="31" selection-start-column="97" selection-end-line="31" selection-end-column="211" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/objects/objects_detail_controllers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="21" column="13" lean-forward="true" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
         </state>
       </provider>
     </entry>
