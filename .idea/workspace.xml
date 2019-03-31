@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d34a7c99-b8e7-4100-8a37-37d4a1cb63a4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/controllers/cases/cases_edit_view_controllers.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/cases/cases_edit_view_controllers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/cases/cases_edit.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/cases/cases_edit.hbs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,11 +45,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/cases/cases_edit_view_controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="96" column="29" lean-forward="true" selection-start-line="96" selection-start-column="29" selection-end-line="96" selection-end-column="29" />
+            <state relative-caret-position="137">
+              <caret line="94" column="159" selection-start-line="94" selection-start-column="159" selection-end-line="94" selection-end-column="159" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/partials/cases/cases_edit.hbs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
             </state>
           </provider>
         </entry>
@@ -124,7 +134,6 @@
         <option value="$PROJECT_DIR$/controllers/object_lookups/objlookup_new_controllers.js" />
         <option value="$PROJECT_DIR$/controllers/homepage/cases_tasks_list_controllers.js" />
         <option value="$PROJECT_DIR$/controllers/cases/cases_edit_controllers.js" />
-        <option value="$PROJECT_DIR$/views/partials/cases/cases_edit.hbs" />
         <option value="$PROJECT_DIR$/public/css/style.css" />
         <option value="$PROJECT_DIR$/controllers/homepage/homepage_menus.js" />
         <option value="$PROJECT_DIR$/controllers/customobject/co_detail_controllers.js" />
@@ -172,6 +181,7 @@
         <option value="$PROJECT_DIR$/controllers/customobject/co_new_save_controllers.js" />
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/controllers/cases/cases_edit_view_controllers.js" />
+        <option value="$PROJECT_DIR$/views/partials/cases/cases_edit.hbs" />
       </list>
     </option>
   </component>
@@ -221,14 +231,7 @@
               <item name="OS_NEM_CRM" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="partials" type="462c0819:PsiDirectoryNode" />
-              <item name="object_fields" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OS_NEM_CRM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OS_NEM_CRM" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="partials" type="462c0819:PsiDirectoryNode" />
-              <item name="objlookups" type="462c0819:PsiDirectoryNode" />
+              <item name="cases" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -344,12 +347,12 @@
       <workItem from="1553649511098" duration="697000" />
       <workItem from="1553650262767" duration="2544000" />
       <workItem from="1553744762244" duration="26645000" />
-      <workItem from="1553998276119" duration="5032000" />
+      <workItem from="1553998276119" duration="5167000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="568575000" />
+    <option name="totallyTimeSpent" value="568710000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -364,7 +367,7 @@
     <frame x="-8" y="32" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49019608" visible="true" weight="0.22541603" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49019608" visible="true" weight="0.22541603" />
       <window_info id="Structure" order="1" sideWeight="0.50980395" side_tool="true" weight="0.22541603" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -373,7 +376,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32872504" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4978038" visible="true" weight="0.33224222" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4978038" visible="true" weight="0.33224222" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4977307" weight="0.3927987" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -683,13 +686,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="35" selection-start-line="35" selection-end-line="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.env.default">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -1043,8 +1039,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/cases/cases_edit_view_controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="96" column="29" lean-forward="true" selection-start-line="96" selection-start-column="29" selection-end-line="96" selection-end-column="29" />
+        <state relative-caret-position="137">
+          <caret line="94" column="159" selection-start-line="94" selection-start-column="159" selection-end-line="94" selection-end-column="159" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/partials/cases/cases_edit.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
         </state>
       </provider>
     </entry>
