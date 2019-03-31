@@ -731,6 +731,13 @@ router.post('/register', function(req, res, next) {
 });
 
 
+
+router.get(/.*/, function(req, res, next) {
+    res.redirect('/');
+    return;
+});
+
+
 passport.serializeUser(function (user_id,done) {
     done(null,user_id);
 });
