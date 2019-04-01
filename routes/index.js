@@ -25,18 +25,10 @@ const saltRound=10;
 /* GET home page. */
 
 router.get('/', function(req, res, next) {
-    console.log(req.isAuthenticated());
+    //console.log(req.isAuthenticated());
     if(req.isAuthenticated()){
-        let iplocation = require("iplocation").default;
-        iplocation(req.ip)
-            .then((rest) => {
-                console.log(JSON.stringify(rest));
-            })
-            .catch(err => {
-                console.log("error");
-            });
-        console.log("JSON "+JSON.stringify(req.user));
-        console.log("Logged in as "+req.user.user_id);
+        //console.log("JSON "+JSON.stringify(req.user));
+       // console.log("Logged in as "+req.user.user_id);
         res.header("user_id",req.user.user_id);
         res.header("organisation_id",req.user.organisation_Id);
         let s1 = require('../controllers/homepage/homepage_menus');
@@ -58,8 +50,8 @@ router.get('/', function(req, res, next) {
 //*****************Accounts********************************************
 //List
 router.get('/s/accounts', authenticationMiddleware(),function(req, res, next) {
-    console.log(req.user);
-    console.log(req.isAuthenticated());
+    //console.log(req.user);
+    //console.log(req.isAuthenticated());
     res.header("organisation_id",req.user.organisation_Id);
     let s1 = require('../controllers/homepage/homepage_menus');
     s1.popresults(req, res,function(){
@@ -70,7 +62,7 @@ router.get('/s/accounts', authenticationMiddleware(),function(req, res, next) {
 });
 
 router.post('/s/cases/edit/', authenticationMiddleware(),function(req, res, next) {
-    console.log('Accounts Edit');
+    //console.log('Accounts Edit');
     let s1 = require('../controllers/homepage/homepage_menus');
     s1.popresults(req, res,function(){
         if(req.query.action==='view'){
@@ -114,8 +106,6 @@ router.get(/\/c\/.*\/new/, function(req, res, next) {
 
 
 router.post(/\/c\/.*\/new/,function(req, res, next) {
-    console.log(req.body);
-    console.log('req');
     let s2 = require('../controllers/webservices/webservice_new_save_controllers');
     s2.pushresults(req, res);
     return;
@@ -126,8 +116,8 @@ router.post(/\/c\/.*\/new/,function(req, res, next) {
 
 
 router.get(/\/s\/.*\/list/, authenticationMiddleware(),function(req, res, next) {
-    console.log(req.user);
-    console.log(req.isAuthenticated());
+    //console.log(req.user);
+    //console.log(req.isAuthenticated());
     res.header("organisation_id",req.user.organisation_Id);
 
     let s1 = require('../controllers/homepage/homepage_menus');
@@ -140,8 +130,8 @@ router.get(/\/s\/.*\/list/, authenticationMiddleware(),function(req, res, next) 
 
 
 router.get(/\/s\/.*\/lookup/, authenticationMiddleware(),function(req, res, next) {
-    console.log(req.user);
-    console.log(req.isAuthenticated());
+    //console.log(req.user);
+    //console.log(req.isAuthenticated());
     res.header("organisation_id",req.user.organisation_Id);
         let s2 = require('../controllers/lookups/lookups_search_controllers');
         s2.popresults(req, res);
@@ -149,8 +139,8 @@ router.get(/\/s\/.*\/lookup/, authenticationMiddleware(),function(req, res, next
 });
 
 router.post(/\/s\/.*\/lookup/, authenticationMiddleware(),function(req, res, next) {
-    console.log(req.user);
-    console.log(req.isAuthenticated());
+    //console.log(req.user);
+    //console.log(req.isAuthenticated());
     res.header("organisation_id",req.user.organisation_Id);
         let s2 = require('../controllers/lookups/lookups_list_controllers');
         s2.popresults(req, res);
@@ -159,7 +149,6 @@ router.post(/\/s\/.*\/lookup/, authenticationMiddleware(),function(req, res, nex
 
 
 router.get(/\/s\/.*\/new/, authenticationMiddleware(),function(req, res, next) {
-    console.log('Accounts New');
     let s1 = require('../controllers/homepage/homepage_menus');
     s1.popresults(req, res,function(){
         let ourl=req.originalUrl.split('/');
@@ -177,7 +166,7 @@ router.get(/\/s\/.*\/new/, authenticationMiddleware(),function(req, res, next) {
 
 
 router.post(/\/s\/.*\/edit/, authenticationMiddleware(),function(req, res, next) {
-    console.log('Accounts Edit');
+    //console.log('Accounts Edit');
     let s1 = require('../controllers/homepage/homepage_menus');
     s1.popresults(req, res,function(){
             if(req.query.action==='view'){
@@ -196,8 +185,8 @@ router.post(/\/s\/.*\/edit/, authenticationMiddleware(),function(req, res, next)
 });
 
 router.get(/\/s\/.*\/details.*/, authenticationMiddleware(),function(req, res, next) {
-    console.log('Accounts New');
-    console.log(req.params.actionperform);
+    //console.log('Accounts New');
+    //console.log(req.params.actionperform);
     if(req.query.menu==='false'){
         let s2 = require('../controllers/customobject/co_detail_controllers');
         s2.pushresults(req, res);
@@ -222,8 +211,6 @@ router.get(/\/s\/.*\/details.*/, authenticationMiddleware(),function(req, res, n
 
 
 router.get(/\/s\/.*/, authenticationMiddleware(),function(req, res, next) {
-    console.log("regular call");
-    console.log(req.isAuthenticated());
     res.header("organisation_id",req.user.organisation_Id);
     res.redirect(req.originalUrl+"/list");
 });
@@ -237,7 +224,7 @@ router.get(/\/s\/.*/, authenticationMiddleware(),function(req, res, next) {
 
 //Saving Account
 router.post(/\/s\/.*\/new/, authenticationMiddleware(),function(req, res, next) {
-    console.log('Accounts New');
+    //console.log('Accounts New');
     let s1 = require('../controllers/homepage/homepage_menus');
     s1.popresults(req, res,function(){
         let ourl=req.originalUrl.split('/');
@@ -258,8 +245,8 @@ router.post(/\/s\/.*\/new/, authenticationMiddleware(),function(req, res, next) 
 
 router.get('/setup', authenticationMiddleware(),function(req, res, next) {
     if(req.user.is_Admin===1){
-    console.log(req.user);
-    console.log(req.isAuthenticated());
+    //console.log(req.user);
+    //console.log(req.isAuthenticated());
     res.header("organisation_id",req.user.organisation_Id);
     res.render('setup', { title: 'Setup' });
     } else {
@@ -285,24 +272,15 @@ router.get('/setup/bUsers', authenticationMiddleware(),function(req, res, next) 
 //Users List,Detail,New,Edit Actions
 router.get('/setup/bUsers/:actionperform', authenticationMiddleware(),function(req, res, next) {
     if(req.user.is_Admin===1) {
-
-        console.log("Users Index");
-        // let pattern = /^details\?[a-z0-9]/g;
-
-        console.log("action performed" + req.params.actionperform);
         if (req.params.actionperform === "list") {
-            console.log("redirecting to users list");
             return res.redirect('/setup/bUsers');
         } else if (req.params.actionperform === 'new') {
             res.header("organisation_id", +req.user.organisation_Id);
-            console.log("Users New");
             res.render('setup', {title: 'Users New'});
         } else if (req.params.actionperform === 'details') {
-            console.log("Users Detail of " + req.query.id);
             let s1 = require('../controllers/users/users_detail_controllers');
             s1.detailresults(req, res);
         } else if (req.params.actionperform === 'edit') {
-            console.log("Users Edit");
             res.render('setup', {title: 'Users Edit'});
         } else {
             res.render('setup', {title: 'Setup Post'});
@@ -317,10 +295,6 @@ router.get('/setup/bUsers/:actionperform', authenticationMiddleware(),function(r
 //Users Post New Record
 router.post('/setup/bUsers/new', authenticationMiddleware(),function(req, res, next) {
     if(req.user.is_Admin===1) {
-        console.log("Users Submiting post");
-
-        console.log(req.isAuthenticated());
-        console.log(JSON.stringify(req.body));
         let s1 = require('../controllers/users/users_new_controllers');
         s1.pushresults(req, res);
     }else {
@@ -332,12 +306,10 @@ router.post('/setup/bUsers/new', authenticationMiddleware(),function(req, res, n
 //Users Post Edit Record
 router.post('/setup/bUsers/edit', authenticationMiddleware(),function(req, res, next) {
     if (req.user.is_Admin === 1) {
-        console.log("Users Editing post");
         if (req.query.action === "view") {
             let s1 = require('../controllers/users/users_edit_view_controllers');
             s1.edit_view_results(req, res);
         } else if (req.query.action === "save") {
-            console.log("saving result");
             let s1 = require('../controllers/users/users_edit_controllers');
             s1.editresults(req, res);
         } else {
@@ -357,7 +329,6 @@ router.post('/setup/bUsers/edit', authenticationMiddleware(),function(req, res, 
 //Profiles Home page
 router.get('/setup/profiles', authenticationMiddleware(),function(req, res, next) {
     if (req.user.is_Admin === 1) {
-        console.log("profiles Index");
         let s1 = require('../controllers/profiles/profiles_list_controllers');
         s1.popresults(req, res);
     }else {
@@ -370,23 +341,17 @@ router.get('/setup/profiles', authenticationMiddleware(),function(req, res, next
 //Profiles List,Detail,New,Edit Actions
 router.get('/setup/profiles/:actionperform', authenticationMiddleware(),function(req, res, next) {
     if (req.user.is_Admin === 1) {
-        console.log("Profiles Index");
         // let pattern = /^details\?[a-z0-9]/g;
 
-        console.log("action performed" + req.params.actionperform);
         if (req.params.actionperform === "list") {
-            console.log("redirecting to profiles list");
             return res.redirect('/setup/profiles');
         } else if (req.params.actionperform === 'new') {
             res.header("organisation_id", +req.user.organisation_Id);
-            console.log("redirecting to profiles new");
             res.render('setup', {title: 'Profiles New'});
         } else if (req.params.actionperform === 'details') {
-            console.log("Profiles Detail of " + req.query.id);
             let s1 = require('../controllers/profiles/profiles_detail_controllers');
             s1.detailresults(req, res);
         } else if (req.params.actionperform === 'edit') {
-            console.log("Profiles Edit");
             res.render('setup', {title: 'Profiles Edit'});
         } else {
             res.render('setup', {title: 'Setup Post'});
@@ -401,9 +366,6 @@ router.get('/setup/profiles/:actionperform', authenticationMiddleware(),function
 //Profiles Post New Record
 router.post('/setup/profiles/new', authenticationMiddleware(),function(req, res, next) {
     if (req.user.is_Admin === 1) {
-        console.log("Profiles Submitting new post");
-        console.log(req.isAuthenticated());
-        console.log(JSON.stringify(req.body));
         let s1 = require('../controllers/profiles/profiles_new_controllers');
         s1.pushresults(req, res);
     }else {
@@ -415,12 +377,10 @@ router.post('/setup/profiles/new', authenticationMiddleware(),function(req, res,
 //Profiles Post Edit Record
 router.post('/setup/profiles/edit', authenticationMiddleware(),function(req, res, next) {
     if (req.user.is_Admin === 1) {
-        console.log("Profiles Editing post");
         if (req.query.action === "view") {
             let s1 = require('../controllers/profiles/profiles_edit_view_controllers');
             s1.edit_view_results(req, res);
         } else if (req.query.action === "save") {
-            console.log("saving profile edit result");
             let s1 = require('../controllers/profiles/profiles_edit_controllers');
             s1.editresults(req, res);
         } else {
@@ -440,7 +400,6 @@ router.post('/setup/profiles/edit', authenticationMiddleware(),function(req, res
 //Objects Home page
 router.get('/setup/objects', authenticationMiddleware(),function(req, res, next) {
     if (req.user.is_Admin === 1) {
-        console.log("objects Index");
         let s1 = require('../controllers/objects/objects_list_controllers');
         s1.popresults(req, res);
     }else {
@@ -453,23 +412,15 @@ router.get('/setup/objects', authenticationMiddleware(),function(req, res, next)
 //Objects List,Detail,New,Edit Actions
 router.get('/setup/objects/:actionperform', authenticationMiddleware(),function(req, res, next) {
     if (req.user.is_Admin === 1) {
-        console.log("Objects Index");
-        // let pattern = /^details\?[a-z0-9]/g;
-
-        console.log("action performed" + req.params.actionperform);
         if (req.params.actionperform === "list") {
-            console.log("redirecting to objects list");
             return res.redirect('/setup/objects');
         } else if (req.params.actionperform === 'new') {
             res.header("organisation_id", +req.user.organisation_Id);
-            console.log("redirecting to objects new");
             res.render('setup', {title: 'Objects New'});
         } else if (req.params.actionperform === 'details') {
-            console.log("Objects Detail of " + req.query.id);
             let s1 = require('../controllers/objects/objects_detail_controllers');
             s1.detailresults(req, res);
         } else if (req.params.actionperform === 'edit') {
-            console.log("Objects Edit");
             res.render('setup', {title: 'Objects Edit'});
         } else {
             res.render('setup', {title: 'Setup Post'});
@@ -484,9 +435,6 @@ router.get('/setup/objects/:actionperform', authenticationMiddleware(),function(
 //Objects Post New Record
 router.post('/setup/objects/new', authenticationMiddleware(),function(req, res, next) {
     if (req.user.is_Admin === 1) {
-        console.log("Objects Submitting new post");
-        console.log(req.isAuthenticated());
-        console.log(JSON.stringify(req.body));
         let s1 = require('../controllers/objects/objects_new_controllers');
         s1.pushresults(req, res);
     }else {
@@ -498,13 +446,11 @@ router.post('/setup/objects/new', authenticationMiddleware(),function(req, res, 
 //Objects Post Edit Record
 router.post('/setup/objects/edit', authenticationMiddleware(),function(req, res, next) {
     if (req.user.is_Admin === 1) {
-        console.log("Objects Editing post");
         if (req.query.action === "view") {
             let s1 = require('../controllers/objects/objects_edit_view_controllers');
             s1.edit_view_results(req, res);
             return;
         } else if (req.query.action === "save") {
-            console.log("saving profile edit result");
             let s1 = require('../controllers/objects/objects_edit_controllers');
             s1.editresults(req, res);
             return;
@@ -526,7 +472,6 @@ router.post('/setup/objects/edit', authenticationMiddleware(),function(req, res,
 
 router.post('/setup/objects/objectfields/:actionperform', authenticationMiddleware(),function(req, res, next) {
     if (req.user.is_Admin === 1) {
-        console.log("Object fields Index");
         if (req.params.actionperform === 'new' && req.query.action === "view") {
 
             let s1 = require('../controllers/object_fields/objectfields_new_view_controllers');
@@ -551,7 +496,6 @@ router.post('/setup/objects/objectfields/:actionperform', authenticationMiddlewa
 
 router.post('/setup/objects/customscripts/:actionperform', authenticationMiddleware(),function(req, res, next) {
     if (req.user.is_Admin === 1) {
-        console.log("Object fields Index");
         if (req.params.actionperform === 'new' && req.query.action === "view") {
             let s1 = require('../controllers/customScripts/customscript_new_view_controllers');
             s1.pushresults(req, res);
@@ -572,7 +516,6 @@ router.post('/setup/objects/customscripts/:actionperform', authenticationMiddlew
 
 router.post('/setup/objects/lookups/:actionperform', authenticationMiddleware(),function(req, res, next) {
     if (req.user.is_Admin === 1) {
-        console.log("Object fields Index");
         if (req.params.actionperform === 'new' && req.query.action === "view") {
             let s1 = require('../controllers/object_lookups/objlookup_new_view_controllers');
             s1.pushresults(req, res);
@@ -597,10 +540,8 @@ router.post('/setup/objects/lookups/:actionperform', authenticationMiddleware(),
 
 router.post('/setup', authenticationMiddleware(),function(req, res, next) {
     if (req.user.is_Admin === 1) {
-        console.log("setup post");
-        console.log(req.isAuthenticated());
-        var noticia = req.body;
-        console.log(noticia);
+        //console.log(req.isAuthenticated());
+      //  var noticia = req.body;
         //console.log(e.target.getAttribute('id'));
         // var so =require('../controllers/setup_organisation');
         res.render('setup', {title: 'Setup Post'});
@@ -615,7 +556,6 @@ router.post('/setup', authenticationMiddleware(),function(req, res, next) {
 router.get('/login', function(req, res, next) {
 
     if(req.hasOwnProperty('query')){
-        console.log(JSON.stringify(req.query));
         if(req.query.hasOwnProperty('error')){
             res.render('login', { title: 'Login', erro:"Please enter correct Username and Password" });
             return;
@@ -645,9 +585,30 @@ router.post('/login', function(req, res, next) {
         if (!user) { return res.redirect('/login'); }
         req.logIn(user, function(err) {
             if (err) { return next(err); }
-            return setTimeout(function() {
-                res.redirect('/');
-            }, 1000);
+            let  ldb=require('../db');
+            let location='';
+            let iplocation = require("iplocation").default;
+            iplocation(req.ip)
+            .then((rest) => {
+                location=JSON.stringify(rest);
+                console.log("Logging In from");
+                console.log(location);
+                let lsql='INSERT INTO Logsession (user_id,organisation_id ,user_action,locationdata) VALUES (?,?,\'LoggedIn\',?);'
+                ldb.query(lsql,[req.user.user_id,req.user.organisation_Id,location],function(lerr,lresults){
+                    if(lerr) {
+                        res.render('error',{message:'Unable to log into Logsession', error : lerr});
+                        return;
+                    } else {
+                        console.log(JSON.stringify(lresults));
+                        return setTimeout(function() {
+                            res.redirect('/');
+                        }, 1000);
+                    }
+                });
+            })
+            .catch(err => {
+                console.log("error");
+            });
         });
     })(req, res, next);
 });
@@ -659,6 +620,8 @@ router.get('/logout', function(req, res, next) {
     iplocation(req.ip)
         .then((rest) => {
             location=JSON.stringify(rest);
+            console.log("Logging Out from");
+            console.log(location);
             let lsql='INSERT INTO Logsession (user_id,organisation_id ,user_action,locationdata) VALUES (?,?,\'LoggedOut\',?);'
             ldb.query(lsql,[req.user.user_id,req.user.organisation_Id,location],function(lerr,lresults){
                 if(lerr) {
