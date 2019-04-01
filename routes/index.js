@@ -25,19 +25,6 @@ const saltRound=10;
 /* GET home page. */
 
 router.get('/', function(req, res, next) {
-
-    console.log(req);
-  /*  var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-    var reqs = new XMLHttpRequest();
-    reqs.open('GET', document.location, false);
-    reqs.send(null);
-// associate array to store all values
-    var data = new Object();
-// get all headers in one call and parse each item
-    var headers = reqs.getAllResponseHeaders().toLowerCase();
-    console.log("Headers");
-    console.log(JSON.stringify(headers));*/
-
     console.log(req.isAuthenticated());
     if(req.isAuthenticated()){
         console.log("JSON "+JSON.stringify(req.user));
@@ -46,22 +33,15 @@ router.get('/', function(req, res, next) {
         res.header("organisation_id",req.user.organisation_Id);
         let s1 = require('../controllers/homepage/homepage_menus');
         s1.popresults(req, res,function(){
-            /*res.render('home_Loggedin',
-                {
-                    standard_menu: req.user.standard_menu,
-                    custom_menu:req.user.custom_menu,
-                    title: "Home_LoggedIn"
-                });
-            return;*/
             let s2 = require('../controllers/homepage/cases_tasks_list_controllers');
             s2.popresults(req, res);
             return;
         });
 
     } else {
-
         res.render('home_Loggedout', { title: 'home_Loggedout' });
         console.log("not yet logged in");
+        return;
     }
 
 
@@ -635,33 +615,63 @@ router.get('/login', function(req, res, next) {
             res.render('login', { title: 'Login'});
             return;
         }
-    }
+    }else {
     res.render('login', { title: 'Login'});
     return;
+    }
 });
 
 
-
+/*
 router.post('/login' , passport.authenticate(
     'local',
     {
-     successRedirect: '/',
-     failureRedirect: '/login?error'
+        successRedirect: '/',
+        failureRedirect: '/login'
     })
-);
+); */
 
-
-
+router.post('/login', function(req, res, next) {
+    passport.authenticate('local', function(err, user, info) {
+        if (err) { return next(err); }
+        if (!user) { return res.redirect('/login'); }
+        req.logIn(user, function(err) {
+            if (err) { return next(err); }
+            return setTimeout(function() {
+                res.redirect('/');
+            }, 1000);
+        });
+    })(req, res, next);
+});
 
 router.get('/logout', function(req, res, next) {
-    req.logout();
-    console.log("logged out id:"+req.sessionID);
-    req.session.destroy(() => {
-        res.clearCookie('connect.sid')
-        setTimeout(function() {
-            res.redirect('/');
-        }, 1000);
-    });
+    let  ldb=require('../db');
+    let location='';
+    const iplocation = require("iplocation").default;
+    iplocation(req.ip)
+        .then((rest) => {
+            location=JSON.stringify(rest);
+            let lsql='INSERT INTO Logsession (user_id,organisation_id ,user_action,locationdata) VALUES (?,?,\'LoggedOut\',?);'
+            ldb.query(lsql,[req.user.user_id,req.user.organisation_Id,location],function(lerr,lresults){
+                if(lerr) {
+                    res.render('error',{message:'Unable to log into Logsession', error : lerr});
+                    return;
+                } else {
+                    console.log(JSON.stringify(lresults));
+                    req.logout();
+                    console.log("logged out id:"+req.sessionID);
+                    req.session.destroy(() => {
+                        res.clearCookie('connect.sid')
+                        setTimeout(function() {
+                            res.redirect('/');
+                        }, 1000);
+                    });
+                }
+            });
+        })
+        .catch(err => {
+            console.log("error");
+        });
 });
 
 
@@ -748,7 +758,7 @@ passport.deserializeUser(function (user_id,done) {
 
 function authenticationMiddleware () {
     return (req, res, next) => {
-        console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
+        //console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
 
         if (req.isAuthenticated()) return next();
         req.logout();
