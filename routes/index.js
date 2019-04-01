@@ -27,6 +27,14 @@ const saltRound=10;
 router.get('/', function(req, res, next) {
     console.log(req.isAuthenticated());
     if(req.isAuthenticated()){
+        let iplocation = require("iplocation").default;
+        iplocation(req.ip)
+            .then((rest) => {
+                console.log(JSON.stringify(rest));
+            })
+            .catch(err => {
+                console.log("error");
+            });
         console.log("JSON "+JSON.stringify(req.user));
         console.log("Logged in as "+req.user.user_id);
         res.header("user_id",req.user.user_id);
@@ -647,7 +655,7 @@ router.post('/login', function(req, res, next) {
 router.get('/logout', function(req, res, next) {
     let  ldb=require('../db');
     let location='';
-    const iplocation = require("iplocation").default;
+    let iplocation = require("iplocation").default;
     iplocation(req.ip)
         .then((rest) => {
             location=JSON.stringify(rest);
