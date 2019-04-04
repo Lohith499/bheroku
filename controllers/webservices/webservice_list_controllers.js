@@ -1,11 +1,20 @@
 var  dbu=require('../../db.js');
-var someVar = [];
-var list_of_results="";
 var bcrypt=require('bcryptjs');
+let page='';
+let limitr='';
 function pushresults(req,res) {
     let headers =req.headers;
+    let queries= req.query;
+    console.log(JSON.stringify(req.query));
+    if(queries.hasOwnProperty('page')) {
+        page=queries['page'];
+    }
+    if(queries.hasOwnProperty('limit')) {
+        limitr=queries['limit'];
+    }
     let username=headers["username"];
     let password=headers["password"];
+    console.log(page+' -- '+limitr);
     const  dbs =require('../../db.js');
     dbs.query('SELECT id,password,organisationId,Profile_Name FROM users where username=? ',[username],function (err,results,fields) {
         if(err) {
@@ -26,16 +35,13 @@ function pushresults(req,res) {
                 });
             return;
         } else {
-            console.log(results[0].password.toString());
             const hash =results[0].password.toString();
             bcrypt.compare(password,hash,function (err,response) {
                 if(response===true){
-                    console.log('hash pass');
                     req.user = {};
                     req.user.user_id=results[0].id;
                     req.user.organisation_Id=results[0].organisationId;
                     req.user.is_Admin=results[0].Profile_Name;
-
                     let ourl=req.originalUrl.split('/');
                     let objectname=ourl[2];
                     let sql='SELECT obf.field_name,ob.NAME, ob.table_name FROM objects_fields obf\n' +
@@ -79,6 +85,15 @@ function pushresults(req,res) {
                             }
                             fsql=fsql.substring(0,fsql.length-1);
                             let sql='SELECT '+fsql+' , \''+objectname+'\' AS tablename FROM '+tablename+ ' where organisationId=\'\' or organisationId IS NULL or organisationId=?';
+
+                            if(queries.hasOwnProperty('page')) {
+
+                                if(queries.hasOwnProperty('limit')) {
+                                    sql=sql+' limit '+(parseInt(page-1)*parseInt(limitr))+','+parseInt(limitr);
+                                } else {
+                                    sql=sql+' limit '+(parseInt(page)*10)+','+10;
+                                }
+                            }
                             console.log(sql);
                             dbu.query(sql,[req.user.organisation_Id], function(err, results){
                                 if(err) {
@@ -103,8 +118,6 @@ function pushresults(req,res) {
 
                         }
                     });
-                    // res.json("{user_id: "+results[0].id+", organisation_Id : "+results[0].organisationId+", is_Admin : "+results[0].Profile_Name+" }");
-                    //return;
                 }else {
                     console.log('hash fail');
                     res.json('{Status : "Authentication Failed"}');

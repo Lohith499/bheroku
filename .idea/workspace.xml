@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d34a7c99-b8e7-4100-8a37-37d4a1cb63a4" name="Default Changelist" comment="" />
+    <list default="true" id="d34a7c99-b8e7-4100-8a37-37d4a1cb63a4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/controllers/webservices/webservice_list_controllers.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/webservices/webservice_list_controllers.js" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,65 +32,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1350">
-              <caret line="587" selection-start-line="587" selection-end-line="587" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1190">
-              <caret line="32" column="29" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="29" />
-              <folding>
-                <element signature="n#style#0;n#img#0;n#td#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#td#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#td#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#td#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#td#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#td#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#thead#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h3#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#tfoot#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#td#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#td#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h5#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#p#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#p#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#p#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#p#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/controllers/homepage/homepage_menus.js">
+        <entry file="file://$PROJECT_DIR$/controllers/webservices/webservice_list_controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="28" column="45" lean-forward="true" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
+            <state relative-caret-position="85">
+              <caret line="125" column="15" lean-forward="true" selection-start-line="125" selection-start-column="15" selection-end-line="125" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -164,7 +112,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/controllers/object_fields/objectfields_new_view_controllers.js" />
         <option value="$PROJECT_DIR$/controllers/object_fields/objectfields_new_controllers.js" />
         <option value="$PROJECT_DIR$/views/lookups_list.hbs" />
         <option value="$PROJECT_DIR$/views/partials/object_fields/objectfields_new.hbs" />
@@ -215,6 +162,7 @@
         <option value="$PROJECT_DIR$/views/partials/header.hbs" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/routes/index.js" />
+        <option value="$PROJECT_DIR$/controllers/webservices/webservice_list_controllers.js" />
       </list>
     </option>
   </component>
@@ -224,7 +172,7 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="9" />
     <option name="y" value="18" />
     <option name="width" value="1755" />
@@ -254,18 +202,7 @@
               <item name="OS_NEM_CRM" type="b2602c69:ProjectViewProjectNode" />
               <item name="OS_NEM_CRM" type="462c0819:PsiDirectoryNode" />
               <item name="controllers" type="462c0819:PsiDirectoryNode" />
-              <item name="homepage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OS_NEM_CRM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OS_NEM_CRM" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OS_NEM_CRM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OS_NEM_CRM" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="partials" type="462c0819:PsiDirectoryNode" />
+              <item name="webservices" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -396,7 +333,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="558689000" />
+    <option name="totallyTimeSpent" value="558746000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -411,8 +348,8 @@
     <frame x="-8" y="32" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.78431374" visible="true" weight="0.2065053" />
-      <window_info id="Structure" order="1" sideWeight="0.21568628" side_tool="true" visible="true" weight="0.2065053" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.78494626" visible="true" weight="0.2065053" />
+      <window_info id="Structure" order="1" sideWeight="0.21505377" side_tool="true" visible="true" weight="0.2065053" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -420,8 +357,8 @@
       <window_info id="Favorites" order="6" sideWeight="0.5054432" side_tool="true" weight="0.23567803" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4969743" visible="true" weight="0.33224222" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4977307" weight="0.39116204" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4969743" weight="0.33224222" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4977307" visible="true" weight="0.39116204" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49963742" weight="0.32659408" />
@@ -703,23 +640,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/views/partials/profiles/profiles_detail.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="32" column="66" lean-forward="true" selection-start-line="32" selection-start-column="66" selection-end-line="32" selection-end-column="66" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/profiles/profiles_edit_view_controllers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="34" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/yarn.lock" />
     <entry file="file://$PROJECT_DIR$/node_modules/jQuery/package.json" />
     <entry file="file://$PROJECT_DIR$/controllers/profiles/profiles_edit_controllers.js">
@@ -1071,6 +991,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="159">
           <caret line="28" column="45" lean-forward="true" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/webservices/webservice_new_save_controllers.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/webservices/webservice_list_controllers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="125" column="15" lean-forward="true" selection-start-line="125" selection-start-column="15" selection-end-line="125" selection-end-column="15" />
         </state>
       </provider>
     </entry>
