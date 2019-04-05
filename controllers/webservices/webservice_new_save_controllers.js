@@ -88,7 +88,7 @@ function pushresults(req,res) {
                             console.log(JSON.stringify(results));
                             const user_id = results.insertId;
                             console.log(results.insertId);
-                            res.redirect('/c/'+objectname+"/details?id="+results.insertId);
+                            res.redirect('/c/'+objectname+"/details/"+results.insertId);
                             return;
                         });
                     });
