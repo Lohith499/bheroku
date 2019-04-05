@@ -7,8 +7,9 @@ function pushresults(req,res) {
     let username=headers["username"];
     let password=headers["password"];
     const  dbs =require('../../db.js');
+    let id_searhc=req.url
     dbs.query('SELECT id,password,organisationId,Profile_Name FROM users where username=? ',[username],function (err,results,fields) {
-        if(err) {res.render('error',
+        if(err) {res.status(500).json(
             {
                 message : error.sqlMessage,
                 error : error,
@@ -16,11 +17,10 @@ function pushresults(req,res) {
             });
             return;}
         if(results.length===0){
-            res.render('error',
+            res.status(500).json(
                 {
-                    message : error.sqlMessage,
-                    error : error,
-                    title: "Home List"
+                    status: 'Authentication Failure',
+                    message : "No User found with this Username and Password"
                 });
             return;
         } else {
@@ -33,11 +33,23 @@ function pushresults(req,res) {
                     req.user.user_id=results[0].id;
                     req.user.organisation_Id=results[0].organisationId;
                     req.user.is_Admin=results[0].Profile_Name;
-
                     let ovlaues=[req.user.user_id,req.user.organisation_Id];
                     let ourl=req.originalUrl.split('/');
                     let objectname=ourl[2];
                     let obj_id='';
+                    let id_search='';
+                    if(ourl.length==5){
+                        id_search=ourl[4];
+                        id_search=id_search.replace(/%20or%20/g, '');
+                        id_search=id_search.replace(/ /g, '');
+                        id_search=id_search.replace(/%20/g, '');
+                        id_search=id_search.replace(/[~`!@#$%^&()_={}[\]:;,.<>+\/?-]/g, '');
+                    }else {
+                        res.status(500).json({
+                                error: "Enter only Record id after details/ "
+                            });
+                        return;
+                    }
                     let table_name='';
                     let contentresults =[];
                     let cj=0;
@@ -51,26 +63,20 @@ function pushresults(req,res) {
                     const  db=require('../../db.js');
                     db.query(gettablname,function (error1,results1,fields1){
                         if(error1 || results1.length===0) {
-                            db.rollback(function() {
-                                res.render('error', { title: 'No Object Found' , object : req.query.object, id : req.query.id, error : error});
+                                res.status(500).json( { "Message": 'No Object Found with name='+objectname });
                                 return;
-
-                            });
                         }
                         obj_id=results1[0].id;
                         table_name=results1[0].TABLE_NAME;
                         let getfieldsql='select * from objects_fields obf where obf.object_id='+results1[0].id+' AND (obf.organisationId=\''+req.user.organisation_Id+'\' or obf.organisationId=\'\' or obf.organisationId IS NULL) ORDER BY id';
                         db.query(getfieldsql,function (error,fieldresults) {
                             if(error || fieldresults.length===0) {
-                                db.rollback(function() {
-                                    res.render('error', { title: 'No Fields Found for this Object' , object : req.query.object, id : req.query.id, error : error});
-                                    return;
-
-                                });
+                                res.status(500).json( { "Message": 'No Object Fields Found for the object='+objectname });
+                                return;
                             }
-
-                            let sql='SELECT t3.*,u.username AS ccreated_By, u1.username AS llastModified_By FROM '+results1[0].TABLE_NAME+' t3 INNER JOIN users u on t3.created_By=u.id LEFT JOIN users u1 ON t3.lastModified_By=u1.username where t3.id='+req.query.id+';';
-                            db.query(sql,function
+                            console.log("id"+id_search);
+                            let sql='SELECT t3.*,u.username AS ccreated_By, u1.username AS llastModified_By FROM '+results1[0].TABLE_NAME+' t3 INNER JOIN users u on t3.created_By=u.id LEFT JOIN users u1 ON t3.lastModified_By=u1.username where t3.id=? and ( t3.organisationId=\''+req.user.organisation_Id+'\' or t3.organisationId=\'\' or t3.organisationId IS NULL);';
+                            db.query(sql,[id_search],function
                                 (error,results,fields){
                                 if(error) {
                                     console.log('error:'+ error.sqlMessage);
@@ -79,12 +85,12 @@ function pushresults(req,res) {
                                     if(error.sqlMessage.includes("Duplicate")){
                                         error.sqlMessage="There is already a Object with this name in your Organisation"
                                     }
-                                    res.render('error',{title:'Objects New', error : error});
+                                    res.status(500).json({error : error});
                                     return;
                                 }
                                 if(results.length===0){
-                                    let message="No record found with this ID in this object";
-                                    res.render('error',{title:'Objects New', error : error , message : message});
+                                    let message="No record found with this ID in this object or you dont have access to this record";
+                                    res.status(500).json({message : message});
                                     return;
                                 }
                                 for (let key in results[0]) {
@@ -109,17 +115,25 @@ function pushresults(req,res) {
                                 }
                                 for(let i=0;i<fieldresults.length;i++){
                                     let  key=fieldresults[i].field_name;
-                                    if(key==='created_Date' || key==='created_By' || key==='lastModified_Date' || key==='lastModified_By' || key==='organisationId'){
+                                   // if(key==='created_Date' || key==='created_By' || key==='lastModified_Date' || key==='lastModified_By' || key==='organisationId'){
 
-                                    }else {
+                                   // }else {
                                         contentresults[cj]=fieldresults[i];
                                         cj=cj+1
-                                    }
+                                  //  }
                                 }
                                 for(let i=0;i<contentresults.length;i++){
                                     for (let key in results[0]) {
                                         if(key===contentresults[i].field_name ){
                                             contentresults[i].value=results[0][key];
+                                        }
+                                    }
+                                }
+                                for(let i=0;i<contentresults.length;i++){
+                                    for (let key in contentresults[i]){
+                                        if(key==='value' || key==='name' || key==='field_name' || key==='type' || key==='field_type' || key==='lookup'){
+                                         }else {
+                                            delete contentresults[i][key];
                                         }
                                     }
                                 }
@@ -135,7 +149,7 @@ function pushresults(req,res) {
                                         if(error.sqlMessage.includes("Duplicate")){
                                             error.sqlMessage="There is already a Object with this name in your Organisation"
                                         }
-                                        res.render('error',{title:'Objects New', error : error});
+                                        res.status(500).json({title:'Objects New', error : error});
                                         return;
                                     } else if(lookupObfsql_results){
                                         if(lookupObfsql_results.length>0){
@@ -183,8 +197,8 @@ function pushresults(req,res) {
                                                         sql+=',';
                                                     }
                                                 }
-                                                sql+=' from '+lookupTables[i]+' where '+arrays1[lookupTables[i]][0]+'='+req.query.id+';';
-                                                db.query(sql,function (error,lookeachresult) {
+                                                sql+=' from '+lookupTables[i]+' where '+arrays1[lookupTables[i]][0]+'=?;';
+                                                db.query(sql,[id_search],function (error,lookeachresult) {
                                                     if(error) {
                                                         console.log('error:'+ error.sqlMessage);
                                                         // let s1 = require('./objects_edit_view_controllers');
@@ -192,7 +206,7 @@ function pushresults(req,res) {
                                                         if(error.sqlMessage.includes("Duplicate")){
                                                             error.sqlMessage="There is already a Object with this name in your Organisation"
                                                         }
-                                                        res.render('error',{title:'Objects New', error : error});
+                                                        res.status(500).json({title:'Objects New', error : error});
                                                         return;
                                                     }
                                                     for(let l=0;l<lookeachresult.length;l++){
@@ -207,7 +221,7 @@ function pushresults(req,res) {
                                                     console.log('************************');
                                                     if(i===(lookupTables.length-1)){
                                                         res.json({
-                                                            record_id : req.query.id,
+                                                            record_id : id_search,
                                                             'Details': contentresults,
                                                             'RelatedObjects': lookupObjects,
                                                             'Related_Objects_Details': lookupresults
@@ -218,7 +232,7 @@ function pushresults(req,res) {
                                             }
                                         }else {
                                             res.json({
-                                                record_id : req.query.id,
+                                                record_id : id_search,
                                                 'Details': contentresults,
                                                 'RelatedObjects': lookupObjects,
                                                 'Related_Objects_Details': lookupresults
@@ -227,7 +241,7 @@ function pushresults(req,res) {
                                         }
                                     } else {
                                         res.json({
-                                            record_id: req.query.id,
+                                            record_id: id_search,
                                             'Details': contentresults,
                                             'RelatedObjects': lookupObjects,
                                             'Related_Objects_Details': lookupresults
@@ -242,7 +256,11 @@ function pushresults(req,res) {
                     return;
                 }else {
                     console.log('hash fail');
-                    res.json('{Status : "Authentication Failed"}');
+                    res.status(500).json(
+                        {
+                            status: 'Authentication Failure',
+                            message : "No User found with this Username and Password"
+                        });
                     return;
                 }
             });

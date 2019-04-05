@@ -96,7 +96,11 @@ function pushresults(req,res) {
                     return;
                 }else {
                     console.log('hash fail');
-                    res.json('{Status : "Authentication Failed"}');
+                    res.status(500).json(
+                        {
+                            status: 'Authentication Failure',
+                            message : "No User found with this Username and Password"
+                        });
                     return;
                 }
             });

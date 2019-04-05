@@ -91,6 +91,19 @@ router.get(/\/c\/.*\/details/, function(req, res, next) {
     return;
 });
 
+router.get(/\/c\/.*\/search/, function(req, res, next) {
+    let s2 = require('../controllers/webservices/webservice_search_controllers');
+    s2.pushresults(req, res);
+    return;
+});
+
+router.get(/\/c\/.*\/def/, function(req, res, next) {
+    let s2 = require('../controllers/webservices/webservice_object_def_controllers');
+    s2.pushresults(req, res);
+    return;
+});
+
+
 router.get(/\/c\/.*\/list/, function(req, res, next) {
     let s2 = require('../controllers/webservices/webservice_list_controllers');
     s2.pushresults(req, res);
