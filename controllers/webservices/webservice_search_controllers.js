@@ -1,5 +1,5 @@
 var  dbu=require('../../db.js');
-var someVar = [];
+//var someVar = [];
 var list_of_results="";
 var bcrypt=require('bcryptjs');
 function pushresults(req,res) {
