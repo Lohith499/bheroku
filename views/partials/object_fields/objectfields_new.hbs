@@ -9,8 +9,8 @@
         var table = document.getElementById("myTable");
         var x=table.rows.length;
         var row = table.insertRow(x);
-        row.innerHTML='<td id="c_'+x+'1"><div class="form-group"><input id="textinput" name="textinput" type="text" placeholder="Field Name" class="form-control input-md" required=""><span class="help-block">Field Name cannot have spaces</span></div></td>' +
-                '<td id="c_'+x+'2"><div class="form-group"><input id="textinput" name="textinput" type="text" placeholder="Field Label" class="form-control input-md" required=""><span class="help-block">Enter the Label for the Field</span></div></td>' +
+        row.innerHTML='<td id="c_'+x+'1"><div class="form-group"><input id="textinput" name="textinput" type="text" placeholder="Field Name" class="form-control input-md" required=""><span class="help-block">Enter the Label for the Field</span></div></td>' +
+                '<td id="c_'+x+'2"><div class="form-group"><input id="textinput" name="textinput" type="text" placeholder="Field Label" class="form-control input-md" required=""><span class="help-block">Field Name cannot have spaces</span></div></td>' +
                 '<td id="c_'+x+'3"><div class="form-group"><select id="selectbasic" onchange="enumselect(event)" name="selectbasic" class="form-control"><option value="BIGINT">Number</option><option value="DOUBLE">Decimal</option><option value="VARCHAR(50)">SmallTextBox</option><option value="TEXT">Textbox</option><option value="LONGTEXT">TextArea</option><option value="DATE">Date</option><option value="DATETIME">DateTime</option><option value="DATETIMESTAMP">DateTimeStamp</option><option value="ENUM">ENUM</option><option value="LOOKUP">LOOKUP</option></select><span class="help-block">Select the type of field</span></div></td>' +
                 '<td id="c_13"><div class="form-group"><select id="selectlist"name="selectlist" class="form-control"><option value="Y">Yes</option><option value="N">No</option></select><span class="help-block">Select if this has to be shown in list</span></div></td>';
     }
@@ -81,7 +81,7 @@
                     <div class="form-group">
 
                         <input id="textinput" name="textinput" type="text" placeholder="Field Name" class="form-control input-md" required="">
-                        <span class="help-block">Field Name cannot have spaces</span>
+                        <span class="help-block">Enter the Label for the Field</span>
 
                     </div>
                 </td>
@@ -89,7 +89,7 @@
                     <div class="form-group">
 
                         <input id="textinput" name="textinput" type="text" placeholder="Field Label" class="form-control input-md" required="">
-                        <span class="help-block">Enter the Label for the Field</span>
+                        <span class="help-block">Field Name cannot have spaces</span>
 
                     </div>
                 </td>

@@ -58,9 +58,9 @@ function pushresults(req,res) {
                             }
                             let queries=req.query;
                             let qfields_keys=Object.keys(queries);
-                            console.log(JSON.stringify(qfields_keys));
+                            //console.log(JSON.stringify(qfields_keys));
                             let qfields_values=Object.values(queries);
-                            console.log(JSON.stringify(qfields_values));
+                           // console.log(JSON.stringify(qfields_values));
                             let matchedStatus=true;
                             for(let qi=0;qi<qfields_keys.length;qi++) {
                                 let met=false;
@@ -90,8 +90,8 @@ function pushresults(req,res) {
                                 let param=qfields_keys[qi];
                                 let param_value=qfields_values[qi];
                                 param_value=param_value.replace(/%20or%20/g, '');
-                                param_value=param_value.replace(/ /g, '');
-                                param_value=param_value.replace(/%20/g, '');
+                                //param_value=param_value.replace(/ /g, '');
+                                param_value=param_value.replace(/%20/g, ' ');
 
                                 cond=cond+param+"=?";
                                 if(qi!=qfields_keys.length-1){
@@ -99,11 +99,10 @@ function pushresults(req,res) {
                                 }
                                 s_val.push(param_value);
                             }
-
-
+                            console.log(JSON.stringify(s_val));
                             let sql='SELECT t3.*,u.username AS ccreated_By, u1.username AS llastModified_By FROM '+results1[0].TABLE_NAME+' t3 INNER JOIN users u on t3.created_By=u.id LEFT JOIN users u1 ON t3.lastModified_By=u1.username where ';
                             sql=sql+cond+' and ( t3.organisationId=\''+req.user.organisation_Id+'\' or t3.organisationId=\'\' or t3.organisationId IS NULL);';
-                            console.log("S   " +sql);
+                            console.log("System   " +sql);
                             db.query(sql,s_val,function
                                 (error,results,fields){
                                 if(error) {
