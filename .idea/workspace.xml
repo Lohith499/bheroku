@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d34a7c99-b8e7-4100-8a37-37d4a1cb63a4" name="Default Changelist" comment="" />
+    <list default="true" id="d34a7c99-b8e7-4100-8a37-37d4a1cb63a4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home_Loggedout.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/home_Loggedout.hbs" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,17 +45,30 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/partials/object_fields/objectfields_new.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="16" column="31" lean-forward="true" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
+            <state relative-caret-position="272">
+              <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/webservices/webservice_search_controllers.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="244">
+              <caret line="159" column="41" selection-start-line="159" selection-start-column="41" selection-end-line="159" selection-end-column="41" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/controllers/webservices/webservice_search_controllers.js">
+        <entry file="file://$PROJECT_DIR$/views/home_Loggedout.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
-              <caret line="159" column="41" lean-forward="true" selection-start-line="159" selection-start-column="41" selection-end-line="159" selection-end-column="41" />
+            <state relative-caret-position="272">
+              <caret line="16" column="14" lean-forward="true" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
+              <folding>
+                <element signature="n#style#0;n#p#3;n#div#0;n#div#0;n#main#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#4;n#div#0;n#div#0;n#main#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -164,7 +180,6 @@
         <option value="$PROJECT_DIR$/views/partials/homepage_menu.hbs" />
         <option value="$PROJECT_DIR$/views/home_Loggedin.hbs" />
         <option value="$PROJECT_DIR$/views/partials/header.hbs" />
-        <option value="$PROJECT_DIR$/views/home_Loggedout.hbs" />
         <option value="$PROJECT_DIR$/views/partials/footer.hbs" />
         <option value="$PROJECT_DIR$/views/register.hbs" />
         <option value="$PROJECT_DIR$/views/partials/busers/busers_new.hbs" />
@@ -177,6 +192,7 @@
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/views/partials/object_fields/objectfields_new.hbs" />
         <option value="$PROJECT_DIR$/controllers/webservices/webservice_search_controllers.js" />
+        <option value="$PROJECT_DIR$/views/home_Loggedout.hbs" />
       </list>
     </option>
   </component>
@@ -198,6 +214,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -208,19 +225,12 @@
             <path>
               <item name="backupcrm" type="b2602c69:ProjectViewProjectNode" />
               <item name="backupcrm" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="backupcrm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="backupcrm" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-              <item name="webservices" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -343,11 +353,12 @@
       <workItem from="1554067462974" duration="12052000" />
       <workItem from="1554096781920" duration="35000" />
       <workItem from="1555114778999" duration="3330000" />
+      <workItem from="1555523903934" duration="239000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="564043000" />
+    <option name="totallyTimeSpent" value="564282000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -360,8 +371,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="34" width="1435" height="772" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49455675" visible="true" weight="0.21609862" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49455675" visible="true" weight="0.21899928" />
       <window_info id="Structure" order="1" sideWeight="0.5054432" side_tool="true" weight="0.23567803" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -858,17 +870,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/home_Loggedout.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="10" lean-forward="true" selection-start-line="5" selection-start-column="4" selection-end-line="16" selection-end-column="10" />
-          <folding>
-            <element signature="n#style#0;n#p#2;n#div#0;n#div#0;n#main#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#main#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/home_Loggedin.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="867">
@@ -960,15 +961,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/partials/object_fields/objectfields_new.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="16" column="31" lean-forward="true" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
+        <state relative-caret-position="272">
+          <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/webservices/webservice_search_controllers.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="244">
-          <caret line="159" column="41" lean-forward="true" selection-start-line="159" selection-start-column="41" selection-end-line="159" selection-end-column="41" />
+          <caret line="159" column="41" selection-start-line="159" selection-start-column="41" selection-end-line="159" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/home_Loggedout.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="14" lean-forward="true" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
+          <folding>
+            <element signature="n#style#0;n#p#3;n#div#0;n#div#0;n#main#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#4;n#div#0;n#div#0;n#main#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
