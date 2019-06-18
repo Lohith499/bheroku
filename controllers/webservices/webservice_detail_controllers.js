@@ -20,7 +20,7 @@ function pushresults(req,res) {
             res.status(404).json(
                 {
                     status: 'Authentication Failure',
-                    message : "No User found with this Username and Password"
+                    message : "No User found with this Username"
                 });
             return;
         } else {
@@ -259,7 +259,7 @@ function pushresults(req,res) {
                     res.status(404).json(
                         {
                             status: 'Authentication Failure',
-                            message : "No User found with this Username and Password"
+                            message : "No User found with this Username and Password combination"
                         });
                     return;
                 }
