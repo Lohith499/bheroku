@@ -9,7 +9,7 @@ function pushresults(req,res) {
     const  dbs =require('../../db.js');
     let id_searhc=req.url
     dbs.query('SELECT id,password,organisationId,Profile_Name FROM users where username=? ',[username],function (err,results,fields) {
-        if(err) {res.status(500).json(
+        if(err) {res.status(404).json(
             {
                 message : error.sqlMessage,
                 error : error,
@@ -17,7 +17,7 @@ function pushresults(req,res) {
             });
             return;}
         if(results.length===0){
-            res.status(500).json(
+            res.status(404).json(
                 {
                     status: 'Authentication Failure',
                     message : "No User found with this Username and Password"
@@ -45,7 +45,7 @@ function pushresults(req,res) {
                         id_search=id_search.replace(/%20/g, '');
                         id_search=id_search.replace(/[~`!@#$%^&()_={}[\]:;,.<>+\/?-]/g, '');
                     }else {
-                        res.status(500).json({
+                        res.status(404).json({
                                 error: "Enter only Record id after details/ "
                             });
                         return;
@@ -63,7 +63,7 @@ function pushresults(req,res) {
                     const  db=require('../../db.js');
                     db.query(gettablname,function (error1,results1,fields1){
                         if(error1 || results1.length===0) {
-                                res.status(500).json( { "Message": 'No Object Found with name='+objectname });
+                                res.status(404).json( { "Message": 'No Object Found with name='+objectname });
                                 return;
                         }
                         obj_id=results1[0].id;
@@ -71,7 +71,7 @@ function pushresults(req,res) {
                         let getfieldsql='select * from objects_fields obf where obf.object_id='+results1[0].id+' AND (obf.organisationId=\''+req.user.organisation_Id+'\' or obf.organisationId=\'\' or obf.organisationId IS NULL) ORDER BY id';
                         db.query(getfieldsql,function (error,fieldresults) {
                             if(error || fieldresults.length===0) {
-                                res.status(500).json( { "Message": 'No Object Fields Found for the object='+objectname });
+                                res.status(404).json( { "Message": 'No Object Fields Found for the object='+objectname });
                                 return;
                             }
                             console.log("id"+id_search);
@@ -85,12 +85,12 @@ function pushresults(req,res) {
                                     if(error.sqlMessage.includes("Duplicate")){
                                         error.sqlMessage="There is already a Object with this name in your Organisation"
                                     }
-                                    res.status(500).json({error : error});
+                                    res.status(404).json({error : error});
                                     return;
                                 }
                                 if(results.length===0){
                                     let message="No record found with this ID in this object or you dont have access to this record";
-                                    res.status(500).json({message : message});
+                                    res.status(404).json({message : message});
                                     return;
                                 }
                                 for (let key in results[0]) {
@@ -149,7 +149,7 @@ function pushresults(req,res) {
                                         if(error.sqlMessage.includes("Duplicate")){
                                             error.sqlMessage="There is already a Object with this name in your Organisation"
                                         }
-                                        res.status(500).json({title:'Objects New', error : error});
+                                        res.status(404).json({title:'Objects New', error : error});
                                         return;
                                     } else if(lookupObfsql_results){
                                         if(lookupObfsql_results.length>0){
@@ -206,7 +206,7 @@ function pushresults(req,res) {
                                                         if(error.sqlMessage.includes("Duplicate")){
                                                             error.sqlMessage="There is already a Object with this name in your Organisation"
                                                         }
-                                                        res.status(500).json({title:'Objects New', error : error});
+                                                        res.status(404).json({title:'Objects New', error : error});
                                                         return;
                                                     }
                                                     for(let l=0;l<lookeachresult.length;l++){
@@ -256,7 +256,7 @@ function pushresults(req,res) {
                     return;
                 }else {
                     console.log('hash fail');
-                    res.status(500).json(
+                    res.status(404).json(
                         {
                             status: 'Authentication Failure',
                             message : "No User found with this Username and Password"
